@@ -1,0 +1,10 @@
+.button {
+   background: #8CAB73;
+   color: #fff;
+   border-radius: 100px;
+   padding: 0.5em;
+   font-family: Roboto, sans-serif;
+   width: 10em;
+   font-size: 16pt;
+   text-align: center;
+}

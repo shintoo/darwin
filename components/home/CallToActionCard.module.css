@@ -1,0 +1,28 @@
+.background {
+   background: #E4EBC4;
+}
+
+.container {
+   height: 90vh;
+   padding-left: 10vw;
+   padding-right: 10vw;
+   background: #FFFFF5; 
+   color: #232C1C;
+   font-family: Lora, serif;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   border-radius: 10% 10% 0 0;
+   text-align: center;
+}
+
+.heading {
+   margin-top: 10vh;
+   font-size: 64pt;
+}
+
+.cta {
+   font-size: 28pt;
+   margin-left: 1em;
+   margin-right: 1em;
+}

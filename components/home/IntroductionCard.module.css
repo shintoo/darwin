@@ -1,0 +1,45 @@
+.container {
+   padding-top: 10vh;
+   height: 150vh;
+   padding-left: 10vw;
+   padding-right: 10vw;
+   background: #F0F5E0; 
+   color: #232C1C;
+   font-family: Lora, serif;
+   display: flex;
+   flex-direction: column;
+}
+
+.row {
+   margin-top: 10vh;
+   margin-bottom: 20vh;
+   display: flex;
+   align-items: center;
+   justify-content: space-around;
+}
+
+.card {
+   background: #fff;
+   padding: 3em;
+   max-width: 40vw;
+   border-radius: 50px;
+ }
+
+ .heading {
+    font-weight: bolder;
+    font-size: 32pt;
+ }
+
+.lightgreen {
+    color: #BEE2A1;
+}
+
+.darkgreen {
+   color: #5F8768;
+}
+
+.blurb {
+   font-family: Roboto, Ubuntu, sans-serif;
+   font-size: 18pt;
+   line-height: 2;
+}

@@ -1,0 +1,40 @@
+.container {
+   height: 220vh;
+   background: #E3EBC4;
+   color: #232C1C;
+   font-family: Lora, serif;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   position: relative;
+}
+
+.oos {
+   padding-top: 20vh;
+   font-size: 38pt;
+   margin-bottom: 10vh;
+}
+
+.imageContainer1 {
+   opacity: 0.8;
+   margin-top: 50vh;
+   margin-right: 50vw;
+}
+
+.imageContainer2 {
+   opacity: 0.9;
+   margin-top: 0vh;
+   margin-left: 50vw;
+}
+
+.imageContainer3 {
+   opacity: 0.8;
+   margin-top: 0vh;
+   margin-right: 30vw;
+}
+
+.exploration {
+   position: absolute;
+   font-size: 64pt;
+   top: 175vh;
+}

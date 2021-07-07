@@ -1,0 +1,4 @@
+       <Head>
+         <link rel="stylesheet" href="https://honts/googleapis.com/css?family=Lora" />
+       </Head>
+       <Component {...pageProps} />
