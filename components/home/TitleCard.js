@@ -18,11 +18,10 @@ export default function TitleCard(props) {
         </h3>
         <Button href="/signin">start building ➞</Button>
       </div>
-      <Image
+
+      <img
         className={styles.meme}
-        width={300}
-        height={150}
-        src={meme}
+        src="./meme.png"
       />
     </div>
   )

@@ -1,0 +1,13 @@
+.uibottom {
+  position: absolute;
+  bottom: 0;
+}
+
+.uitop {
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  /* For logo, title, save/share etc buttons */
+  justify-content: space-around;
+  align-items: center;
+}

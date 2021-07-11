@@ -18,7 +18,7 @@ export default function ImageShow(props) {
         </RellaxWrapper>
       </div>
       <div className={styles.imageContainer2}>
-        <RellaxWrapper speed={4}>
+        <RellaxWrapper speed={5}>
           <Image
             width={600}
             height={470}
@@ -26,7 +26,7 @@ export default function ImageShow(props) {
         </RellaxWrapper>
       </div>
       <div className={styles.imageContainer3}>
-        <RellaxWrapper speed={4}>
+        <RellaxWrapper speed={6}>
           <Image
             width={410}
             height={706}

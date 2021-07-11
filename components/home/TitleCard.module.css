@@ -6,13 +6,13 @@
    color: #232C1C;
    font-family: Lora, serif;
    display: flex;
+   align-items: center;
    justify-contents: space-around;
 }
 
 .title {
    margin: 0;
    padding: 0;
-   margin-top: 30vh;
    line-height: 0.95;
    font-weight: bolder;
    font-size: 150pt;
@@ -52,3 +52,8 @@
    color: #5F8768;
 }
 
+.meme {   
+  margin-left: 10vw;
+  width: 350px;
+  height: 250px;
+}
