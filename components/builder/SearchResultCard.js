@@ -4,7 +4,9 @@ import styles from './SearchResultCard.module.css'
 export default function SearchResultCard({ taxa }) {
    return (
      <div className={styles.card}>
-       <Image width={300} height={300} src={taxa.image} alt={taxa.name} />
+       <div className={styles.imagecontainer}>
+         <Image className={styles.image} layout="fill" objectFit="cover" src={taxa.image} alt={taxa.name} />
+       </div>
        <div className={styles.label}>
          {taxa.name}
        </div>
