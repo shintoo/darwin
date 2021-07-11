@@ -6,8 +6,10 @@ export default function Builder(props) {
   const [ searchText, setSearchText ] = useState("")
   return (
     <>
-      <SearchBar setSearchText={setSearchText} />
-      <SearchResultBox query={searchText} />
+      <div style={{position: "absolute", bottom: "0", width: "100%"}}>
+        <SearchBar setSearchText={setSearchText} />
+        <SearchResultBox query={searchText} />
+      </div>
     </>
   )
 }
