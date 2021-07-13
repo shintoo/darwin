@@ -1,6 +1,12 @@
 .uibottom {
   position: absolute;
   bottom: 0;
+  width: 100%;
+  transition: transform 0.3s ease-out;
+}
+
+.hidden {
+  transform: translateY(350px);
 }
 
 .uitop {

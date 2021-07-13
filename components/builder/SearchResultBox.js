@@ -8,13 +8,20 @@ export default function SearchResultBox(props) {
   const [ results, setResults ] = useState([])
 
   useEffect(() => {
-    setResults([])
-    const taxa = getTaxa(props.query)
-    console.log("updating results for query ", props.query)
-    setResults(taxa)
-  }, [props.query])
+    getTaxa(props.query, props.rank, props.parent)
+      .then(taxa => {
+        if (props.parent && taxa.length === 0) {
+           return
+        }
+        setResults([])
+        setResults(taxa)
+      })
+  }, [props.query, props.rank, props.parent])
 
-  const resultCards = results.map(taxa => <SearchResultCard key={taxa.id} taxa={taxa} />)
+
+  useEffect(() => props.setParent(null), [props.query, props.rank])
+
+  const resultCards = results.map(taxa => <SearchResultCard key={taxa.id} taxa={taxa} setParent={props.setParent}/>)
 
   return (
     <div className={styles.container}>
@@ -23,96 +30,51 @@ export default function SearchResultBox(props) {
   )
 }
 
-function getTaxa(query, rank) {
-  // List of {taxonId: {name: "Eastern Cottontail", "image": "http...", ancestors: [...]}, ...}
-/*  return fetch(
-    taxaEndpoint
-    + "?q=" + query
-    + rank ? "&rank
-  )*/
-  // placeholder (whales!)
-  return [
-    {
-      id: 41566,
-      name: "Humpback whale",
-      image: "https://inaturalist-open-data.s3.amazonaws.com/photos/2291801/medium.jpg?1440209486",
-      ancestors: [
-        48460,
-        1,
-        2,
-        355675,
-        40151,
-        848317,
-        848320,
-        848324,
-        152870,
-        925158,
-        152871,
-        424321,
-        41546,
-        41565,
-        41566
-      ]
-    },{
-      id: 41521,
-      name: "Killer whale",
-      image: "https://inaturalist-open-data.s3.amazonaws.com/photos/14363326/medium.jpeg?1521702304",
-      ancestors: [
-        48460,
-        1,
-        2,
-        355675,
-        40151,
-        848317,
-        848320,
-        848324,
-        152870,
-        925158,
-        152871,
-        424322,
-        41479,
-        41520,
-        41521
-      ]
-    },{
-      id: 41478,
-      name: "Gray whale",
-      image: "https://inaturalist-open-data.s3.amazonaws.com/photos/9393720/medium.jpeg?1501366539",
-      ancestors: [
-        48460,
-        1,
-        2,
-        355675,
-        40151,
-        848317,
-        848320,
-        848324,
-        152870,
-        925158,
-        152871,
-        424321,
-        41476,
-        41477,
-        41478
-      ]
-    },{
-      id: 52188,
-      name: "Whale shark",
-      image: "https://static.inaturalist.org/photos/12122747/medium.jpg?1512019144",
-      ancestors: [
-        48460,
-        1,
-        2,
-        355675,
-        47273,
-        505362,
-        551307,
-        551308,
-        49967,
-        52189,
-        48841,
-        52188
-      ]
-     }
-  ]
+// Get a list of taxa matching the query from the iNaturalist API
+// Args:
+//   - query (str): Search text to match
+//   - rank (str): Rank to match ("species", "family", "", etc.)
+//   - parent (int): Only get taxa that are direct children of this parent taxon
+// Returns:
+//   - List of matched taxa in the form of:
+//     [{ id: 41577,
+//        name: "Humpback whale",
+//        ancestors: [48460, 1, 2, 355675, ...]
+//     }]
+function getTaxa(query, rank, parent) {
+  let url = taxaEndpoint
+
+  if (parent) {
+    url += "?parent_id=" + parent
+  } else {
+    url += "?q=" + query
+    if (rank) {
+      url += "&rank=" + rank
+    }
+  }
+
+
+  console.log("args: ", query, rank, parent, " -- fetching ", url)
+
+  return fetch(url)
+    .then(resp => resp.ok ? resp.json() : null)
+    .then(data => {
+      console.log(data.total_results)
+      if (!data.results)
+        return [-1]
+      return data.results.map(r => {
+        return {
+          id: r.id,
+          photo: r.default_photo && {
+            url: r.default_photo.medium_url,
+            attribution: r.default_photo.attribution,
+          },
+          naming: {
+            common_name: r.preferred_common_name !== "undefined" ? r.preferred_common_name : null,
+            rank: r.rank,
+            taxon: r.name
+          }
+        }
+      })
+    })
 }

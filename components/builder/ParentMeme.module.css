@@ -1,0 +1,9 @@
+.container {
+  border-radius: 100px;
+  padding: 1em;
+  font-family: Roboto, sans-serif;
+  background-color: #B8E6B8;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #8CAB73;
+}

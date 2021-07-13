@@ -6,5 +6,11 @@
    border-color: #C2C2C2;
    border-radius: 50px;
    font-family: Roboto, sans-serif;
-   font-size: 28;
+   font-size: 1em;
+   transition: border-color 0.1s;
+}
+
+.searchbar:focus {
+   outline: none;
+   border-color: #8CAB73;
 }
