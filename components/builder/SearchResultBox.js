@@ -21,7 +21,7 @@ export default function SearchResultBox(props) {
 
   useEffect(() => props.setParent(null), [props.query, props.rank])
 
-  const resultCards = results.map(taxa => <SearchResultCard key={taxa.id} taxa={taxa} setParent={props.setParent}/>)
+  const resultCards = results.map(taxa => <SearchResultCard key={taxa.id} taxa={taxa} setParent={props.setParent} addNode={props.addNode}/>)
 
   return (
     <div className={styles.container}>
