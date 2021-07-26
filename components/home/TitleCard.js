@@ -16,7 +16,7 @@ export default function TitleCard(props) {
         <h3 className={styles.subsubtitle}>
           A whole new way to explore the tree of life.
         </h3>
-        <Button href="/signin">start building ➞</Button>
+        <Button href="/builder">start building ➞</Button>
       </div>
 
       <img

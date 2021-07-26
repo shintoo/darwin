@@ -11,11 +11,34 @@ export default function Builder(props) {
   const [ searchRank, setSearchRank ] = useState("")
   const [ searchParent, setSearchParent ] = useState(null)
   const [ bottomUiHidden, setBottomUiHidden ] = useState(false)
-  const [ treeData, setTreeData ] = useState([{"name": "meme", "level": "orange", "parent": "null", "children": [{"name": "meme baby", "level": "blue", "parent": "meme", "icon": "https://inaturalist-open-data.s3.amazonaws.com/photos/29302448/square.jpeg?1545186504"}, {"name": "big money", "level": "green", "parent": "meme", "icon": "https://inaturalist-open-data.s3.amazonaws.com/photos/29302448/square.jpeg?1545186504"} ], "icon": "https://inaturalist-open-data.s3.amazonaws.com/photos/29302448/square.jpeg?1545186504"}])
+  const [ treeData, setTreeData ] = useState(
+    [
+      {"name": "Birds", "id": 1337,  "parent": "null",
+       "children": [
+         {"name": "Typical owls", "id": 1338, "parent": "Birds", "icon": "https://inaturalist-open-data.s3.amazonaws.com/photos/22450048/medium.jpg?1533201251"},
+         {"name": "Perching birds", "id": 199199199, "parent": "Birds", "icon": "https://inaturalist-open-data.s3.amazonaws.com/photos/13159622/square.jpg?1545710920",
+          "children": [
+            {"name": "Thrushes", "id": 109109109, "parent": "Perching birds", "icon": "https://inaturalist-open-data.s3.amazonaws.com/photos/1799195/square.jpg?1545604825"},
+            {"name": "New world warblers", "id": 209209209, "parent": "Perching birds", "icon": "https://static.inaturalist.org/photos/5809085/medium.jpg?1481677507"}
+          ]}
+       ],
+       "icon": "https://inaturalist-open-data.s3.amazonaws.com/photos/222/square.jpg?155397324"}
+    ]
+  )
+  const [ usedIds, setUsedIds ] = useState([])
 
   const addNode = data => {
-    treeData[0].children.push(data)
-    console.log(treeData)
+    if (usedIds.includes(data.id))
+      return
+    const nodeData = {...data, "parent": "meme", "children": [], "level": "green"}
+
+    if (!treeData[0].children)
+      treeData[0].children = [nodeData]
+    else
+      treeData[0].children.push(nodeData)
+
+    setUsedIds([...usedIds, data.id])
+    setTreeData([])
     setTreeData(treeData)
   }
 

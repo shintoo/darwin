@@ -12,7 +12,7 @@ export default function Home() {
     </Head>
     <TitleCard />
     <IntroductionCard />
-    <ImageShow />
+    {/*    <ImageShow /> */}
     <CallToActionCard />
   </>
   )

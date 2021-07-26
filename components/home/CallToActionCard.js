@@ -13,7 +13,7 @@ export default function CallToActionCard(props) {
       <p className={styles.cta}>
         What will you find?
       </p>
-      <Button style={{margin: "1em"}} href="/signin">start exploring ➞</Button>
+      <Button style={{margin: "1em"}} href="/builder">start exploring ➞</Button>
     </div>
     </div>
   )

@@ -15,6 +15,13 @@ export default function SearchResultCard({ taxa, setParent, addNode }) {
     label += " (" + taxa.naming.rank + " " + taxa.naming.taxon + ")"
   }
 
+  const nodeData = {
+    "id": taxa.id,
+    "name": taxa.naming.common_name ? taxa.naming.common_name : taxa.naming.taxon,
+    "icon": taxa.photo ? taxa.photo.url.replace("medium", "square") : "",
+    "ancestors": taxa.ancestors
+  }
+
   const image = taxa.photo ?
       <img onLoad={()=>setLoaded(true)} className={styles.image} src={taxa.photo.url} alt={label} />
     : <div className={styles.missingimage}>No photo</div>
@@ -22,11 +29,11 @@ export default function SearchResultCard({ taxa, setParent, addNode }) {
   return (
     <>
       { loaded || <div style={{margin: "auto", textAlign: "center"}}>...</div>}
-    <div className={[styles.card, loaded ? styles.loaded : ""].join(" ")} onClick={() => setParent({id: taxa.id, name: taxa.naming.taxon})}>
-      <div className={styles.imagecontainer}>
+    <div className={[styles.card, loaded ? styles.loaded : ""].join(" ")}>
+      <div onClick={() => setParent({id: taxa.id, name: taxa.naming.taxon})} className={styles.imagecontainer}>
         {image}
       </div>
-      <div onClick={() => addNode({"parent": "meme", "id": "4", "level": "red", "name": label, "icon": taxa.photo.url.replace("medium", "square"), children: []})} style={{fontWeight: taxa.id === 48460 ? "bold" : ""}} className={styles.label}>
+      <div onClick={() => addNode(nodeData)} style={{fontWeight: taxa.id === 48460 ? "bold" : ""}} className={styles.label}>
         {label}
       </div>
     </div>

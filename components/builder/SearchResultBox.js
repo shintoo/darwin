@@ -69,6 +69,7 @@ function getTaxa(query, rank, parent) {
             url: r.default_photo.medium_url,
             attribution: r.default_photo.attribution,
           },
+          ancestors: r.ancestor_ids,
           naming: {
             common_name: r.preferred_common_name !== "undefined" ? r.preferred_common_name : null,
             rank: r.rank,

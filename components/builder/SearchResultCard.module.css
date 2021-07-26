@@ -1,7 +1,7 @@
 .card {
   margin: 1em;
-  height: 300px;
-  width: 300px;
+  height: 250px;
+  width: 250px;
   display: grid;
   grid-template-columns: auto;
   grid-template-rows: 3fr 1fr;
@@ -16,11 +16,11 @@
   box-sizing: border-box;
   transition: all 0.4s cubic-bezier(0.77, -0.27, .29, 1.32);
   position: relative;
-  transform: scale(0.01);
+  opacity: 0.01;
 }
 
 .loaded {
-   transform: scale(1.0);
+  opacity: 1.0;
 }
 
 .card:hover {
@@ -30,8 +30,8 @@
 
 .imagecontainer {
   position: relative;
-  width: 300px;
-  height: 225px;
+  width: 250px;
+  height: 187px;
 }
 
 .image {
