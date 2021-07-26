@@ -5,41 +5,118 @@ import RankSelector from './RankSelector'
 import ParentMeme from './ParentMeme'
 import Canvas from './Canvas'
 import styles from './Builder.module.css'
+import getTaxa from '../../lib/taxa'
 
 export default function Builder(props) {
   const [ searchText, setSearchText ] = useState("")
   const [ searchRank, setSearchRank ] = useState("")
   const [ searchParent, setSearchParent ] = useState(null)
   const [ bottomUiHidden, setBottomUiHidden ] = useState(false)
-  const [ treeData, setTreeData ] = useState(
-    [
-      {"name": "Birds", "id": 1337,  "parent": "null",
-       "children": [
-         {"name": "Typical owls", "id": 1338, "parent": "Birds", "icon": "https://inaturalist-open-data.s3.amazonaws.com/photos/22450048/medium.jpg?1533201251"},
-         {"name": "Perching birds", "id": 199199199, "parent": "Birds", "icon": "https://inaturalist-open-data.s3.amazonaws.com/photos/13159622/square.jpg?1545710920",
-          "children": [
-            {"name": "Thrushes", "id": 109109109, "parent": "Perching birds", "icon": "https://inaturalist-open-data.s3.amazonaws.com/photos/1799195/square.jpg?1545604825"},
-            {"name": "New world warblers", "id": 209209209, "parent": "Perching birds", "icon": "https://static.inaturalist.org/photos/5809085/medium.jpg?1481677507"}
-          ]}
-       ],
-       "icon": "https://inaturalist-open-data.s3.amazonaws.com/photos/222/square.jpg?155397324"}
-    ]
-  )
-  const [ usedIds, setUsedIds ] = useState([])
+  const [ treeData, setTreeData ] = useState([{name: "Life", id: 48460, children: [], parent: "null",}])
+  const [ usedIds, setUsedIds ] = useState([48460])
 
-  const addNode = data => {
+  const addNode = async (root, data) => {
+    console.log("addNode(", root.name, ", ", data.name, ")")
+    let added = false
+
     if (usedIds.includes(data.id))
       return
-    const nodeData = {...data, "parent": "meme", "children": [], "level": "green"}
 
-    if (!treeData[0].children)
-      treeData[0].children = [nodeData]
-    else
-      treeData[0].children.push(nodeData)
+    const findEarliestCommonAncestor = async (bro, sis) => {
+        console.log("finding eca between ", bro.name, "(", bro.ancestors, ") and ", sis.name, "(", sis.ancestors, ")")
+        for (let i = 0; i < bro.ancestors.length; i++) {
+            if (sis.ancestors.includes(bro.ancestors[i])) {
+               if (usedIds.includes(bro.ancestors[i]))
+                 return {id: bro.ancestors[i]}
+               const taxa = await getTaxa(null, null, null, bro.ancestors[i])
+               const taxon = taxa[0]
+               const nodeData = {
+                  "id": taxon.id,
+                  "name": taxon.naming.common_name ? taxon.naming.common_name : taxon.naming.taxon,
+                  "icon": taxon.photo ? taxon.photo.url.replace("medium", "square") : "",
+                  "ancestors": taxon.ancestors
+               }
 
-    setUsedIds([...usedIds, data.id])
-    setTreeData([])
-    setTreeData(treeData)
+               return nodeData
+            }
+        }
+
+        return false
+    }
+
+    // If it's already in the tree, bye bye
+    if (usedIds.includes(data.id))
+      return
+
+
+    if (!root.children || root.children.length === 0) {
+      root.children = [{...data, parent: root.name, children: []}]
+      added = true
+      console.log("added ", data.name, "as only child under ", root.name)
+    } else {
+      for (let i = 0; i < root.children.length; i++) {
+        if (added)
+          break
+        // If data should go between the root and the child
+        // (animals (owls)) =>
+        // (animals (+birds (owls))
+        if (root.children[i].ancestors.includes(data.id)) {
+          data.children = [root.children[i]]
+          data.children[0].parent = data.name
+          root.children[i] = data
+          added = true
+          console.log("added ", data.name, "as parent of ", root.children[i].name)
+          break
+        }
+        // If data should be a child of the child
+        // (animals (birds)) =>
+        // (animals (birds (+owls))
+        if (data.ancestors.includes(root.children[i].id)) {
+          // If the ancestor node has children, find where the new node should go
+          // within that subtree
+          console.log("descending to ", root.children[i].name)
+          added = await addNode(root.children[i], data)
+          if (added) {
+            console.log("added")
+            break 
+          }
+          console.log("not added")
+        }
+        // If data is a sibling of the child, find their closest parent
+        // (animals (finches)) =>
+        // E.g. (animals (+birds (+owls) (finches)))
+        parent = await findEarliestCommonAncestor(root.children[i], data)
+        console.log("parent from feca: ", parent)
+        if (parent) {
+          console.log("got earliest common ancestor: ", parent.name)
+          if (root.id === parent.id) {
+             if (i !== root.children.length - 1) {
+                console.log("eca is parent, continuing to next child")
+                continue
+             }
+             console.log("eca was parent, adding ", data.name, "as a child")
+             root.children.push({...data, parent: root.name, children: []})
+          } else {
+             parent = {...parent, parent: root, children: [{...data, parent: parent.name, children: []}, root.children[i]]}
+             root.children[i].parent = parent.name
+             root.children[i] = parent
+             usedIds.push(parent.id)
+             console.log("added new eca parent ", parent.name, "with children ", data.name, " ", parent.children[1].name)
+          }
+          added = true
+          break
+        }
+        console.log("no common ancestor between ", root.children[i].name, data.name)
+      }
+    }
+
+   
+    if (added) {
+      setUsedIds([...usedIds, data.id])
+      setTreeData(treeData)
+    }
+
+    return added
   }
 
   return (
@@ -57,7 +134,7 @@ export default function Builder(props) {
           rank={searchRank}
           parent={searchParent && searchParent.id}
           setParent={setSearchParent}
-          addNode={addNode}/>
+          addNode={n => addNode(treeData[0], n)}/>
       </div>
     </div>
   )
