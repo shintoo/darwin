@@ -174,7 +174,7 @@ export default function Builder(props) {
         <CopyTreeUrlButton ids={usedIds} title={title} />
       </div>
       <div>
-        <Canvas data={treeData} setData={setTreeData} />
+        <Canvas data={treeData} setData={setTreeData} count={usedIds.size}/>
       </div>
       <div className={[styles.uibottom, bottomUiHidden ? styles.hidden : ""].join(" ")}>
         <div style={{width: "100%", display: "flex", alignItems: "center"}}>

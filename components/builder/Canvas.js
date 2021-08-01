@@ -18,10 +18,10 @@ export default function Canvas(props) {
     if (!dragging)
       return
     const delta = [e.clientX - startCoords[0], e.clientY - startCoords[1]]
-    setCoords([coords[0] + delta[0]/30, coords[1] + delta[1]/30])
+    setCoords([coords[0] + delta[0]/15, coords[1] + delta[1]/15])
   }
 
-  const node = createTree(coords[0], coords[1])
+  const node = createTree(coords[0], coords[1], props.count, document.documentElement.clientWidth, document.documentElement.clientHeight || 1200)
 
   if (!props.data[0].children)
     return null
