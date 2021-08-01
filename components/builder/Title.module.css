@@ -1,0 +1,15 @@
+.title {
+  font-size: 18px;
+  font-family: Lora, serif;
+}
+
+.inputcontainer {
+  border-style: solid;
+}
+
+.input {
+  font-size: 18px;
+  font-family: Lora, serif;
+  background: none;
+  border: none;
+}

@@ -3,6 +3,7 @@
   bottom: 0;
   width: 100%;
   transition: transform 0.3s ease-out;
+  box-sizing: border-box;
 }
 
 .hidden {
@@ -11,9 +12,12 @@
 
 .uitop {
   position: absolute;
-  bottom: 0;
+  top: 0;
+  box-sizing: border-box;
+  width: 100%;
   display: flex;
   /* For logo, title, save/share etc buttons */
-  justify-content: space-around;
+  justify-content: space-between;
+  padding: 0.5em 0.5em 0.5em 0.5em;
   align-items: center;
 }
