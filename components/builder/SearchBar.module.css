@@ -5,9 +5,10 @@
    border-style: solid;
    border-color: #C2C2C2;
    border-radius: 50px;
+   box-sizing: border-box;
    font-family: Roboto, sans-serif;
    font-size: 1em;
-   transition: border-color 0.1s;
+   transition: border-color 0.2s;
 }
 
 .searchbar:focus {

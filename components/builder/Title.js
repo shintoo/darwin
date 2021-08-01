@@ -1,8 +1,7 @@
 import { useState } from "react"
 import styles from "./Title.module.css"
 
-export default function Title(props) {
-  const [ title, setTitle ] = useState("Life")
+export default function Title({ title, setTitle }) {
   const [ editing, setEditing ] = useState(false)
 
   const handleChange = event => {

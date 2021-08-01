@@ -7,7 +7,7 @@
 }
 
 .hidden {
-  transform: translateY(350px);
+  transform: translateY(300px);
 }
 
 .uitop {
@@ -18,6 +18,6 @@
   display: flex;
   /* For logo, title, save/share etc buttons */
   justify-content: space-between;
-  padding: 0.5em 0.5em 0.5em 0.5em;
+  padding: 0.5em 1em 0 1em;
   align-items: center;
 }

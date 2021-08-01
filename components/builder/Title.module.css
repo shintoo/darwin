@@ -1,15 +1,16 @@
 .title {
-  font-size: 18px;
+  font-size: 30px;
   font-family: Lora, serif;
-}
-
-.inputcontainer {
-  border-style: solid;
+  transition: font-size 0.2s;
 }
 
 .input {
-  font-size: 18px;
+  font-size: 25px;
+  color: #333;
   font-family: Lora, serif;
+  text-align: center;
   background: none;
   border: none;
+  border-bottom: 2px solid #000;
+  outline: none;
 }

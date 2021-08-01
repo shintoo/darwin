@@ -1,5 +1,5 @@
 .rankselector {
-   padding: 1em;
-   background: none;
-   border: none;
+   padding: 1.3em;
+   border: 2px solid #c2c2c2;
+   border-radius: 50px;
 }

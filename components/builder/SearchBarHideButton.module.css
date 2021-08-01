@@ -1,4 +1,6 @@
 .button {
+  margin: 1em;
+  margin-left: auto;
   background: white;
   color: #c2c2c2;
   border-radius: 50px;
@@ -8,14 +10,6 @@
   font-family: Roboto, sans-serif;
   font-size: 1em;
   padding: 0.5em;
-  margin: 1em;
-  transition: all 0.4s ease-out;
-  width: 7em;
   text-align: center;
-}
-
-.copied {
-  background-color: #B8E6B8;
-  border-color: #8CAB73;
-  color: #000;
+  transition: all 0.3s;
 }

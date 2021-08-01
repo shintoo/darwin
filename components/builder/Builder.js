@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import Title from './Title'
 import SearchBar from './SearchBar'
 import SearchResultBox from './SearchResultBox'
+import SearchBarHideButton from './SearchBarHideButton'
 import RankSelector from './RankSelector'
 import ParentMeme from './ParentMeme'
 import Canvas from './Canvas'
@@ -16,9 +17,10 @@ export default function Builder(props) {
   const [ searchRank, setSearchRank ] = useState("")
   const [ searchParent, setSearchParent ] = useState(null)
   const [ bottomUiHidden, setBottomUiHidden ] = useState(false)
+  const [ title, setTitle ] = useState("My Tree")
   const [ treeData, setTreeData ] = useState([{name: "Life", id: 48460, children: [], parent: "null",}])
   const [ usedIds, setUsedIds ] = useState(new Set([48460]))
-  const [ startedLoadingTree, setStartedLoadingTree ] = useState(false) // Only used for [treeId] route
+  const [ startedLoadingTree, setStartedLoadingTree ] = useState(false) // Only used for [treeId] or /inat/[username] routes
   let usedIdsBuffer = usedIds
 
   const addNode = async (root, data, buildingTree) => {
@@ -125,10 +127,14 @@ export default function Builder(props) {
     return added
   }
 
-  const buildTreeFromIds = async treeId => {
-    const ids = treeId.split("-").map(id => base62.decode(id))
+  const buildTreeFromIds = async ids => {
+   console.log(ids)
+   let nodes = []
+    for (let i = 1; i < ids.length; i++) {
+      if (usedIdsBuffer.has(ids[i]))
+        continue
 
-    for (let i = 0; i < ids.length; i++) {
+      console.log("id: ", ids[i])
       const taxa = await getTaxa(null, null, null, ids[i])
       const taxon = taxa[0]
       const nodeData = {
@@ -137,6 +143,7 @@ export default function Builder(props) {
          "icon": taxon.photo ? taxon.photo.url.replace("medium", "square") : "",
          "ancestors": taxon.ancestors
       }
+      console.log("about to call addNode(", treeData[0].id, ", ", nodeData.id, ")")
       await addNode(treeData[0], nodeData, true)
     }
     console.log("usedIdsBuffer after tree build complete: ", usedIdsBuffer)
@@ -144,27 +151,38 @@ export default function Builder(props) {
   }
 
   useEffect(_ => {
-    if (props.treeId && !startedLoadingTree) {
-      buildTreeFromIds(props.treeId)
-    }  
-
-  }, [props.treeId])
+    if (!startedLoadingTree && (props.treeId || (props.ids && props.ids.length > 0))) {
+      setStartedLoadingTree(true)
+      let ids
+      if (props.treeId) {
+        const encodedIds = props.treeId.split("-")
+        setTitle(encodedIds.shift().replace("_", " ")) 
+        ids = encodedIds.map(id => base62.decode(id))
+      } else if (props.ids && !startedLoadingTree) {
+        setTitle(props.title)
+        ids = props.ids
+      }
+      buildTreeFromIds(ids).then(console.log("built tree :-)"))
+    }
+  }, [props.treeId, props.ids])
 
   return (
-    <div style={{overflowX: "hidden"}}>
+    <div style={{overflowY: "hidden"}}>
       <div className={styles.uitop}>
         <LogoButton />
-        <Title />
-        <CopyTreeUrlButton ids={usedIds} />
+        <Title title={title} setTitle={setTitle} />
+        <CopyTreeUrlButton ids={usedIds} title={title} />
       </div>
       <div>
-        <Canvas data={treeData} />
+        <Canvas data={treeData} setData={setTreeData} />
       </div>
       <div className={[styles.uibottom, bottomUiHidden ? styles.hidden : ""].join(" ")}>
-        <SearchBar setHide={setBottomUiHidden} setSearchText={setSearchText} />
-        <ParentMeme parent={searchParent && searchParent.name} setParent={setSearchParent} />
-        <RankSelector setHide={setBottomUiHidden} setRank={setSearchRank} /> 
-        <span onClick={() => setBottomUiHidden(!bottomUiHidden)}> {bottomUiHidden? "^" : "v"}</span>
+        <div style={{width: "100%", display: "flex", alignItems: "center"}}>
+          <SearchBar setHide={setBottomUiHidden} setSearchText={setSearchText} />
+          <ParentMeme parent={searchParent && searchParent.name} setParent={setSearchParent} />
+          <RankSelector setHide={setBottomUiHidden} setRank={setSearchRank} /> 
+          <SearchBarHideButton setter={setBottomUiHidden} state={bottomUiHidden} />
+        </div>
         <SearchResultBox
           query={searchText}
           rank={searchRank}
