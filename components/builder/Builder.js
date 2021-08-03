@@ -23,6 +23,56 @@ export default function Builder(props) {
   const [ startedLoadingTree, setStartedLoadingTree ] = useState(false) // Only used for [treeId] or /inat/[username] routes
   let usedIdsBuffer = usedIds
 
+
+  const deleteNode = id => {
+     let deleted = false
+
+     if (treeData[0].id == id) // Can't delete Life node
+       return
+
+
+     if (!usedIds.has(id))
+      return
+
+     console.log("deleting node for ", id)
+
+     deleted = rDeleteNode(id, treeData[0])
+
+     if (deleted) {
+       console.log("setting new treeData: ", treeData)
+       setTreeData([treeData[0]])
+       usedIds.delete(id)
+       setUsedIds(usedIds)
+     } else {
+        console.log("node not found")
+     }
+  }
+
+
+  const rDeleteNode = (id, node) => {
+     console.log("rDeleteNode ", id, node)
+
+     if (!node.children) {
+        console.log("no children: ", node.children)
+        return false
+     }
+
+     for (let i = 0; i < node.children.length; i++) {
+        if (node.children[i].children)
+          if (rDeleteNode(id, node.children[i])) 
+            return true
+
+
+        console.log("foreach in rdn: '", node.children[i].id, "', '", id, "'")
+        if (node.children[i].id == id) {
+            node.children.splice(i, 1)
+            return true
+        }
+     }
+
+     return false
+  }
+
   const addNode = async (root, data, buildingTree) => {
     console.log("addNode(", root.name, ", ", data.name, ")")
     let added = false
@@ -115,7 +165,9 @@ export default function Builder(props) {
 
    
     if (added) {
-      setTreeData({...treeData})
+      addTreeColors(treeData[0], [0, 360])
+      treeData[0].linkColor = "white"
+      setTreeData([...treeData])
       usedIdsBuffer.add(data.id)
       if (!buildingTree) {
         console.log("setting usedIds to", usedIdsBuffer)
@@ -125,6 +177,29 @@ export default function Builder(props) {
 
     console.log("Finished adding ", data.id, "usedIdsBuffer is now ", usedIdsBuffer)
     return added
+  }
+
+  const addTreeColors = (node, hueRange) => {
+    console.log("hueRange: ", hueRange)
+    const rangeSize = hueRange[1] - hueRange[0]
+    const hue = hueRange[0] + rangeSize / 2
+    console.log("setting ", node.id, "linkColor to hue ", hue)
+    node.linkColor = "hsl(" + hue + ", 100%, 70%)"
+
+    const numChildren = (node.children && node.children.length) || 0
+    if (!numChildren)
+      return
+
+    console.log("numChildren for ", node.id, numChildren)
+    const childRangeSize = rangeSize / numChildren
+
+    for (let i = 0; i < numChildren; i++) {
+      addTreeColors(
+        node.children[i], 
+        [ hueRange[0] + i * childRangeSize, 
+          hueRange[0] + (1+i) * childRangeSize ]
+      )
+    }
   }
 
   const buildTreeFromIds = async ids => {
@@ -147,6 +222,9 @@ export default function Builder(props) {
       await addNode(treeData[0], nodeData, true)
     }
     console.log("usedIdsBuffer after tree build complete: ", usedIdsBuffer)
+    addTreeColors(treeData[0], [0, 360])
+    treeData[0].linkColor = "white"
+    setTreeData([...treeData])
     setUsedIds(usedIdsBuffer)
   }
 
@@ -174,7 +252,7 @@ export default function Builder(props) {
         <CopyTreeUrlButton ids={usedIds} title={title} />
       </div>
       <div>
-        <Canvas data={treeData} setData={setTreeData} count={usedIds.size}/>
+        <Canvas deleteNode={deleteNode} data={treeData} setData={setTreeData} count={usedIds.size}/>
       </div>
       <div className={[styles.uibottom, bottomUiHidden ? styles.hidden : ""].join(" ")}>
         <div style={{width: "100%", display: "flex", alignItems: "center"}}>

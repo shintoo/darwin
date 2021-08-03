@@ -2,6 +2,10 @@
   font-size: 30px;
   font-family: Lora, serif;
   transition: font-size 0.2s;
+  background: rgba(240, 245, 224, 0.8);
+  box-shadow: 0 0 2px 2px rgba(240, 245, 224, 0.8);
+  border-radius: 30px;
+  padding: 0.5em;
 }
 
 .input {
@@ -9,8 +13,10 @@
   color: #333;
   font-family: Lora, serif;
   text-align: center;
-  background: none;
+  text-decoration: underline;
   border: none;
-  border-bottom: 2px solid #000;
   outline: none;
+  background: rgba(240, 245, 224, 0.8);
+  border-radius: 30px;
+  padding: 0.5em;
 }

@@ -1,27 +1,35 @@
 import { useState, useEffect } from 'react'
 import rd3 from 'react-d3-library'
 import { createTree, updateTree} from '../../lib/tree'
-import debounce from '../../lib/input'
+import useWindowSize from '../../lib/window'
+import styles from './Canvas.module.css'
 const RD3Component = rd3.Component
 
 export default function Canvas(props) {
   useEffect(() => updateTree(props.data), [props.data])
-  const [ coords, setCoords ] = useState([0, 0])
   const [ startCoords, setStartCoords ] = useState([0, 0])
   const [ dragging, setDragging ] = useState(false)
+  const windowSize = useWindowSize()
+  const [ coords, setCoords ] = useState([0, 0])
 
   if (typeof window === "undefined")
     return "loading..."
 
-
   const drag = e => {
-    if (!dragging)
+    if (!dragging || !props.data[0].children) // Don't move a blank canvas
       return
     const delta = [e.clientX - startCoords[0], e.clientY - startCoords[1]]
     setCoords([coords[0] + delta[0]/15, coords[1] + delta[1]/15])
   }
 
-  const node = createTree(coords[0], coords[1], props.count, document.documentElement.clientWidth, document.documentElement.clientHeight || 1200)
+  const node = createTree(
+    props.deleteNode,
+    coords[0],
+    coords[1],
+    windowSize.width,
+    windowSize.height,
+    props.count
+  )
 
   if (!props.data[0].children)
     return null
@@ -37,7 +45,7 @@ export default function Canvas(props) {
       onMouseUp={_ => setDragging(false)}
       onMouseMove={e => drag(e)}
       onMouseLeave={_ => setDragging(false)}
-      style={{position: "absolute", top: "100px"}}>
+      className={styles.canvas}>
         <RD3Component data={node} />
     </div>
   )
