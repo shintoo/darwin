@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import rd3 from 'react-d3-library'
+import ZoomControl from './ZoomControl'
 import { createTree, updateTree} from '../../lib/tree'
 import useWindowSize from '../../lib/window'
 import styles from './Canvas.module.css'
@@ -26,8 +27,8 @@ export default function Canvas(props) {
     props.deleteNode,
     coords[0],
     coords[1],
-    windowSize.width,
-    windowSize.height,
+    2500,//windowSize.width,
+    1200,//windowSize.height,
     props.count
   )
 

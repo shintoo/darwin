@@ -7,6 +7,7 @@ import RankSelector from './RankSelector'
 import ParentMeme from './ParentMeme'
 import Canvas from './Canvas'
 import CopyTreeUrlButton from './CopyTreeUrlButton'
+import ZoomControl from './ZoomControl'
 import LogoButton from '../ui/LogoButton'
 import styles from './Builder.module.css'
 import getTaxa from '../../lib/taxa'
@@ -267,6 +268,7 @@ export default function Builder(props) {
       <div>
         <Canvas deleteNode={deleteNode} data={treeData} setData={setTreeData} count={usedIds.size}/>
       </div>
+      <ZoomControl />
       <div className={[styles.uibottom, bottomUiHidden ? styles.hidden : ""].join(" ")}>
         <div style={{width: "100%", display: "flex", alignItems: "center"}}>
           <SearchBar setHide={setBottomUiHidden} setSearchText={setSearchText} />

@@ -15,3 +15,9 @@ a {
 * {
   box-sizing: border-box;
 }
+
+svg {
+  z-index: -100;
+  position: absolute;
+  transition: all 0.1s;
+}
