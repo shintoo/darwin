@@ -3,7 +3,6 @@ import rd3 from 'react-d3-library'
 import ZoomControl from './ZoomControl'
 import { createTree, updateTree} from '../../lib/tree'
 import useWindowSize from '../../lib/window'
-import styles from './Canvas.module.css'
 const RD3Component = rd3.Component
 
 export default function Canvas(props) {
