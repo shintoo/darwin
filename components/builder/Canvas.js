@@ -44,8 +44,7 @@ export default function Canvas(props) {
       onMouseDown={e => {setStartCoords([e.clientX, e.clientY]); setDragging(true)}}
       onMouseUp={_ => setDragging(false)}
       onMouseMove={e => drag(e)}
-      onMouseLeave={_ => setDragging(false)}
-      className={styles.canvas}>
+      onMouseLeave={_ => setDragging(false)}>
         <RD3Component data={node} />
     </div>
   )
