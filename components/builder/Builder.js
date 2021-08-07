@@ -27,6 +27,9 @@ export default function Builder(props) {
   const deleteNode = id => {
      let deleted = false
 
+     console.log("in delete with id ", id)
+
+
      if (treeData[0].id == id) // Can't delete Life node
        return
 
@@ -39,10 +42,12 @@ export default function Builder(props) {
      deleted = rDeleteNode(id, treeData[0])
 
      if (deleted) {
-       console.log("setting new treeData: ", treeData)
-       setTreeData([treeData[0]])
        usedIds.delete(id)
        setUsedIds(usedIds)
+       addTreeColors(treeData[0], [0, 360])
+       treeData[0].linkColor = "white"
+       console.log("setting new treeData: ", treeData)
+       setTreeData([treeData[0]])
      } else {
         console.log("node not found")
      }
@@ -65,7 +70,15 @@ export default function Builder(props) {
 
         console.log("foreach in rdn: '", node.children[i].id, "', '", id, "'")
         if (node.children[i].id == id) {
+            let children = node.children[i].children
             node.children.splice(i, 1)
+            // Move the children up if there are any
+            if (children) {
+              for (let c = 0; c < children.length; c++) {
+                children[c].parent = node.name
+              }
+              node.children.push(children)
+            }
             return true
         }
      }

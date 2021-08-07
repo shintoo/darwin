@@ -1,9 +1,6 @@
 import Image from 'next/image'
 import RellaxWrapper from 'react-rellax-wrapper'
 import styles from './ImageShow.module.css'
-import darwin from '../../public/darwin.png'
-import note from '../../public/darwin-note.png'
-import finches from '../../public/finches.png'
 
 export default function ImageShow(props) {
   return (
@@ -14,7 +11,7 @@ export default function ImageShow(props) {
          <Image
           width={500}
           height={668}
-          src={darwin} />
+          src={"/darwin.png"} />
         </RellaxWrapper>
       </div>
       <div className={styles.imageContainer2}>
@@ -22,7 +19,7 @@ export default function ImageShow(props) {
           <Image
             width={600}
             height={470}
-            src={finches} />
+            src={"/finches.png"} />
         </RellaxWrapper>
       </div>
       <div className={styles.imageContainer3}>
@@ -30,7 +27,7 @@ export default function ImageShow(props) {
           <Image
             width={410}
             height={706}
-            src={note} />
+            src={"/darwin-note.png"} />
         </RellaxWrapper>
       </div>
       <h1 className={styles.exploration}>to Exploration.</h1>

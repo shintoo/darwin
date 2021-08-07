@@ -1,7 +1,6 @@
 import Image from 'next/image'
 import styles from './TitleCard.module.css'
 import Button from '../ui/Button'
-import meme from '../../public/meme.png'
 
 export default function TitleCard(props) {
   return (
@@ -21,7 +20,7 @@ export default function TitleCard(props) {
 
       <img
         className={styles.meme}
-        src="./meme.png"
+        src={"/meme.png"}
       />
     </div>
   )

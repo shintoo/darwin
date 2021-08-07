@@ -1,6 +1,7 @@
 .container {
   border-radius: 100px;
   padding: 1em;
+  margin-right: 1em;
   font-family: Roboto, sans-serif;
   background-color: #B8E6B8;
   border-style: solid;

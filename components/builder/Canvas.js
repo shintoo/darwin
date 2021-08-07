@@ -6,7 +6,7 @@ import styles from './Canvas.module.css'
 const RD3Component = rd3.Component
 
 export default function Canvas(props) {
-  useEffect(() => updateTree(props.data), [props.data])
+  useEffect(() => { console.log("canvas effect doing updateTree"); updateTree(props.data) }, [props.data])
   const [ startCoords, setStartCoords ] = useState([0, 0])
   const [ dragging, setDragging ] = useState(false)
   const windowSize = useWindowSize()

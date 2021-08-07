@@ -1,7 +1,6 @@
 import Image from 'next/image'
 import styles from './IntroductionCard.module.css'
-import sugs from '../../public/sugs.png'
-import chart from '../../public/chart.png'
+
 export default function IntroductionCard(props) {
    return (
      <div className={styles.container}>
@@ -13,19 +12,19 @@ export default function IntroductionCard(props) {
              Then, as you add taxa to the canvas, watch the phylogenetic tree grow.
            </p>
          </div>
-         {/*         <div style={{background: "#aacccc", width: "300px", height: "200px", margin: "1em"}} /> */}
-         <Image
+{/*         <div style={{background: "#aacccc", width: "300px", height: "200px", margin: "1em"}} /> */}
+          <Image
            width={532}
            height={382}
-           src={chart}
+           src={"/chart.png"}
          />
        </div>
        <div className={styles.row}>
-         {/*<div style={{background: "#aacccc", width: "300px", height: "200px", margin: "1em"}} />*/}
+{/*         <div style={{background: "#aacccc", width: "300px", height: "200px", margin: "1em"}} /> */}
          <Image
            width={450}
            height={548}
-           src={sugs}
+           src={"/sugs.png"}
          />
          <div style={{marginLeft: "5em"}} className={styles.card}>
            <span className={styles.heading}>Explore<span className={styles.darkgreen}>.</span></span>

@@ -2,11 +2,6 @@
   margin: 0.5em;
   height: 150px;
   width: 150px;
-  display: grid;
-  grid-template-columns: auto;
-  grid-template-rows: 3fr 1fr;
-  justify-content: center;
-  align-items: center;
   background-color: #fff;
   border-style: solid;
   border-color: #c2c2c2;
@@ -14,9 +9,10 @@
   border-radius: 20px; /*0 0 20px 20px;*/
   box-shadow: 1px 1px 2px 0 rgb(100, 100, 100, 0.3);
   box-sizing: border-box;
-  transition: all 0.4s cubic-bezier(0.77, -0.27, .29, 1.32);
+  transition: all 0.2s ease-out;
   position: relative;
   opacity: 0.01;
+  cursor: pointer;
 }
 
 .loaded {
@@ -24,22 +20,28 @@
 }
 
 .card:hover {
-  box-shadow: 1px 25px 25px 0 rgb(100, 100, 100, 0.3);
-  transform: translateY(-10px);
+  box-shadow: 1px 10px 25px 0 rgb(100, 100, 100, 0.3);
+  transform: scale(1.1);
 }
+
+
+
 
 .imagecontainer {
   position: relative;
   width: 150px;
-  height: 112px;
+  height: 150px;
+  box-sizing: border-box;
 }
 
 .image {
-   border-radius: 20px 20px 0 0;
+   border-radius: 20px;
    object-fit: cover;
    display: block;
    width: 100%;
    height: 100%;
+   box-sizing: border-box;
+   transition: transform ease-out 0.2s;
 }
 
 .missingimage {
@@ -49,12 +51,94 @@
 }
 
 .label {
-  padding: .5em;
+  padding: 0.3em 1em 0.3em 1em;
   text-decoration: none;
   text-align: center;
   width: 100%;
+  height: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: top;
   overflow-y: auto;
-  font-size: 0.65em;
-  color: #777;
+  font-size: 0.8em;
+  color: #fff;
+  font-family: Roboto, sans-serif;
   text-transform: lowercase;
+  background: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  margin: 0;
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+.addbutton {
+  right: 0;
+  top: 0;
+  width: 2em;
+  height: 2em;
+  padding: 0.5em;
+  display: inline;
+  border-radius: 20px;
+  margin: 0.3em;
+  cursor: pointer;
+  opacity: 0.01;
+  transition: opacity 0.2s;
+  display: flex;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.card:hover .addbutton {
+  opacity: 1;
+}
+
+.bottom {
+  bottom: -2px;
+  width: 150px;
+  border-radius: 0 0 20px 20px; 
+  transition: all 0.2s;
+}
+
+.card:hover .bottom {
+  border-radius: 20px;
+  height: 150px;
+  display: visible;
+}
+
+.card:hover .label {
+  justify-content: space-around;
+  padding: 1em;
+}
+
+.rank {
+  font-style: italic;
+  font-size: 0.65em;
+  transition: font-size 0.2s;
+}
+
+.card:hover .rank {
+  font-size: 1em;
+}
+
+.taxon {
+  font-style: italic;
+}
+
+.top {
+  top: 0;
+  border-radius: 20px 20px 0 0; 
+}
+
+.clickhint {
+  font-size: 0.5em;
+  opacity: 0.01;
+  position: absolute;
+  bottom: 0;
+}
+
+.card:hover .clickhint {
+  display: visible;
 }
