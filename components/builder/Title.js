@@ -32,6 +32,7 @@ export default function Title({ title, setTitle }) {
         value={title}
         onChange={handleChange}
         onKeyUp={handleKeyUp}
+        onBlur={_ => setEditing(false)}
       />
     </div>
   )

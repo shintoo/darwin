@@ -12,8 +12,6 @@ export default function SearchResultCard({ taxa, setParent, addNode }) {
     "ancestors": taxa.ancestors
   }
 
-  let label = taxa.naming.common_name ? taxa.naming.common_name : taxa.naming.rank + " " + taxa.naming.taxon
-
   const image = taxa.photo ?
       <img onLoad={()=>setLoaded(true)} className={styles.image} src={taxa.photo.url} alt={taxa.naming.taxon} />
     : <div className={styles.missingimage}>No photo</div>
@@ -28,26 +26,22 @@ export default function SearchResultCard({ taxa, setParent, addNode }) {
         {image}
       </div>
 
-
       <div style={{fontWeight: taxa.id === 48460 ? "bold" : ""}} className={[styles.label, styles.bottom].join(" ")}>
         { taxa.id === 48460 ? "Browse kingdoms" : <>
-          <span style={{fontWeight: "bold", display: "visible"}}>{label}</span>
-          {taxa.naming.common_name && <div>
+          <span style={{fontWeight: "bold", display: "visible"}}>{taxa.naming.common_name || ""}</span>
+          <div>
             <span className={styles.rank}>{taxa.naming.rank}</span> <br />
             <span className={styles.taxon}>{taxa.naming.taxon}</span>
-          </div>}
+          </div>
         </>}
         <span className={styles.clickhint}>(click to see children)</span>
       </div>
 
-      { taxa.id !== 48460 &&
-       <div onClick={e => {e.stopPropagation(); addNode(nodeData)}}  className={[styles.label, styles.addbutton].join(" ")}>
-        +
-       </div>
-      }
-  
-
-    </div>
+       {taxa.id !== 48460 &&
+        <div onClick={e => {e.stopPropagation(); addNode(nodeData)}}  className={[styles.label, styles.addbutton].join(" ")}>
+         +
+        </div>} 
+      </div>
     </>
   )
 }

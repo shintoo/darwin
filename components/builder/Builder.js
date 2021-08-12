@@ -8,6 +8,7 @@ import ParentMeme from './ParentMeme'
 import Canvas from './Canvas'
 import CopyTreeUrlButton from './CopyTreeUrlButton'
 import ZoomControl from './ZoomControl'
+import INatButton from './INatButton'
 import LogoButton from '../ui/LogoButton'
 import styles from './Builder.module.css'
 import getTaxa from '../../lib/taxa'
@@ -24,6 +25,11 @@ export default function Builder(props) {
   const [ startedLoadingTree, setStartedLoadingTree ] = useState(false) // Only used for [treeId] or /inat/[username] routes
   let usedIdsBuffer = usedIds
 
+  // Disable scrolling when builder is in use, but reset it when leaving builder
+  useEffect(_ => {
+    document.body.style.overflow = "hidden"
+    return _ => document.body.style.overflow = "auto"
+  })
 
   const deleteNode = id => {
      let deleted = false
@@ -194,10 +200,9 @@ export default function Builder(props) {
   }
 
   const addTreeColors = (node, hueRange) => {
-    console.log("hueRange: ", hueRange)
     const rangeSize = hueRange[1] - hueRange[0]
     const hue = hueRange[0] + rangeSize / 2
-    console.log("setting ", node.id, "linkColor to hue ", hue)
+
     node.linkColor = "hsl(" + hue + ", 100%, 70%)"
 
     const numChildren = (node.children && node.children.length) || 0
@@ -248,7 +253,7 @@ export default function Builder(props) {
       let ids
       if (props.treeId) {
         const encodedIds = props.treeId.split("-")
-        setTitle(encodedIds.shift().replace("_", " ")) 
+        setTitle(encodedIds.shift().replaceAll("_", " ")) 
         ids = encodedIds.map(id => base62.decode(id))
       } else if (props.ids && !startedLoadingTree) {
         setTitle(props.title)
@@ -266,9 +271,12 @@ export default function Builder(props) {
         <CopyTreeUrlButton ids={usedIds} title={title} />
       </div>
       <div>
-        <Canvas deleteNode={deleteNode} data={treeData} setData={setTreeData} count={usedIds.size}/>
+        <Canvas deleteNode={deleteNode} data={treeData} setData={setTreeData}/>
       </div>
-      <ZoomControl />
+      <div className={styles.uiside}>
+        <ZoomControl />
+        <INatButton />
+      </div>
       <div className={[styles.uibottom, bottomUiHidden ? styles.hidden : ""].join(" ")}>
         <div style={{width: "100%", display: "flex", alignItems: "center"}}>
           <SearchBar setHide={setBottomUiHidden} setSearchText={setSearchText} />

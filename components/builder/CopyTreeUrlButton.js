@@ -11,7 +11,7 @@ export default function CopyTreeUrlButton({ids, title}) {
    ids.forEach(id => encodedIds.push(base62.encode(id)))
 
    const copy = _ => {
-     navigator.clipboard.writeText("http://localhost:3000/builder/" + title.replace(" ", "_") + "-" + encodedIds.join("-")).then(function() {
+     navigator.clipboard.writeText("http://localhost:3000/builder/" + title.replaceAll(" ", "_") + "-" + encodedIds.join("-")).then(function() {
        setButtonText("Copied!")
        setTimeout(() => { setButtonText("Copy URL"); setClasses([styles.button]); }, 1000)
       }, function() {

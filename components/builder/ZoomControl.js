@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import styles from "./ZoomControl.module.css"
 
-export default function CopyTreeUrlButton({ids, title}) {
+export default function ZoomControl(props) {
    const [ buttonText, setButtonText ] = useState("Copy URL")
    const [ scale, setScale ] = useState(1)
 

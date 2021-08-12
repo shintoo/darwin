@@ -19,5 +19,5 @@ a {
 svg {
   z-index: -100;
   position: absolute;
-  transition: all 0.1s;
+  transition: all 0.05s;
 }

@@ -12,10 +12,13 @@
   transition: all 0.4s ease-out;
   width: 7em;
   text-align: center;
+  z-index: 100;
+  cursor: pointer;
 }
 
 .copied {
   background-color: #B8E6B8;
   border-color: #8CAB73;
   color: #000;
+  cursor: default;
 }
