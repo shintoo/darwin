@@ -1,24 +1,37 @@
 .zoomcontainer {
+  margin-left: 0.5em;
   user-select: none;
   background: white;
   color: #c2c2c2;
   border-radius: 50px;
-  border-width: 2px;
-  border-style: solid;
-  border-color: #c2c2c2;
   font-family: Roboto, sans-serif;
   font-size: 1em;
-  margin-bottom: 1em;
   transition: all 0.4s ease-out;
-  width: 2.5em;
-  height: 5em;
+  width: 5em;
+  height: 2.5em;
   display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+  flex-direction: row;
+  justify-content: center;
   align-items: center;
   text-align: center;
 }
 
-.zoomcontrol {
+.zoomcontainer > * {
+  margin-right: 0.4em;
+  width: 1.5em;
+  height: 1.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ddd;
+  color: #999;
+  border-radius: 50%;
+}
 
+.zoomcontainer > img {
+  padding: 0;
+  background: none;
+  display: inline;
+  width: 10px;
+  height: 16px;
 }

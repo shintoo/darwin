@@ -1,16 +1,14 @@
 .container {
   border-radius: 20px;
   padding: 0.5em;
-  background: #F0F5E0;
   color: #999;
   display: flex;
   align-items: center;
-  margin-right: 0.2em;
   cursor: pointer;
 }
 
 .control {
-  background: #fff;
+  background: #F0F5E0;
   border-radius: 50%;
   width: 16px;
   height: 16px;

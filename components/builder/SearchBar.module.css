@@ -7,6 +7,7 @@
   background: #fff;
   border-style: solid;
   border-color: #C2C2C2;
+  border-width: 2px;
   border-radius: 50px;
   box-sizing: border-box;
   transition: border-color 0.2s;

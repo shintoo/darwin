@@ -1,17 +1,11 @@
 import { useState } from "react"
-import base62 from '../../lib/base62'
 import styles from "./CopyTreeUrlButton.module.css"
 
-export default function CopyTreeUrlButton({ids, title}) {
+export default function CopyTreeUrlButton({url}) {
    const [ classes, setClasses ] = useState([styles.button])
    const [ buttonText, setButtonText ] = useState("Copy URL")
-
-   let encodedIds = []
-
-   ids.forEach(id => encodedIds.push(base62.encode(id)))
-
    const copy = _ => {
-     navigator.clipboard.writeText("http://localhost:3000/builder/" + title.replaceAll(" ", "_") + "-" + encodedIds.join("-")).then(function() {
+     navigator.clipboard.writeText(url).then(function() {
        setButtonText("Copied!")
        setTimeout(() => { setButtonText("Copy URL"); setClasses([styles.button]); }, 1000)
       }, function() {
@@ -22,7 +16,7 @@ export default function CopyTreeUrlButton({ids, title}) {
 
    return (
      <div>
-       <div className={classes.join(" ")} onClick={copy}>
+       <div onClick={copy} className={classes.join(" ")}>
          {buttonText}
        </div>
      </div>

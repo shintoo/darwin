@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import styles from './TitleCard.module.css'
 import Button from '../ui/Button'
 
@@ -6,7 +7,7 @@ export default function TitleCard(props) {
   return (
     <div className={styles.container}>
       <div className={styles.toplinks}>
-        <a href="/about">About</a>
+        <Link href="/about">About</Link>
       </div>
       <div>
         <h1 className={styles.title}>Darwin</h1>

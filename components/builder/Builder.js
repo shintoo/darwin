@@ -22,7 +22,7 @@ export default function Builder(props) {
   const [ searchParent, setSearchParent ] = useState(null)
   const [ searchParentStack, setSearchParentStack ] = useState([])
   const [ bottomUiHidden, setBottomUiHidden ] = useState(false)
-  const [ title, setTitle ] = useState("My Tree")
+  const [ title, setTitle ] = useState(props.title || "My Tree")
   const [ treeData, setTreeData ] = useState([{common_name: "Life", sci_name: "Life", id: 48460, children: [], parent: "null",}])
   const [ trigger, setTrigger ] = useState(0)
   const [ usedIds, setUsedIds ] = useState(new Set([48460]))
@@ -268,7 +268,7 @@ export default function Builder(props) {
       let ids
       if (props.treeId) {
         const encodedIds = props.treeId.split("-")
-        setTitle(encodedIds.shift().replaceAll("_", " ")) 
+        setTitle(encodedIds.shift().replace(/_/g, " ")) 
         ids = encodedIds.map(id => base62.decode(id))
       } else if (props.ids && !startedLoadingTree) {
         setTitle(props.title)
@@ -280,18 +280,20 @@ export default function Builder(props) {
 
   return (
     <div>
-      <div className={styles.uitop}>
-        <LogoButton height={32} />
+      <div className={styles.uitop}> 
+        <div className={styles.leftui}>
+          <LogoButton height={32} />
+        </div>
         <Title title={title} setTitle={t => { props.setPageTitle(t); setTitle(t) }} />
-        <ShareButton ids={usedIds} title={title} />
+        <div className={styles.rightui}>
+          <LabelControl active={useCommonNames} setActive={setUseCommonNames} />
+          <INatButton />
+          <ZoomControl scale={scale} setScale={setScale}/>
+          <ShareButton ids={usedIds} title={title} />
+        </div>
       </div>
       <div>
         <Canvas deleteNode={deleteNode} data={treeData} setData={setTreeData} scale={scale} useCommonNames={useCommonNames}/>
-      </div>
-      <div className={styles.uiside}>
-        <ZoomControl scale={scale} setScale={setScale}/>
-        <LabelControl active={useCommonNames} setActive={setUseCommonNames} />
-        <INatButton />
       </div>
       <div className={[styles.uibottom, bottomUiHidden ? styles.hidden : ""].join(" ")}>
         <div style={{width: "100%", display: "flex", alignItems: "center"}}>

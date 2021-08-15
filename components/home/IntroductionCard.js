@@ -12,7 +12,7 @@ export default function IntroductionCard(props) {
              Then, as you add taxa to the canvas, watch the phylogenetic tree grow.
            </p>
          </div>
-         <div>
+         <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
           <Image
            width={610}
            height={493}

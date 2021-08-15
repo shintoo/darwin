@@ -21,8 +21,6 @@ export default function Builder(props) {
   if (!username || !count)
     return null
 
-
-
   if (ids.length === 0)
     getObservations(username, count).then(i => {console.log("setting"); setIds(i)})
 

@@ -1,4 +1,6 @@
 .title {
+  white-space: nowrap;
+  overflow-x: auto;
   font-size: 30px;
   font-family: Lora, serif;
   border-radius: 30px;

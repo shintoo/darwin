@@ -25,7 +25,7 @@ export default function SearchBar(props) {
         placeholder={placeholder ? placeholder : "search..."}
         onClick={() => props.setHide(false)}
         onChange={handleChange} />
-      <span className={styles.clear} onClick={_ => setBuffer("")}> x </span>
+      <span className={styles.clear} onClick={_ => {setBuffer(""); props.setSearchText("")}}> x </span>
     </div>
   )
 }
