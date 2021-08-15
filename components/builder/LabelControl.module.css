@@ -1,0 +1,17 @@
+.control {
+  background: #fff;
+  padding: 0.5em;
+  border-radius: 20px;
+  border: 2px solid #c2c2c2;
+  color: #c2c2c2;
+  width: 8.5em;
+  font-size: 0.8em;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.2s;
+}
+
+.active {
+  border-color: #8CAB73;
+  color: #000;
+}

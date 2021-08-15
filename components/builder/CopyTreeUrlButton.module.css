@@ -12,7 +12,7 @@
   transition: all 0.4s ease-out;
   width: 7em;
   text-align: center;
-  z-index: 100;
+  z-index: 999;
   cursor: pointer;
 }
 

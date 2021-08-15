@@ -21,8 +21,10 @@ export default function CopyTreeUrlButton({ids, title}) {
    }
 
    return (
-     <div className={classes.join(" ")} onClick={copy}>
-       {buttonText}
+     <div>
+       <div className={classes.join(" ")} onClick={copy}>
+         {buttonText}
+       </div>
      </div>
    )
 }

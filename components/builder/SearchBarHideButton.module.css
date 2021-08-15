@@ -12,4 +12,5 @@
   padding: 0.5em;
   text-align: center;
   transition: all 0.3s;
+  cursor: pointer;
 }

@@ -3,7 +3,8 @@
 }
 
 .container {
-   height: 90vh;
+   height: 80vh;
+   margin-top: 10vh;
    padding-left: 10vw;
    padding-right: 10vw;
    background: #FFFFF5; 

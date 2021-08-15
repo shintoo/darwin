@@ -8,13 +8,14 @@
   border-color: #c2c2c2;
   font-family: Roboto, sans-serif;
   font-size: 1em;
-  margin: 1em;
+  margin-bottom: 1em;
   transition: all 0.4s ease-out;
   width: 2.5em;
   height: 5em;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  align-items: center;
   text-align: center;
 }
 

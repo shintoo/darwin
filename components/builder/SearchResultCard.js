@@ -7,7 +7,8 @@ export default function SearchResultCard({ taxa, setParent, addNode }) {
 
   const nodeData = {
     "id": taxa.id,
-    "name": taxa.naming.common_name ? taxa.naming.common_name : taxa.naming.taxon,
+    "common_name": taxa.naming.common_name,
+    "sci_name": taxa.naming.rank + " " + taxa.naming.taxon,
     "icon": taxa.photo ? taxa.photo.url.replace("medium", "square") : "",
     "ancestors": taxa.ancestors
   }

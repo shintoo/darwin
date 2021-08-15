@@ -1,0 +1,67 @@
+.button {
+  margin-bottom: 9.8em;
+  cursor: pointer;
+}
+
+.icon {
+  transition: all 0.1s;
+  transform: scale(0.8);
+  opacity: 20%;
+}
+
+.icon:hover {
+  opacity: 90%;
+}
+
+.overlayicon {
+  transition: all 0.1s;
+  transform: scale(0.6);
+  opacity: 20%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  cursor: pointer;
+}
+
+.overlayicon:hover {
+  opacity: 90%;
+}
+
+.overlay {
+  background: #fff;
+  color: #555;
+  line-height: 1.5;
+  border-radius: 20px;
+  border-style: solid;
+  border-width: 2px;
+  border-color: #c2c2c2;
+  padding: 2em;
+  width: 27em;
+  height: 14em; 
+  position: relative;
+  align-self: end;
+}
+
+.numInput {
+  width: 5em;
+  background: none;
+  border: none;
+  outline: none;
+}
+
+.userinput {
+  background: none;
+  border: none;
+  border-bottom: solid 1px #c2c2c2;
+  outline: none;
+  width: 10em;
+  margin-top: 2em;
+}
+
+.link {
+  opacity: 70%;
+}
+
+.link:hover {
+  opacity: 40%;
+}

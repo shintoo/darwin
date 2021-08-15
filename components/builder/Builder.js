@@ -8,6 +8,7 @@ import ParentMeme from './ParentMeme'
 import Canvas from './Canvas'
 import CopyTreeUrlButton from './CopyTreeUrlButton'
 import ZoomControl from './ZoomControl'
+import LabelControl from './LabelControl'
 import INatButton from './INatButton'
 import LogoButton from '../ui/LogoButton'
 import styles from './Builder.module.css'
@@ -18,11 +19,19 @@ export default function Builder(props) {
   const [ searchText, setSearchText ] = useState("")
   const [ searchRank, setSearchRank ] = useState("")
   const [ searchParent, setSearchParent ] = useState(null)
+  const [ searchParentStack, setSearchParentStack ] = useState([])
   const [ bottomUiHidden, setBottomUiHidden ] = useState(false)
   const [ title, setTitle ] = useState("My Tree")
-  const [ treeData, setTreeData ] = useState([{name: "Life", id: 48460, children: [], parent: "null",}])
+  const [ treeData, setTreeData ] = useState([{common_name: "Life", sci_name: "Life", id: 48460, children: [], parent: "null",}])
+  const [ trigger, setTrigger ] = useState(0)
   const [ usedIds, setUsedIds ] = useState(new Set([48460]))
   const [ startedLoadingTree, setStartedLoadingTree ] = useState(false) // Only used for [treeId] or /inat/[username] routes
+  const [ useCommonNames, setUseCommonNames ] = useState(true)
+  const [ scale, setScale ] = useState(1.0)
+
+
+  console.log("RER builder rerender")
+
   let usedIdsBuffer = usedIds
 
   // Disable scrolling when builder is in use, but reset it when leaving builder
@@ -55,6 +64,7 @@ export default function Builder(props) {
        treeData[0].linkColor = "white"
        console.log("setting new treeData: ", treeData)
        setTreeData([treeData[0]])
+       setTrigger(trigger+1)
      } else {
         console.log("node not found")
      }
@@ -110,7 +120,8 @@ export default function Builder(props) {
                const taxon = taxa[0]
                const nodeData = {
                   "id": taxon.id,
-                  "name": taxon.naming.common_name ? taxon.naming.common_name : taxon.naming.taxon,
+                  "common_name": taxon.naming.common_name,
+                  "sci_name": taxon.naming.rank + " " + taxon.naming.taxon,
                   "icon": taxon.photo ? taxon.photo.url.replace("medium", "square") : "",
                   "ancestors": taxon.ancestors
                }
@@ -188,6 +199,7 @@ export default function Builder(props) {
       addTreeColors(treeData[0], [0, 360])
       treeData[0].linkColor = "white"
       setTreeData([...treeData])
+      setTrigger(trigger+1)
       usedIdsBuffer.add(data.id)
       if (!buildingTree) {
         console.log("setting usedIds to", usedIdsBuffer)
@@ -233,7 +245,8 @@ export default function Builder(props) {
       const taxon = taxa[0]
       const nodeData = {
          "id": taxon.id,
-         "name": taxon.naming.common_name ? taxon.naming.common_name : taxon.naming.taxon,
+         "common_name": taxon.naming.common_name,
+         "sci_name": taxon.naming.rank + " " + taxon.naming.taxon,
          "icon": taxon.photo ? taxon.photo.url.replace("medium", "square") : "",
          "ancestors": taxon.ancestors
       }
@@ -244,6 +257,7 @@ export default function Builder(props) {
     addTreeColors(treeData[0], [0, 360])
     treeData[0].linkColor = "white"
     setTreeData([...treeData])
+    setTrigger(trigger+1)
     setUsedIds(usedIdsBuffer)
   }
 
@@ -271,16 +285,17 @@ export default function Builder(props) {
         <CopyTreeUrlButton ids={usedIds} title={title} />
       </div>
       <div>
-        <Canvas deleteNode={deleteNode} data={treeData} setData={setTreeData}/>
+        <Canvas deleteNode={deleteNode} data={treeData} setData={setTreeData} scale={scale} useCommonNames={useCommonNames}/>
       </div>
       <div className={styles.uiside}>
-        <ZoomControl />
+        <ZoomControl scale={scale} setScale={setScale}/>
+        <LabelControl active={useCommonNames} setActive={setUseCommonNames} />
         <INatButton />
       </div>
       <div className={[styles.uibottom, bottomUiHidden ? styles.hidden : ""].join(" ")}>
         <div style={{width: "100%", display: "flex", alignItems: "center"}}>
           <SearchBar setHide={setBottomUiHidden} setSearchText={setSearchText} />
-          <ParentMeme parent={searchParent && searchParent.name} setParent={setSearchParent} />
+          <ParentMeme parent={searchParent && searchParent.name} setParent={setSearchParent} stack={searchParentStack} setStack={setSearchParentStack} />
           <RankSelector setHide={setBottomUiHidden} setRank={setSearchRank} /> 
           <SearchBarHideButton setter={setBottomUiHidden} state={bottomUiHidden} />
         </div>

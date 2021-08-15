@@ -57,3 +57,20 @@
   width: 350px;
   height: 250px;
 }
+
+.toplinks {
+  position: absolute;
+  top: 3em;
+  right: 3em;
+  font-family: Roboto, sans-serif;
+  font-size: 1.3em;
+  color: #777;
+}
+
+.toplinks > a {
+  transition: all 0.2s;
+}
+
+.toplinks > a:hover {
+  opacity: 0.5;
+}
