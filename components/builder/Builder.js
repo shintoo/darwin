@@ -7,6 +7,7 @@ import RankSelector from './RankSelector'
 import ParentMeme from './ParentMeme'
 import Canvas from './Canvas'
 import CopyTreeUrlButton from './CopyTreeUrlButton'
+import ShareButton from './ShareButton'
 import ZoomControl from './ZoomControl'
 import LabelControl from './LabelControl'
 import INatButton from './INatButton'
@@ -278,11 +279,11 @@ export default function Builder(props) {
   }, [props.treeId, props.ids])
 
   return (
-    <div style={{overflowY: "hidden"}}>
+    <div>
       <div className={styles.uitop}>
-        <LogoButton />
-        <Title title={title} setTitle={setTitle} />
-        <CopyTreeUrlButton ids={usedIds} title={title} />
+        <LogoButton height={32} />
+        <Title title={title} setTitle={t => { props.setPageTitle(t); setTitle(t) }} />
+        <ShareButton ids={usedIds} title={title} />
       </div>
       <div>
         <Canvas deleteNode={deleteNode} data={treeData} setData={setTreeData} scale={scale} useCommonNames={useCommonNames}/>

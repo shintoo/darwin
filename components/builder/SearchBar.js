@@ -17,15 +17,15 @@ export default function SearchBar(props) {
 
 
   return (
-    <>
+    <div className={styles.searchbar}>
       <input
         type="text"
-        className={styles.searchbar}
+        className={styles.input}
         value={buffer}
         placeholder={placeholder ? placeholder : "search..."}
         onClick={() => props.setHide(false)}
         onChange={handleChange} />
-
-    </>
+      <span className={styles.clear} onClick={_ => setBuffer("")}> x </span>
+    </div>
   )
 }

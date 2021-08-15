@@ -8,12 +8,15 @@ const endpoint = "https://api.inaturalist.org/v1/observations"
 export default function Builder(props) {
   const router = useRouter()
   const [ ids, setIds] = useState([])
+  const [ title, setTitle ] = useState("Loading...")
   const query = router.query.query
   if (!query)
     return null
-  const [ username, count ] = router.query.query.split("-")
-  console.log("usr", username)
 
+  const [ username, count ] = router.query.query.split("-")
+
+  if (title == "Loading...")
+    setTitle(username)
 
   if (!username || !count)
     return null
@@ -29,9 +32,9 @@ export default function Builder(props) {
   return (
     <>
       <Head>
-        <title>Darwin - Tree Builder</title>
+        <title>Darwin - {title}</title>
       </Head>
-      <TreeBuilder ids={ids} title={username + "'s Observation Tree"}/>
+      <TreeBuilder setPageTitle={setTitle} ids={ids} title={username + "'s Observation Tree"}/>
     </>
   )
 }

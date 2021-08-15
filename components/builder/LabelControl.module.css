@@ -1,17 +1,25 @@
+.container {
+  border-radius: 20px;
+  padding: 0.5em;
+  background: #F0F5E0;
+  color: #999;
+  display: flex;
+  align-items: center;
+  margin-right: 0.2em;
+  cursor: pointer;
+}
+
 .control {
   background: #fff;
-  padding: 0.5em;
-  border-radius: 20px;
-  border: 2px solid #c2c2c2;
-  color: #c2c2c2;
-  width: 8.5em;
-  font-size: 0.8em;
-  cursor: pointer;
-  text-align: center;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  margin-left: .5em;
   transition: all 0.2s;
 }
 
 .active {
   border-color: #8CAB73;
-  color: #000;
+  background: #8CAB73;
+  box-sizing: border-box;
 }

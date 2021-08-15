@@ -61,7 +61,7 @@ export default function Canvas(props) {
       onMouseMove={e => drag(e)}
       style={{cursor: dragging ? "grabbing" : "grab"}}
       onMouseLeave={_ => setDragging(false)}>
-      { /* !props.data[0].children && <div style={{marginTop: "25%", marginLeft: "40%"}}>Browse or search taxa below and add them to the Canvas with the <span className={styles.plus}>+</span> button.</div> */ }
+      { !props.data[0].children && <div className={styles.usagehint}><div>Browse or search taxa below and add them to the Canvas with the <span className={styles.plus}>+</span> button.</div></div> }
 
 
         <RD3Component data={node} />

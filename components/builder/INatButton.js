@@ -38,6 +38,7 @@ export default function INatButton(props) {
         onChange={userInput}
         value={username}
         type="text"
+        placeholder="username"
         />, {" "} 
       <input
         className={styles.numInput}
@@ -46,9 +47,9 @@ export default function INatButton(props) {
         type="number"
         /> latest observations
       <br />
-      { username.length > 0 ?
-        <a className={styles.link} href={url}>{url}</a> :
-        "enter a username" }
+      { username.length > 0 &&
+        <a className={styles.link} href={url}>{url}</a>
+      }
     </div>
   )
 }
