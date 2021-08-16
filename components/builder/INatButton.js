@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import CopyTreeUrlButton from './CopyTreeUrlButton'
 import styles from './INatButton.module.css'
 
 export default function INatButton(props) {
@@ -6,6 +7,7 @@ export default function INatButton(props) {
   const [ username, setUsername ] = useState("")
   const [ numObs, setNumObs ] = useState(10)
   const url = "localhost:3000/builder/inat/" + username + "-" + numObs
+  const copyText = "Copy " + username + " observation tree URL"
 
   const userInput = e => {
     e.preventDefault()
@@ -29,7 +31,7 @@ export default function INatButton(props) {
         Have an <a className={styles.link} href="https://www.inaturalist.org">iNaturalist</a> account? <br />
         Enter your iNaturalist username below to generate
         a tree of your observations.
-        <br />
+        <div style={{width: "100%", justifyContent: "center"}}>
         <input
           className={styles.userinput}
           onChange={userInput}
@@ -43,10 +45,8 @@ export default function INatButton(props) {
           value={numObs}
           type="number"
           /> latest observations
-        <br />
-        { username.length > 0 &&
-          <a className={styles.link} href={url}>{url}</a>
-        }
+        </div>
+        { username.length > 0 && <CopyTreeUrlButton url={url} text={copyText}/> }
       </div>
     </div>
     }

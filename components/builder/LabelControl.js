@@ -12,7 +12,7 @@ export default function LabelControl(props) {
 
   return (
     <div className={styles.container} onClick={_ => props.setActive(!props.active)} >
-    common names <div className={[styles.control, props.active && styles.active].join(" ")} />
+      <div>common names</div> <div className={[styles.control, props.active && styles.active].join(" ")} />
     </div>
   )
 }

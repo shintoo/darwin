@@ -1,3 +1,12 @@
+@font-face {
+  font-family: TwitterChirp;
+  src: url(https://abs.twimg.com/fonts/chirp-bold-web.woff2) format('woff2');
+  src: url(https://abs.twimg.com/fonts/chirp-bold-web.woff) format('woff');
+  font-weight: 700;
+  font-style: 'normal';
+  font-display: 'swap';
+} 
+
 html,
 body {
   padding: 0;

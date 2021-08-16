@@ -237,7 +237,7 @@ export default function Builder(props) {
   const buildTreeFromIds = async ids => {
    console.log(ids)
    let nodes = []
-    for (let i = 1; i < ids.length; i++) {
+    for (let i = 0; i < ids.length; i++) {
       if (usedIdsBuffer.has(ids[i]))
         continue
 
@@ -266,10 +266,12 @@ export default function Builder(props) {
     if (!startedLoadingTree && (props.treeId || (props.ids && props.ids.length > 0))) {
       setStartedLoadingTree(true)
       let ids
+      // Tree URL
       if (props.treeId) {
         const encodedIds = props.treeId.split("-")
         setTitle(encodedIds.shift().replace(/_/g, " ")) 
         ids = encodedIds.map(id => base62.decode(id))
+      // iNat url
       } else if (props.ids && !startedLoadingTree) {
         setTitle(props.title)
         ids = props.ids

@@ -17,7 +17,7 @@ export default function ZoomControl(props) {
        <div style={{cursor: "pointer"}} onClick={_ => zoom(zoomIn)}>
          +
        </div>
-       <img onClick={_ => props.setScale(1.0)} style={{opacity: 0.5}} src="/magnifying-glass.png" width="10px" height="16px" />
+       <img onClick={_ => props.setScale(1.0)} src="/magnifying-glass.png" />
        <div style={{cursor: "pointer"}} onClick={_ => zoom(zoomOut)}>
          -
        </div>

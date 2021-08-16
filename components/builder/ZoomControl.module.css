@@ -32,6 +32,8 @@
   padding: 0;
   background: none;
   display: inline;
-  width: 10px;
-  height: 16px;
+  width: 13px;
+  height: 20px;
+  cursor: pointer;
+  opacity: 0.5;
 }

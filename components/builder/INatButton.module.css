@@ -1,7 +1,6 @@
 .button {
   cursor: pointer;
   transform: scale(0.6);
-  margin: -0.5em;
 }
 
 .icon {
@@ -38,7 +37,7 @@
   border-color: #c2c2c2;
   padding: 2em;
   width: 27em;
-  height: 14em; 
+  height: 16em; 
   box-shadow: 0 0 10px 0 #999;
 }
 
@@ -72,12 +71,4 @@
   outline: none;
   width: 8em;
   margin-top: 2em;
-}
-
-.link {
-  opacity: 70%;
-}
-
-.link:hover {
-  opacity: 40%;
 }
