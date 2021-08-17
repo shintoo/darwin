@@ -29,7 +29,7 @@ export default function Builder(props) {
   const [ startedLoadingTree, setStartedLoadingTree ] = useState(false) // Only used for [treeId] or /inat/[username] routes
   const [ useCommonNames, setUseCommonNames ] = useState(true)
   const [ scale, setScale ] = useState(1.0)
-
+  const [ addingNode, setAddingNode ] = useState(null)
 
   console.log("RER builder rerender")
 
@@ -105,11 +105,27 @@ export default function Builder(props) {
   }
 
   const addNode = async (root, data, buildingTree) => {
-    console.log("addNode(", root.name, ", ", data.name, ")")
+    console.log("in addNode with id ", data.id, " and addingNode is ", addingNode)
+    setAddingNode(data.id)
+    if (addingNode) {
+      console.log("addingNode wasn't null, returning for ", data.id)
+      return
+    }
+    await rAddNode(root, data, buildingTree) 
+    console.log("Setting addingNode to null")
+    setAddingNode(null)
+  }
+
+  const rAddNode = async (root, data, buildingTree) => {
+    console.log("rAddNode(", root.name, ", ", data.name, ")")
     let added = false
 
     if (usedIdsBuffer.has(data.id))
       return    
+
+    // Failsafe in case we're somehow trying to add a duplicate
+    if (root.id == data.id)
+      return
 
     const findEarliestCommonAncestor = async (bro, sis) => {
         console.log("finding eca between ", bro.name, "(", bro.ancestors, ") and ", sis.name, "(", sis.ancestors, ")")
@@ -142,6 +158,11 @@ export default function Builder(props) {
       for (let i = 0; i < root.children.length; i++) {
         if (added)
           break
+
+        // Failsafe in case we are somehow adding a duplicate
+        if (root.children[i].id == data.id)
+          return
+
         // If data should go between the root and the child
         // (animals (owls)) =>
         // (animals (+birds (owls))
@@ -160,7 +181,7 @@ export default function Builder(props) {
           // If the ancestor node has children, find where the new node should go
           // within that subtree
           console.log("descending to ", root.children[i].name)
-          added = await addNode(root.children[i], data)
+          added = await rAddNode(root.children[i], data)
           if (added) {
             console.log("added")
             break 
@@ -251,8 +272,8 @@ export default function Builder(props) {
          "icon": taxon.photo ? taxon.photo.url.replace("medium", "square") : "",
          "ancestors": taxon.ancestors
       }
-      console.log("about to call addNode(", treeData[0].id, ", ", nodeData.id, ")")
-      await addNode(treeData[0], nodeData, true)
+      console.log("about to call rAddNode(", treeData[0].id, ", ", nodeData.id, ")")
+      await rAddNode(treeData[0], nodeData, true)
     }
     console.log("usedIdsBuffer after tree build complete: ", usedIdsBuffer)
     addTreeColors(treeData[0], [0, 360])

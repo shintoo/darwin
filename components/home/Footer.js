@@ -5,12 +5,10 @@ export default function Footer(props) {
   return (
     <div className={styles.footer}>
       <div className={styles.label}>
-        <a href="https://www.github.com/shintoo/darwin">Made by Sean Rapp</a>
-      </div>
-      <div className={styles.donate}>
+        <a href="https://seanrapp.dev">Made by Sean Rapp</a>
       </div>
       <div className={styles.label}>
-        <a href="https://www.inaturalist.org">Powered by iNaturalist</a>. <span style={{color: "#cc0000"}}><a href="https://www.inaturalist.org/donate">Donate</a></span>
+        <a href="https://www.inaturalist.org">Powered by iNaturalist</a>. <span className={styles.donate}><a href="https://www.inaturalist.org/donate">Donate</a></span>
       </div>
     </div>
   )
