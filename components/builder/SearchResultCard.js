@@ -10,7 +10,8 @@ export default function SearchResultCard({ taxa, setParent, addNode }) {
     "common_name": taxa.naming.common_name,
     "sci_name": taxa.naming.rank + " " + taxa.naming.taxon,
     "icon": taxa.photo ? taxa.photo.url.replace("medium", "square") : "",
-    "ancestors": taxa.ancestors
+    "ancestors": taxa.ancestors,
+    "wikipedia_url": taxa.wikipedia_url, 
   }
 
   const image = taxa.photo ?

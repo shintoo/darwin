@@ -140,7 +140,8 @@ export default function Builder(props) {
                   "common_name": taxon.naming.common_name,
                   "sci_name": taxon.naming.rank + " " + taxon.naming.taxon,
                   "icon": taxon.photo ? taxon.photo.url.replace("medium", "square") : "",
-                  "ancestors": taxon.ancestors
+                  "ancestors": taxon.ancestors,
+                  "wikipedia_url": taxon.wikipedia_url,
                }
 
                return nodeData
@@ -270,7 +271,8 @@ export default function Builder(props) {
          "common_name": taxon.naming.common_name,
          "sci_name": taxon.naming.rank + " " + taxon.naming.taxon,
          "icon": taxon.photo ? taxon.photo.url.replace("medium", "square") : "",
-         "ancestors": taxon.ancestors
+         "ancestors": taxon.ancestors,
+         "wikipedia_url": taxon.wikipedia_url,
       }
       console.log("about to call rAddNode(", treeData[0].id, ", ", nodeData.id, ")")
       await rAddNode(treeData[0], nodeData, true)
