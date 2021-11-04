@@ -26,7 +26,10 @@ export default function ShareButton({ids, title}) {
           unique link to your tree. Or, show the world your tree with the Tweet button. </p>
           <CopyTreeUrlButton text={"Copy " + title + " URL"} url={url} />
           <a href={"https://twitter.com/intent/tweet?text=" + tweetText + "&url=" + url}>
-            <div className={styles.tweet}>Tweet</div>
+            <div className={styles.tweet}>
+              <img src="twt.png" />
+              Tweet
+            </div>
           </a>
           <span className={styles.close} onClick={_ => setOpened(false)} >x</span>
         </div>

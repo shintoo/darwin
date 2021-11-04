@@ -8,21 +8,23 @@
    font-family: Lora, serif;
    display: flex;
    flex-direction: column;
+   box-shadow: 0 -10px 10px 0 rgba(0, 0, 0, 0.2);
 }
 
 .row {
    margin-top: 10vh;
-   margin-bottom: 20vh;
+   margin-bottom: 10vh;
    display: flex;
    align-items: center;
    justify-content: space-around;
 }
 
 .card {
-   background: #fff;
+   background: #fffff5;
    padding: 3em;
    max-width: 40vw;
    border-radius: 50px;
+   box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.08);
  }
 
  .heading {

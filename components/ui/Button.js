@@ -3,8 +3,10 @@ import styles from './Button.module.css'
 
 export default function Button(props) {
    return (
-     <span style={props.style} className={styles.button}>
-       <Link href={props.href}>{props.children}</Link>
-     </span>
+     <Link href={props.href}>
+       <span style={props.style} className={styles.button}>
+         {props.children}
+       </span>
+     </Link>
    )
 }

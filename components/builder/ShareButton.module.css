@@ -60,6 +60,9 @@
   justify-content: center;
   align-items: center;
   background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(6px);
+  -moz-backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   z-index: 5;
 }
 
@@ -83,12 +86,22 @@
   font-size: 1em;
   padding: 0.5em;
   margin: 1em;
-  transition: all 0.4s ease-out;
+  transition: all 0.2s ease-out;
   text-align: center;
   z-index: 999;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .tweet:hover {
   background: #1A8ACF;
+}
+
+.tweet > img {
+  width: 16px;
+  height: 16px;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
 }

@@ -54,6 +54,7 @@
   align-items: center;
   background: rgba(0, 0, 0, 0.3);
   z-index: 5;
+  backdrop-filter: blur(6px);
 }
 
 .numInput {

@@ -1,13 +1,15 @@
 .container {
    height: 95vh;
-   border-radius: 0 0 150px 150px;
    padding-left: 10vw;
-   background: #FFFFF5; 
-   color: #232C1C;
+/*   color: #232C1C; */
+   color: #f9fff9;
    font-family: Lora, serif;
    display: flex;
    align-items: center;
    justify-contents: space-around;
+   min-width: 100%;
+   min-height: 100%;
+   transition: background 0.5s linear;
 }
 
 .title {
@@ -25,6 +27,7 @@
    font-size: 64pt;
    font-weight: bold;
    padding-left: 9px;
+   text-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
 }
 
 .subsubtitle {
@@ -34,10 +37,11 @@
    padding-left: 12px;
    line-height: 2;
    font-weight: bold;
+   text-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
 }
 
 .primary {
-   color: #8CAB73;
+   text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
 .subtitle {
@@ -69,8 +73,17 @@
 
 .toplinks > a {
   transition: all 0.2s;
+  padding: 0.5em;
+  border-radius: 40px;
 }
 
 .toplinks > a:hover {
   opacity: 0.5;
+  background: #dfd;
+  color: #020;
+
+}
+
+.svg {
+  width: 100%;
 }
