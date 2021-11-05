@@ -18,14 +18,13 @@ export default function TitleCard(props) {
       <div>
         <img src="logo-w.png" />
         <h2 className={styles.subtitle}>
-          Build<span className={styles.lightgreen}>.</span>{" "}
-          Share<span className={styles.darkgreen}>.</span>{" "}
-          <span className={styles.primary}>Discover.</span>
-        </h2>
-        <h3 className={styles.subsubtitle}>
           A whole new way to explore the tree of life.
-        </h3>
-        <Button href="/builder">start building ➞</Button>
+        </h2>
+        <Button style={{
+          background: "#fff", color: "#000", marginLeft: "25px",
+        }} href="/builder">
+          start building ➞
+        </Button>
       </div>
     {/*
       <img

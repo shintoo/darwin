@@ -7,6 +7,7 @@ export default function IntroductionCard(props) {
        <div className={styles.row}>
          <div style={{marginRight: "5em"}} className={styles.card}>
            <span className={styles.heading}>Explore<span className={styles.lightgreen}>.</span></span>
+           <img src="/pika2.png" className={styles.pika}/>
            <p className={styles.blurb}>
              Search for anything you can think of. An order of bird, a species of jellyfish.
              Or, just click around the tree of life, and see what you can find.
@@ -23,6 +24,9 @@ export default function IntroductionCard(props) {
          </span>
          </div>
        </div>
+       <div style={{ display: "flex", justifyContent: "center" }}>
+         <img src="/pikaprints.png" className={styles.pikatracks} style={{ marginTop: "5em" }}/>
+       </div>
 
        <div className={styles.row}>
          <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
@@ -36,6 +40,7 @@ export default function IntroductionCard(props) {
          </span>
          </div>
          <div style={{marginLeft: "5em"}} className={styles.card}>
+           <img src="/anhinga.png" className={styles.anhinga}/>
            <span className={styles.heading}>Build<span className={styles.lightgreen}>.</span></span>
            <p className={styles.blurb}>
              As you add taxa to the canvas, watch the phylogenetic tree grow. Relationships between
@@ -43,8 +48,14 @@ export default function IntroductionCard(props) {
            </p>
          </div>
        </div>
+
+       <div style={{ display: "flex", justifyContent: "center" , transform: "scaleX(-1)"}}>
+         <img src="/pikaprints.png" className={styles.pikatracks} style={{ marginBottom: "8em" }} />
+       </div>
+
        <div className={styles.row}>
          <div style={{marginRight: "5em"}} className={styles.card}>
+           <img src="/seedling.png" className={styles.seedling}/>
            <span className={styles.heading}>Share<span className={styles.darkgreen}>.</span></span>
            <p className={styles.blurb}>
               Share trees you have built with others. A unique link can be generated for any tree at the tap of a button.

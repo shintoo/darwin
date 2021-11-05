@@ -1,0 +1,44 @@
+.text {
+  line-height: 1.5;
+  margin-top: 1em;
+}
+
+.skip {
+  cursor: pointer;
+  color: #ccc;
+  margin: 0.5em;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.counter {
+  color: #ccc;
+  display: flex;
+  justify-content: center;
+  font-style: italic;
+  margin-bottom: 0.5em;
+}
+.plus {
+  width: 2em;
+  height: 2em;
+  margin-left: 0.2em;
+  margin-right: 0.2em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  color: #fff;
+  font-family: Roboto, sans-serif;
+  background: rgba(0, 0, 0, 0.7);
+  text-align: center;
+  font-size: 0.8em;
+  box-sizing: border-box;
+}
+
+.image {
+  border-radius: 20px;
+}

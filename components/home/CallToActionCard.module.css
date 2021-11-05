@@ -1,8 +1,10 @@
 .background {
    background: #F0F5E0; 
+   position: relative;
 }
 
 .container {
+   position: relative;
    height: 80vh;
    margin-top: 10vh;
    padding-left: 10vw;
@@ -15,7 +17,8 @@
    align-items: center;
    border-radius: 10% 10% 0 0;
    text-align: center;
-   box-shadow: 0 -10px 40px 0 rgba(0, 0, 0, 0.08);
+   box-shadow: 0 -25px 20px 0 rgba(0, 0, 0, 0.05);
+
 }
 
 .heading {
@@ -27,4 +30,22 @@
    font-size: 28pt;
    margin-left: 1em;
    margin-right: 1em;
+}
+
+.pika {
+  width: 200px;
+  height: auto;
+  position: absolute;
+  top: -10px;
+  left: 90px;
+  z-index: 4;
+}
+
+.mountains {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  z-index: 2;
 }

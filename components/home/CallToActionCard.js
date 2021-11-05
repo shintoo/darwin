@@ -4,6 +4,7 @@ import Button from '../ui/Button'
 export default function CallToActionCard(props) {
   return (
     <div className={styles.background}>
+    <img src="/mountains.png" className={styles.mountains} />
     <div className={styles.container}>
       <span className={styles.heading}>Discover. <br /> With Darwin.</span>
       <p className={styles.cta}>
@@ -13,7 +14,7 @@ export default function CallToActionCard(props) {
       <p className={styles.cta}>
         What will you find?
       </p>
-      <Button style={{margin: "1em"}} href="/builder">start exploring ➞</Button>
+      <Button style={{margin: "1em", zIndex: "3"}} href="/builder">start exploring ➞</Button>
     </div>
     </div>
   )

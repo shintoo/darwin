@@ -66,8 +66,6 @@
   background: rgba(0, 0, 0, 0.5);
   position: absolute;
   margin: 0;
-  -webkit-backdrop-filter: blur(3px);
-  backdrop-filter: blur(3px);
   overflow-y: hidden;
   overflow-x: hidden;
 }
@@ -96,7 +94,7 @@
 .bottom {
   bottom: -2px;
   width: 150px;
-  border-radius: 0 0 30px 30px; 
+  border-radius: 0 0 20px 20px; 
   transition: all 0.2s;
 }
 

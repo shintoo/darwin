@@ -1,6 +1,6 @@
 .container {
    padding-top: 10vh;
-   height: 200vh;
+   height: 250vh;
    padding-left: 10vw;
    padding-right: 10vw;
    background: #F0F5E0; 
@@ -25,7 +25,42 @@
    max-width: 40vw;
    border-radius: 50px;
    box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.08);
+   position: relative;
  }
+
+.pika {
+  width: 180px;
+  height: auto;
+  position: absolute;
+  top: -75px;
+  right: 15px;
+  transform: rotate(20deg);
+}
+
+.pikatracks {
+  width: 500px;
+  height: auto;
+  opacity: 0.15;
+  transform: rotate(50deg);
+}
+
+.anhinga {
+  width: 130px;
+  height: auto;
+  position: absolute;
+  top: -140px;
+  right: 10px;
+  transform: rotate(-10deg);
+}
+
+.seedling {
+  width: 160px;
+  height: auto;
+  position: absolute;
+  top: -75px;
+  right: 10px;
+}
+
 
  .heading {
     font-weight: bolder;

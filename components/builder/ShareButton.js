@@ -1,5 +1,6 @@
 import { useState } from "react"
 import CopyTreeUrlButton from './CopyTreeUrlButton'
+import Modal from '../ui/Modal'
 import styles from "./ShareButton.module.css"
 import base62 from '../../lib/base62'
 
@@ -20,8 +21,7 @@ export default function ShareButton({ids, title}) {
       </div>
     </div>
     { opened &&
-      <div className={styles.overlaycontainer} onClick={_=> setOpened(false)}>
-        <div onClick={e=>e.stopPropagation()} className={styles.overlay}>
+      <Modal close={_ => setOpened(false)}>
           <p>Want to share <i>{title}</i> with a friend? Click the "Copy URL" button to copy a
           unique link to your tree. Or, show the world your tree with the Tweet button. </p>
           <CopyTreeUrlButton text={"Copy " + title + " URL"} url={url} />
@@ -31,9 +31,7 @@ export default function ShareButton({ids, title}) {
               Tweet
             </div>
           </a>
-          <span className={styles.close} onClick={_ => setOpened(false)} >x</span>
-        </div>
-      </div>
+      </Modal>
     }
   </>)
 }

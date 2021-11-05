@@ -11,6 +11,7 @@ import ShareButton from './ShareButton'
 import ZoomControl from './ZoomControl'
 import LabelControl from './LabelControl'
 import INatButton from './INatButton'
+import Tutorial from './Tutorial'
 import LogoButton from '../ui/LogoButton'
 import styles from './Builder.module.css'
 import getTaxa from '../../lib/taxa'
@@ -44,17 +45,11 @@ export default function Builder(props) {
   const deleteNode = id => {
      let deleted = false
 
-     console.log("in delete with id ", id)
-
-
      if (treeData[0].id == id) // Can't delete Life node
        return
 
-
      if (!usedIds.has(id))
       return
-
-     console.log("deleting node for ", id)
 
      deleted = rDeleteNode(id, treeData[0])
 
@@ -70,7 +65,6 @@ export default function Builder(props) {
         console.log("node not found")
      }
   }
-
 
   const rDeleteNode = (id, node) => {
      console.log("rDeleteNode ", id, node)
@@ -107,10 +101,12 @@ export default function Builder(props) {
   const addNode = async (root, data, buildingTree) => {
     console.log("in addNode with id ", data.id, " and addingNode is ", addingNode)
     setAddingNode(data.id)
+
     if (addingNode) {
       console.log("addingNode wasn't null, returning for ", data.id)
       return
     }
+
     await rAddNode(root, data, buildingTree) 
     console.log("Setting addingNode to null")
     setAddingNode(null)
@@ -305,6 +301,7 @@ export default function Builder(props) {
 
   return (
     <div>
+      <Tutorial />
       <div className={styles.uitop}> 
         <div className={styles.leftui}>
           <LogoButton height={32} />

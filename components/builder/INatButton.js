@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import CopyTreeUrlButton from './CopyTreeUrlButton'
+import Modal from '../ui/Modal'
 import styles from './INatButton.module.css'
 
 export default function INatButton(props) {
@@ -25,9 +26,7 @@ export default function INatButton(props) {
       <img src="/inat.png" className={styles.icon} />
     </div>
     {showing &&
-    <div onClick={_ => setShowing(false)} className={styles.overlaycontainer}>
-      <div onClick={e=>e.stopPropagation()} className={styles.overlay} >
-        <img onClick={_ => setShowing(false)} src="/inat.png" className={styles.overlayicon} />
+      <Modal close={_ => setShowing(false)}>
         Have an <a className={styles.link} href="https://www.inaturalist.org">iNaturalist</a> account? <br />
         Enter your iNaturalist username below to generate
         a tree of your observations.
@@ -47,8 +46,7 @@ export default function INatButton(props) {
           /> latest observations
         </div>
         { username.length > 0 && <CopyTreeUrlButton url={url} text={copyText}/> }
-      </div>
-    </div>
+    </Modal>
     }
   </>)
 }

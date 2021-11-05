@@ -13,6 +13,8 @@
 }
 
 .title {
+  font-family: Lora serif;
+  text-shadow: 0 10px 10px 0 #000f;
    margin: 0;
    padding: 0;
    line-height: 0.95;
@@ -23,20 +25,11 @@
 .subtitle {
    line-height: 1.05;
    margin: 0;
+   margin-bottom: 2em;
    padding: 0;
    font-size: 64pt;
    font-weight: bold;
-   padding-left: 9px;
-   text-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-}
-
-.subsubtitle {
-   margin: 0;
-   margin-bottom: 2em;
-   padding: 0;
-   padding-left: 12px;
-   line-height: 2;
-   font-weight: bold;
+   padding-left: 25px;
    text-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
 }
 

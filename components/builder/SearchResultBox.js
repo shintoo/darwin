@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import React from 'react'
 import SearchResultCard from './SearchResultCard'
 import getTaxa from '../../lib/taxa'
 import debounce from '../../lib/input'
