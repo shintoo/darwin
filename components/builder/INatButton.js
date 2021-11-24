@@ -7,7 +7,7 @@ export default function INatButton(props) {
   const [ showing, setShowing ] = useState(false)
   const [ username, setUsername ] = useState("")
   const [ numObs, setNumObs ] = useState(10)
-  const url = "darwin.vercel.app/builder/inat/" + username + "-" + numObs
+  const url = "darwintree.app/builder/inat/" + username + "-" + numObs
   const copyText = "Copy " + username + " observation tree URL"
 
   const userInput = e => {

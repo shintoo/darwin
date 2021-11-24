@@ -11,7 +11,7 @@ export default function ShareButton({ids, title}) {
   ids.forEach(id => encodedIds.push(base62.encode(id)))
 
   console.log("TITLE: ", title)
-  const url = "https://darwin.vercel.app/builder/" + (title && title.replace(/ /g, "_")) + "-" + encodedIds.join("-")
+  const url = "https://darwintree.app/builder/" + (title && title.replace(/ /g, "_")) + "-" + encodedIds.join("-")
   const tweetText = "Check out this phylogenetic tree I built with Darwin:"
 
   return (<>
