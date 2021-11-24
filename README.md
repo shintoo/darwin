@@ -1,4 +1,4 @@
-## [Darwin](darwintree.app)
+## [Darwin](https://darwintree.app)
 darwintree.app
 
 Darwin is an interactive tool used to explore phylogenetic relationships.
