@@ -1,9 +1,12 @@
 import Image from 'next/image'
+import Link from 'next/link'
+import { Slide, Fade } from 'react-awesome-reveal'
 import styles from './IntroductionCard.module.css'
 
 export default function IntroductionCard(props) {
    return (
      <div className={styles.container}>
+       <Slide direction="left">
        <div className={styles.row}>
          <div style={{marginRight: "5em"}} className={styles.card}>
            <span className={styles.heading}>Explore<span className={styles.lightgreen}>.</span></span>
@@ -24,10 +27,15 @@ export default function IntroductionCard(props) {
          </span>
          </div>
        </div>
+       </Slide>
+
+       <Fade>
        <div style={{ display: "flex", justifyContent: "center" }}>
          <img src="/pikaprints.png" className={styles.pikatracks} style={{ marginTop: "5em" }}/>
        </div>
+       </Fade>
 
+       <Slide direction="right">
        <div className={styles.row}>
          <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
           <Image
@@ -36,7 +44,7 @@ export default function IntroductionCard(props) {
            src={"/anim.gif"}
          />
          <span className={styles.caption}>
-             The <i>Anhinga</i> is first added. Then, the <i>Double-crested Cormorant</i>. Finally, the <i>Great Cormorant</i>. <a className={styles.link} href="http://localhost:3000/builder/Anhinga_and_Cormorants-cBC-1jF-ixu-16N-16L-16S">Open this tree in the Builder.</a>
+             The <i>Anhinga</i> is first added. Then, the <i>Double-crested Cormorant</i>. Finally, the <i>Great Cormorant</i>. <Link href="/builder/Anhinga_and_Cormorants-cBC-1jF-ixu-16N-16L-16S"><span className={styles.link}>Open this tree in the Builder.</span></Link>
          </span>
          </div>
          <div style={{marginLeft: "5em"}} className={styles.card}>
@@ -48,11 +56,15 @@ export default function IntroductionCard(props) {
            </p>
          </div>
        </div>
+       </Slide>
 
+       <Fade>
        <div style={{ display: "flex", justifyContent: "center" , transform: "scaleX(-1)"}}>
          <img src="/pikaprints.png" className={styles.pikatracks} style={{ marginBottom: "8em" }} />
        </div>
+       </Fade>
 
+       <Slide direction="left">
        <div className={styles.row}>
          <div style={{marginRight: "5em"}} className={styles.card}>
            <img src="/seedling.png" className={styles.seedling}/>
@@ -67,6 +79,7 @@ export default function IntroductionCard(props) {
            src={"/convo.png"}
          />
        </div>
+       </Slide>
      </div>
    )
 }

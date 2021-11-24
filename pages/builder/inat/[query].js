@@ -52,6 +52,6 @@ async function getObservations(username, count) {
         console.log(resp.total_results)
         if (!resp.results)
           return [-1];
-        return resp.results.map(r => r.taxon.id)
+        return resp.results.filter(r => r.taxon).map(r => r.taxon.id)
     })
 }
