@@ -21,7 +21,7 @@ export default function TitleCard(props) {
           A whole new way to explore the tree of life.
         </h2>
         <Button style={{
-          background: "#fff", color: "#000", marginLeft: "25px",
+          background: "#fff", color: "#000", marginLeft: "25px", padding: "15px"
         }} href="/builder">
           start building ➞
         </Button>

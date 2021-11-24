@@ -5,7 +5,7 @@
   display: flex;
   height: 195px;
   width: 100%;
-  background: rgba(255, 255, 255, 0.9);
-  box-shadow: 0 0 10px 0 #ddd;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0 1px 10px 0 rgba(120, 120, 120, 0.3);
   border-radius: 20px;
 }

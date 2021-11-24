@@ -28,6 +28,11 @@
   border-radius: 50%;
 }
 
+.zoomcontainer > div:hover {
+  background: #8CAB73;
+  color: #fff;
+}
+
 .zoomcontainer > img {
   padding: 0;
   background: none;

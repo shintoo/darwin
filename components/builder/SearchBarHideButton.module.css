@@ -4,9 +4,10 @@
   background: white;
   color: #c2c2c2;
   border-radius: 50px;
-  border-width: 2px;
+  border-width: 1px;
+  box-shadow: 0 1px 10px 0 rgba(120, 120, 120, 0.3);
   border-style: solid;
-  border-color: #c2c2c2;
+  border-color: #fff;
   font-family: Roboto, sans-serif;
   font-size: 1em;
   padding: 0.5em;
