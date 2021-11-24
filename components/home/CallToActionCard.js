@@ -4,7 +4,7 @@ import Button from '../ui/Button'
 
 export default function CallToActionCard(props) {
   return (
-    <Slide fraction={0} direction="up">
+    <Slide fraction={0} direction="up" triggerOnce>
     <div className={styles.background}>
     <img src="/mountains.png" className={styles.mountains} />
     <div className={styles.container}>
