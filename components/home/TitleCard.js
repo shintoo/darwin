@@ -16,7 +16,7 @@ export default function TitleCard(props) {
         <Link href="/about">About</Link>
       </div>
       <div>
-        <img src="logo-w.png" />
+        <Image src="/logo-w.png" width="814" height="248"/>
         <h2 className={styles.subtitle}>
           A whole new way to explore the tree of life.
         </h2>
@@ -26,12 +26,6 @@ export default function TitleCard(props) {
           start building ➞
         </Button>
       </div>
-    {/*
-      <img
-        className={styles.meme}
-        src={"/meme.png"}
-      />
-    */}
     </div>
   )
 }

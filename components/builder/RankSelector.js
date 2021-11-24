@@ -40,7 +40,7 @@ export default function RankSelector(props) {
       "form",
   ]
 
-  const options = ranks.map(val => <option value={val}>{val}</option>)
+  const options = ranks.map((val, i) => <option key={i} value={val}>{val}</option>)
 
   return (
     <select className={styles.rankselector} value={rank} onChange={handleSelect}>

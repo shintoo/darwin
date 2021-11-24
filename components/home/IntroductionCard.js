@@ -20,7 +20,7 @@ export default function IntroductionCard(props) {
            src={"/search.png"}
          />
          <span className={styles.caption}>
-            Click the taxon's card to view its children. Click the + button to add it to the tree.
+            Click the taxon&apos;s card to view its children. Click the + button to add it to the tree.
          </span>
          </div>
        </div>

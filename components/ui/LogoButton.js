@@ -22,6 +22,7 @@ export default function LogoButton(props) {
         src={"/logo.png"}
         width={width}
         height={height}
+        alt="Darwin"
       />
     </Link>
   )

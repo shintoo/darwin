@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Link from 'next/link'
 
 export default function About() {
   return (
@@ -18,7 +19,7 @@ export default function About() {
            a platform for crowdsourcing observation and identification.</p>
 
     </div>
-    <a href="/builder/Finding_Nemo-cBC-yw8-chP-y2X-1uwH-ajF-1-lFo-2CjX-27t0-dex-3jbk-dE7-17O-1OvY-1uzG-cmV-1egC">Finding Nemo tree</a>
+    <Link href="/builder/Finding_Nemo-cBC-yw8-chP-y2X-1uwH-ajF-1-lFo-2CjX-27t0-dex-3jbk-dE7-17O-1OvY-1uzG-cmV-1egC">Finding Nemo tree</Link>
     </>
   )
 }

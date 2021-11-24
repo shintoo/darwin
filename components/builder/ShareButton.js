@@ -22,7 +22,7 @@ export default function ShareButton({ids, title}) {
     </div>
     { opened &&
       <Modal close={_ => setOpened(false)}>
-          <p>Want to share <i>{title}</i> with a friend? Click the "Copy URL" button to copy a
+          <p>Want to share <i>{title}</i> with a friend? Click the &quot;Copy URL&quot; button to copy a
           unique link to your tree. Or, show the world your tree with the Tweet button. </p>
           <CopyTreeUrlButton text={"Copy " + title + " URL"} url={url} />
           <a href={"https://twitter.com/intent/tweet?text=" + tweetText + "&url=" + url}>
