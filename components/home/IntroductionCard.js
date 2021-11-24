@@ -6,7 +6,7 @@ import styles from './IntroductionCard.module.css'
 export default function IntroductionCard(props) {
    return (
      <div className={styles.container}>
-       <Slide direction="left">
+       <Slide fraction={0.8} triggerOnce direction="left">
        <div className={styles.row}>
          <div style={{marginRight: "5em"}} className={styles.card}>
            <span className={styles.heading}>Explore<span className={styles.lightgreen}>.</span></span>
@@ -29,13 +29,13 @@ export default function IntroductionCard(props) {
        </div>
        </Slide>
 
-       <Fade>
+       <Fade fraction={0.5} triggerOnce>
        <div style={{ display: "flex", justifyContent: "center" }}>
          <img src="/pikaprints.png" className={styles.pikatracks} style={{ marginTop: "5em" }}/>
        </div>
        </Fade>
 
-       <Slide direction="right">
+       <Slide fraction={0.8} triggerOnce direction="right">
        <div className={styles.row}>
          <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
           <Image
@@ -58,13 +58,13 @@ export default function IntroductionCard(props) {
        </div>
        </Slide>
 
-       <Fade>
+       <Fade fraction={0.5} triggerOnce>
        <div style={{ display: "flex", justifyContent: "center" , transform: "scaleX(-1)"}}>
          <img src="/pikaprints.png" className={styles.pikatracks} style={{ marginBottom: "8em" }} />
        </div>
        </Fade>
 
-       <Slide direction="left">
+       <Slide fraction={0.8} triggerOnce direction="left">
        <div className={styles.row}>
          <div style={{marginRight: "5em"}} className={styles.card}>
            <img src="/seedling.png" className={styles.seedling}/>

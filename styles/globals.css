@@ -63,3 +63,15 @@ svg {
 g {
   transition: transform 0.1s;
 }
+
+svg text, svg img {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  pointer-events: none;
+}
+
+svg text::selection {
+  background: none;
+}
