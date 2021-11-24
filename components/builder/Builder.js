@@ -319,9 +319,8 @@ export default function Builder(props) {
       </div>
       <div className={[styles.uibottom, bottomUiHidden ? styles.hidden : ""].join(" ")}>
         <div style={{width: "100%", display: "flex", alignItems: "center"}}>
-          <SearchBar setHide={setBottomUiHidden} setSearchText={setSearchText} />
+          <SearchBar setHide={setBottomUiHidden} setSearchText={setSearchText} setRank={setSearchRank}/>
           <ParentMeme parent={searchParent && searchParent.name} setParent={setSearchParent} stack={searchParentStack} setStack={setSearchParentStack} />
-          <RankSelector setHide={setBottomUiHidden} setRank={setSearchRank} /> 
           <SearchBarHideButton setter={setBottomUiHidden} state={bottomUiHidden} />
         </div>
         <SearchResultBox

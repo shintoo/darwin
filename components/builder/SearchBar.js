@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import RankSelector from './RankSelector'
 import styles from './SearchBar.module.css'
 import debounce from '../../lib/input'
 
@@ -25,7 +26,7 @@ export default function SearchBar(props) {
         placeholder={placeholder ? placeholder : "search..."}
         onClick={() => props.setHide(false)}
         onChange={handleChange} />
-      <span className={styles.clear} onClick={_ => {setBuffer(""); props.setSearchText("")}}> x </span>
+      <RankSelector setRank={props.setRank} />
     </div>
   )
 }

@@ -69,7 +69,6 @@ svg text, svg img {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
-  pointer-events: none;
 }
 
 svg text::selection {

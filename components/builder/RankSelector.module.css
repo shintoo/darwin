@@ -1,7 +1,18 @@
 .rankselector {
-  padding: 1em;
+  padding-top: 0.8em;
+  padding-bottom: 0.8em;
   border: 1px solid #fff;
   border-radius: 50px;
-  box-shadow: 0 1px 10px 0 rgba(120, 120, 120, 0.3);
   background: #fff;
+  appearance: none;
+  text-align: center;
+  color: #aaa;
+  font-family: Ubuntu, sans-serif;
+  font-size: 1em;
+  font-weight: 500;
+}
+
+.selected {
+  background: #8CAB73;
+  color: #fff;
 }

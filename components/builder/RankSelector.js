@@ -9,7 +9,6 @@ export default function RankSelector(props) {
 
   const handleSelect = (event) => {
     setRank(event.target.value)
-    props.setHide(false)
     updateRank(props.setRank, event.target.value)
   }
 
@@ -43,7 +42,7 @@ export default function RankSelector(props) {
   const options = ranks.map((val, i) => <option key={i} value={val}>{val}</option>)
 
   return (
-    <select className={styles.rankselector} value={rank} onChange={handleSelect}>
+    <select className={[styles.rankselector + (rank === "" ? "" : " " + styles.selected)].join()} value={rank} onChange={handleSelect}>
       <option value="">select a rank...</option>
       {options}
     </select>
