@@ -6,7 +6,7 @@ export default function Footer(props) {
     <div className={styles.footer}>
       <div className={styles.label}>
         <a href="https://seanrapp.dev">Made by Sean Rapp</a>
-        <a href="https://ko-fi.com/N4N474GKL" target="_blank">
+        <a href="https://ko-fi.com/N4N474GKL">
           <img src="/kofi.png" className={styles.kofi} />
         </a>
       </div>
