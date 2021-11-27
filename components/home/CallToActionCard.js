@@ -1,5 +1,4 @@
 import { Slide } from 'react-awesome-reveal'
-import { isMobile, MobileView, BrowserView } from 'react-device-detect'
 import styles from './CallToActionCard.module.css'
 import Button from '../ui/Button'
 
