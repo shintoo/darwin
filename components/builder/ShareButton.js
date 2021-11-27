@@ -21,7 +21,7 @@ export default function ShareButton({ids, title}) {
       </div>
     </div>
     { opened &&
-      <Modal close={_ => setOpened(false)}>
+      <Modal style={{width: "30em"}} close={_ => setOpened(false)}>
           <p>Want to share <i>{title}</i> with a friend? Click the &quot;Copy URL&quot; button to copy a
           unique link to your tree. Or, show the world your tree with the Tweet button. </p>
           <CopyTreeUrlButton text={"Copy " + title + " URL"} url={url} />

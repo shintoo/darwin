@@ -1,7 +1,8 @@
 .card {
   margin: 0.5em;
-  height: 150px;
-  width: 150px;
+  margin-right: 2.5em;
+  height: 40px;
+  width: 40px;
   background-color: #fff;
   border-style: solid;
   border-color: #c2c2c2;
@@ -18,22 +19,17 @@
   opacity: 1.0;
 }
 
-.card:hover {
-  transform: scale(1.1);
-}
-
-
 
 
 .imagecontainer {
   position: relative;
-  width: 150px;
-  height: 150px;
+  width: 80px;
+  height: 80px;
   box-sizing: border-box;
 }
 
 .image {
-   border-radius: 20px;
+   border-radius: 10px;
    object-fit: cover;
    display: block;
    width: 100%;
@@ -92,15 +88,15 @@
 }
 
 .bottom {
-  bottom: -2px;
-  width: 150px;
+  bottom: -40px;
+  width: 80px;
   border-radius: 0 0 20px 20px; 
   transition: all 0.2s;
 }
 
 .card:hover .bottom {
   border-radius: 20px;
-  height: 150px;
+  height: 80px;
   display: visible;
 }
 
@@ -137,4 +133,40 @@
 
 .card:hover .clickhint {
   display: visible;
+}
+
+@media only screen and (min-width: 680px) {
+  .card {
+    height: 150px;
+    width: 150px;
+    margin: 0.5em;
+    border-radius: 50px;
+  }
+
+
+  .card:hover {
+    transform: scale(1.1);
+  }
+
+  .bottom {
+    bottom: -2px;
+    width: 150px;
+  }
+
+  .card:hover .bottom {
+    height: 150px;
+  }
+
+  .label {
+    font-size: 0.8em;
+  }
+
+  .imagecontainer {
+    width: 150px;
+    height: 150px;
+  }
+
+  .image {
+    border-radius: 20px;
+  }
 }
