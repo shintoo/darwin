@@ -4,16 +4,28 @@ import IntroductionCard from '../components/home/IntroductionCard'
 import CallToActionCard from '../components/home/CallToActionCard'
 import Footer from '../components/home/Footer'
 
-export default function Home() {
+export default function Home({ isMobile }) {
+  if (typeof(navigator) !== "undefined") {
+    console.log(navigator.userAgent)
+  }
   return (
   <>
     <Head>
       <title>Darwin</title>
     </Head>
-    <TitleCard />
-    <IntroductionCard />
-    <CallToActionCard />
-    <Footer />
+    <TitleCard isMobile={isMobile} />
+    <IntroductionCard isMobile={isMobile} />
+    <CallToActionCard isMobile={isMobile} />
+    <Footer isMobile={isMobile} />
   </>
   )
+}
+
+export async function getServerSideProps(context) {
+  const UA = context.req.headers['user-agent']
+  const mobile = Boolean(UA.match(
+    /Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i
+  ))
+
+  return {props: {isMobile: mobile}};
 }

@@ -40,7 +40,7 @@ export default function SearchResultBox(props) {
           }
           results.push(...taxa)
           setResults([...results])
-          setPagesLoaded(pagesLoaded + 1)
+          setPagesLoaded(p => p + 1)
         })
     }
   }, 1000)

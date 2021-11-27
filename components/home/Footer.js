@@ -11,7 +11,7 @@ export default function Footer(props) {
         </a>
       </div>
       <div className={styles.label}>
-        <a href="https://www.inaturalist.org">Powered by iNaturalist</a>.
+        <a href="https://www.inaturalist.org">Powered by iNaturalist</a>
         <a href="https://www.inaturalist.org/donate">
           <span className={[styles.donate + " " + styles.button].join()}>Donate</span>
         </a>

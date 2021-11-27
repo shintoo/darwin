@@ -1,7 +1,9 @@
 .label {
   display: flex;
   align-items: center;
+  font-size: 8pt;
 }
+
 
 .footer {
   display: flex;
@@ -29,7 +31,7 @@
 }
 
 .kofi {
-  width: 150px;
+  width: 100px;
   height: auto;
   margin-left: 10px;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
@@ -37,4 +39,14 @@
 
 .kofi:hover {
   filter: brightness(95%);
+}
+
+@media only screen and (min-width: 680px) {
+  .label {
+    font-size: 12pt;
+  }
+
+  .kofi {
+    width: 150px;
+  }
 }

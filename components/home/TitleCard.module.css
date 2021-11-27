@@ -1,6 +1,6 @@
 .container {
    height: 95vh;
-   padding-left: 10vw;
+
 /*   color: #232C1C; */
    color: #f9fff9;
    font-family: Lora, serif;
@@ -11,7 +11,6 @@
    min-height: 100%;
    transition: background 0.5s linear;
 }
-
 .title {
   font-family: Lora serif;
   text-shadow: 0 10px 10px 0 #000f;
@@ -80,3 +79,16 @@
 .svg {
   width: 100%;
 }
+
+
+@media only screen and (min-width: 680px) {
+  .container {
+    padding-left: 10vw;
+  }
+
+  .toplinks > a {
+    padding: 0;
+  }
+}
+
+

@@ -4,11 +4,13 @@ import { Slide, Fade } from 'react-awesome-reveal'
 import styles from './IntroductionCard.module.css'
 
 export default function IntroductionCard(props) {
+   const isMobile = props.isMobile
+   let Slider = isMobile ? "div" : Slide
    return (
      <div className={styles.container}>
-       <Slide fraction={0.8} triggerOnce direction="left">
+     <Slider fraction={0.8} triggerOnce direction="left">
        <div className={styles.row}>
-         <div style={{marginRight: "5em"}} className={styles.card}>
+         <div className={styles.card}>
            <span className={styles.heading}>Explore<span className={styles.lightgreen}>.</span></span>
            <img src="/pika2.png" className={styles.pika}/>
            <p className={styles.blurb}>
@@ -27,27 +29,29 @@ export default function IntroductionCard(props) {
          </span>
          </div>
        </div>
-       </Slide>
+       </Slider>
 
+       { !isMobile &&
        <Fade fraction={0.5} triggerOnce>
        <div style={{ display: "flex", justifyContent: "center" }}>
          <img src="/pikaprints.png" className={styles.pikatracks} style={{ marginTop: "5em" }}/>
        </div>
        </Fade>
+       }
 
-       <Slide fraction={0.8} triggerOnce direction="right">
+       <Slider fraction={0.8} triggerOnce direction="right">
        <div className={styles.row}>
-         <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
+       {[<div style={{display: "flex", flexDirection: "column", alignItems: "center"}} key="0">
           <Image
            width={610}
            height={493}
            src={"/anim.gif"}
          />
          <span className={styles.caption}>
-             The <i>Anhinga</i> is first added. Then, the <i>Double-crested Cormorant</i>. Finally, the <i>Great Cormorant</i>. <Link href="/builder/Anhinga_and_Cormorants-cBC-1jF-ixu-16N-16L-16S"><span className={styles.link}>Open this tree in the Builder.</span></Link>
+             The <i>Anhinga</i> is first added. Then, the <i>Double-crested Cormorant</i>. Finally, the <i>Great Cormorant</i>. { !isMobile && <Link href="/builder/Anhinga_and_Cormorants-cBC-1jF-ixu-16N-16L-16S"><span className={styles.link}>Open this tree in the Builder.</span></Link> }
          </span>
-         </div>
-         <div style={{marginLeft: "5em"}} className={styles.card}>
+       </div>,
+       <div className={styles.card} key="1">
            <img src="/anhinga.png" className={styles.anhinga}/>
            <span className={styles.heading}>Build<span className={styles.lightgreen}>.</span></span>
            <p className={styles.blurb}>
@@ -55,31 +59,35 @@ export default function IntroductionCard(props) {
              taxa are automatically created and connected.
            </p>
          </div>
+       ][isMobile ? "reverse" : "flat"]() /* hehe */}
        </div>
-       </Slide>
+       </Slider>
 
+       { !isMobile &&
        <Fade fraction={0.5} triggerOnce>
        <div style={{ display: "flex", justifyContent: "center" , transform: "scaleX(-1)"}}>
          <img src="/pikaprints.png" className={styles.pikatracks} style={{ marginBottom: "8em" }} />
        </div>
        </Fade>
+       }
 
-       <Slide fraction={0.8} triggerOnce direction="left">
+       <Slider fraction={0.8} triggerOnce direction="left">
        <div className={styles.row}>
-         <div style={{marginRight: "5em"}} className={styles.card}>
+         <div className={styles.card}>
            <img src="/seedling.png" className={styles.seedling}/>
            <span className={styles.heading}>Share<span className={styles.darkgreen}>.</span></span>
            <p className={styles.blurb}>
               Share trees you have built with others. A unique link can be generated for any tree at the tap of a button.
            </p>
          </div>
+         { isMobile ||
          <Image
            width={450}
            height={293}
            src={"/convo.png"}
-         />
+         /> }
        </div>
-       </Slide>
+       </Slider>
      </div>
    )
 }
