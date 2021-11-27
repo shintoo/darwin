@@ -1,5 +1,5 @@
 .container {
-   height: 95vh;
+   height: 100vh;
 
 /*   color: #232C1C; */
    color: #f9fff9;
@@ -85,10 +85,4 @@
   .container {
     padding-left: 10vw;
   }
-
-  .toplinks > a {
-    padding: 0;
-  }
 }
-
-

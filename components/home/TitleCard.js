@@ -6,7 +6,7 @@ import Button from '../ui/Button'
 
 export default function TitleCard(props) {
   const [ accent, setAccent ] = useState("#FFF8")
-  const backgrounds = ["ladybeetle", "bee", "moss", "leafhopper", "moth", "plant1", "mushroom", "babyshroom", "leaf"]
+  const backgrounds = ["ladybeetle", "bee", "moss", "leafhopper", "moth", "plant1", "mushroom", "babyshroom", "leaf", "cypress1", "cypress2"]
   const selected = backgrounds[Math.floor(Math.random()*backgrounds.length)]
   const background = 'url(' + selected + '.jpeg) no-repeat center center fixed'
   const isMobile = props.isMobile
