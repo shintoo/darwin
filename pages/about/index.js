@@ -9,6 +9,10 @@ export default function About({isMobile}) {
   useEffect(_ => {
     document.documentElement.style.backgroundColor = "#FFFFFA"
     document.body.style.backgroundColor = "#FFFFFA"
+    return _ => {
+      document.documentElement.style.backgroundColor = "#F0F5E0"
+      document.body.style.backgroundColor = "#F0F5E0"
+    }
   }, [])
 
   return (

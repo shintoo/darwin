@@ -6,11 +6,6 @@ import CallToActionCard from '../components/home/CallToActionCard'
 import Footer from '../components/home/Footer'
 
 export default function Home({ isMobile }) {
-  useEffect(_ => {
-    document.documentElement.style.backgroundColor = "#F0F5E0"
-    document.body.style.backgroundColor = "#F0F5E0"
-  }, [])
-
   return (
   <>
     <Head>

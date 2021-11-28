@@ -6,15 +6,15 @@ export default function ParentMeme(props) {
     props.setStack(props.stack.slice(0, -1))
   }
 
-  return props.stack.length > 0 ? (
+  return props.stack.length > 0 ? <>
+    { props.stack.length > 1 &&
+      <div className={[styles.container, styles.prev].join(" ")} onClick={back}>
+       &lt;
+      </div>
+    }
     <span className={styles.container}>
-      { props.stack.length > 1 &&
-        <span className={styles.prev} onClick={back}>
-         &lt;&nbsp;&nbsp;
-        </span>
-      }
       <span>{props.stack[props.stack.length - 1].name} &nbsp;</span>
       <span style={{cursor: "pointer"}} onClick={() => { props.setStack([]) }}>x</span>
     </span>
-  ) : null
+  </> : null
 }
