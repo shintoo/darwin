@@ -10,18 +10,20 @@ export default function SearchResultBox(props) {
   const [ pagesLoaded, setPagesLoaded ] = useState(0)
 
   useEffect(() => {
-    getTaxa(props.query, props.rank, props.parent)
+    setResults([])
+    getTaxa(props.query, props.rank, props.parent?.id)
       .then(taxa => {
         if (props.parent && taxa.length === 0) {
            return
         }
-        setResults([])
         setResults(taxa)
         setPagesLoaded(1)
       })
   }, [props.query, props.rank, props.parent])
 
-  useEffect(() => props.setParent(null), [props.query, props.rank])
+  useEffect(() => {
+    props.clearParentStack()
+  }, [props.query, props.rank])
 
 
   // make sure getTaxa can take a page,

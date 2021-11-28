@@ -140,9 +140,7 @@
     height: 150px;
     width: 150px;
     margin: 0.5em;
-    border-radius: 50px;
   }
-
 
   .card:hover {
     transform: scale(1.1);

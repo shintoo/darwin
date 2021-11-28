@@ -20,7 +20,6 @@ import base62 from '../../lib/base62'
 export default function Builder(props) {
   const [ searchText, setSearchText ] = useState("")
   const [ searchRank, setSearchRank ] = useState("")
-  const [ searchParent, setSearchParent ] = useState(null)
   const [ searchParentStack, setSearchParentStack ] = useState([])
   const [ bottomUiHidden, setBottomUiHidden ] = useState(false)
   const [ title, setTitle ] = useState(props.title || "My Tree")
@@ -31,8 +30,6 @@ export default function Builder(props) {
   const [ useCommonNames, setUseCommonNames ] = useState(true)
   const [ scale, setScale ] = useState(1.0)
   const [ addingNode, setAddingNode ] = useState(null)
-
-  console.log("RER builder rerender")
 
   let usedIdsBuffer = usedIds
 
@@ -297,7 +294,7 @@ export default function Builder(props) {
       }
       buildTreeFromIds(ids).then(console.log("built tree :-)"))
     }
-  }, [props.treeId, props.ids])
+  }, [props.treeId, props.ids]) 
 
   return (
     <div>
@@ -320,14 +317,15 @@ export default function Builder(props) {
       <div className={[styles.uibottom, bottomUiHidden ? styles.hidden : ""].join(" ")}>
         <div style={{width: "100%", display: "flex", alignItems: "center"}}>
           <SearchBar setHide={setBottomUiHidden} setSearchText={setSearchText} setRank={setSearchRank}/>
-          <ParentMeme parent={searchParent && searchParent.name} setParent={setSearchParent} stack={searchParentStack} setStack={setSearchParentStack} />
+          <ParentMeme stack={searchParentStack} setStack={setSearchParentStack} />
           <SearchBarHideButton setter={setBottomUiHidden} state={bottomUiHidden} />
         </div>
         <SearchResultBox
           query={searchText}
           rank={searchRank}
-          parent={searchParent && searchParent.id}
-          setParent={setSearchParent}
+          parent={searchParentStack.length === 0 ? null : searchParentStack[searchParentStack.length-1]}
+          setParent={parent => { setSearchParentStack(stack => [...stack, parent]) } }
+          clearParentStack={_ => setSearchParentStack([])}
           addNode={n => addNode(treeData[0], n, false)}/>
       </div>
     </div>

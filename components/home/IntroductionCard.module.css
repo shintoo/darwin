@@ -117,7 +117,9 @@
   }
 
   .card {
-   max-width: 40vw;
+    max-width: 40vw;
+    margin-left: 3em;
+    margin-right: 3em;
   }
 
   .blurb {
