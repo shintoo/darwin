@@ -8,7 +8,7 @@ export default function IntroductionCard(props) {
    let Slider = isMobile ? "div" : Slide
    return (
      <div className={styles.container}>
-     <Slider fraction={0.8} triggerOnce direction="left">
+     <Slider fraction={0.7} triggerOnce direction="left">
        <div className={styles.row}>
          <div className={styles.card}>
            <span className={styles.heading}>Explore<span className={styles.lightgreen}>.</span></span>
@@ -39,7 +39,7 @@ export default function IntroductionCard(props) {
        </Fade>
        }
 
-       <Slider fraction={0.8} triggerOnce direction="right">
+       <Slider fraction={0.7} triggerOnce direction="right">
        <div className={styles.row}>
        {[<div style={{display: "flex", flexDirection: "column", alignItems: "center"}} key="0">
           <Image
@@ -48,7 +48,7 @@ export default function IntroductionCard(props) {
            src={"/anim.gif"}
          />
          <span className={styles.caption}>
-             The <i>Anhinga</i> is first added. Then, the <i>Double-crested Cormorant</i>. Finally, the <i>Great Cormorant</i>. { !isMobile && <Link href="/builder/Anhinga_and_Cormorants-cBC-1jF-ixu-16N-16L-16S"><span className={styles.link}>Open this tree in the Builder.</span></Link> }
+             The <i>Anhinga</i> is first added. Then, the <i>Double-crested Cormorant</i>. Finally, the <i>Great Cormorant</i>. { !isMobile && <Link href="/builder/Anhinga_and_Cormorants-cBC-1jF-ixu-16N-16L-16S"><span className={styles.link}>Open this tree in the Tree Builder.</span></Link> }
          </span>
        </div>,
        <div className={styles.card} key="1">
@@ -71,7 +71,7 @@ export default function IntroductionCard(props) {
        </Fade>
        }
 
-       <Slider fraction={0.8} triggerOnce direction="left">
+       <Slider fraction={0.7} triggerOnce direction="left">
        <div className={styles.row}>
          <div className={styles.card}>
            <img src="/seedling.png" className={styles.seedling}/>

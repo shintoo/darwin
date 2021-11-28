@@ -20,7 +20,7 @@ export default function SearchResultCard({ taxa, setParent, addNode }) {
 
   return (
     <>
-      { loaded || <div style={{margin: "auto", textAlign: "center"}}>...</div>}
+      { loaded || <div style={{margin: "auto", textAlign: "center"}}> </div>}
     
       <div onClick={() => setParent({id: taxa.id, name: taxa.naming.taxon})} className={[styles.card, loaded ? styles.loaded : ""].join(" ")}>
 

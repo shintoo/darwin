@@ -56,11 +56,11 @@
 
 .toplinks {
   position: absolute;
-  top: 3em;
-  right: 3em;
+  top: 1em;
+  right: 0.5em;
   font-family: Roboto, sans-serif;
-  font-size: 1.3em;
-  color: #777;
+  font-size: 1.5em;
+  color: #aaa;
 }
 
 .toplinks > a {
@@ -73,7 +73,6 @@
   opacity: 0.5;
   background: #dfd;
   color: #020;
-
 }
 
 .svg {
@@ -84,5 +83,10 @@
 @media only screen and (min-width: 680px) {
   .container {
     padding-left: 10vw;
+  }
+
+  .toplinks {
+    top: 3em;
+    right: 3em;
   }
 }

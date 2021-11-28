@@ -15,7 +15,7 @@ const frames = [
   { image: "/tutorial/7.5.gif", content: "Display common names or scientific names." },
   { image: "/tutorial/8.gif", content: "Name your tree!" },
   { image: "/tutorial/9.gif", content: "Share your tree with the world." },
-  { image: null, content: "Have fun!" },
+  { image: null, content: <div style={{width: "100%", textAlign: "center"}}>Have fun!</div> },
 ]
 
 export default function Tutorial(props) {

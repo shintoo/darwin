@@ -74,3 +74,128 @@ svg text, svg img {
 svg text::selection {
   background: none;
 }
+
+.about-section > h1 {
+  background-image: linear-gradient(95deg, rgba(3,226,191,1) 0%, rgba(103,181,104,1) 100%); 
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 32pt;
+  text-align: center;
+}
+
+.about-section {
+  margin-top: 5em;
+  margin-bottom: 5em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.about-section > h2 {
+  text-align: center;
+  color: #5E4A2F;
+  font-size: 18pt;
+}
+
+.about-subsection {
+  max-width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.about-subsection > p {
+  font-size: 10pt;
+  line-height: 1.5;
+  color: #5E4A2F;
+  margin-bottom: 2em;
+}
+
+.about-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  background: #fff;
+  padding: 1em;
+  box-shadow: 0 1px 10px 0 rgba(120, 120, 120, 0.3);
+  border-radius: 0 0 20px 20px;
+  z-index: 999;
+}
+
+.about-nav-builder {
+  padding: 1em;
+  background: #8cab83;
+  cursor: pointer;
+  color: #fff;
+  border-radius: 50px;
+  font-weight: bolder;
+  box-shadow: 0 1px 10px 0 rgba(120, 120, 120, 0.1);
+  transition: all 0.1s;
+}
+
+.about-nav-builder:hover {
+  box-shadow: 0 1px 10px 0 rgba(120, 120, 120, 0.3);
+}
+
+.faq-q {
+  text-align: left;
+  width: 100%;
+  font-size: 18pt;
+  font-weight: bolder;
+  /*color: #5E4A2F;*/
+}
+
+.faq-a {
+  width: 100%;
+  line-height: 1.8;
+  text-align: left;
+  font-size: 10pt;
+}
+
+.about-support {
+  opacity: 0.6;
+}
+
+.about-support:hover {
+  opacity: 0.3;
+}
+
+.about-share {
+  display: flex-inline;
+  align-items: center;
+  color: #8cab83;
+  font-family: Roboto, Ubuntu, sans-serif;
+}
+
+.about-card {
+  background: #ffffff;
+  border-radius: 50px;
+  padding: 2em;
+  margin-bottom: 2em;
+  width: 100%;
+  box-shadow: 0 1px 20px 0 rgba(120, 120, 120, 0.2);
+}
+
+@media only screen and (min-width: 680px) {
+  .about-section > h1 {
+    font-size: 48pt;
+  }
+
+  .about-section > h2 {
+    font-size: 24pt;
+  }
+
+  .about-subsection > p {
+    font-size: 16pt;
+    max-width: 30em;
+  }
+
+  .faq-a {
+    font-size: 14pt;
+  }
+}

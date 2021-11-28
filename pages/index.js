@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import Head from 'next/head'
 import TitleCard from '../components/home/TitleCard'
 import IntroductionCard from '../components/home/IntroductionCard'
@@ -5,13 +6,15 @@ import CallToActionCard from '../components/home/CallToActionCard'
 import Footer from '../components/home/Footer'
 
 export default function Home({ isMobile }) {
-  if (typeof(navigator) !== "undefined") {
-    console.log(navigator.userAgent)
-  }
+  useEffect(_ => {
+    document.documentElement.style.backgroundColor = "#F0F5E0"
+    document.body.style.backgroundColor = "#F0F5E0"
+  }, [])
+
   return (
   <>
     <Head>
-      <title>Darwin</title>
+      <title>Darwin - 🌲 Phylogenetic trees made easy.</title>
     </Head>
     <TitleCard isMobile={isMobile} />
     <IntroductionCard isMobile={isMobile} />
