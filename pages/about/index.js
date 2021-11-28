@@ -24,7 +24,7 @@ export default function About({isMobile}) {
       <h1>What is Darwin?</h1>
       <div className="about-subsection">
         <p style={{textAlign: "center", fontWeight: "bold"}}>
-          Visualize taxonomy easily with Darwin. Don't worry about phyla, subclasses, infraorders, and so on - we take care of that for you.
+          Visualize taxonomy easily with Darwin. Don&lsqo;t worry about phyla, subclasses, infraorders, and so on - we take care of that for you.
         </p>
         <Image src="/transform.png" width={600} height={300} alt="tree diagram"/>
         <p style={{textAlign: "center", fontWeight: "bold", marginTop: "2em"}}>Use Darwin to build a phylogenetic tree of different taxa, as relationships and missing links are created automatically.</p>
