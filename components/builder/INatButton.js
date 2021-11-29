@@ -8,7 +8,7 @@ export default function INatButton(props) {
   const [ username, setUsername ] = useState("")
   const [ numObs, setNumObs ] = useState(10)
   const url = "darwintree.app/builder/inat/" + username + "-" + numObs
-  const copyText = "Copy " + username + " observation tree URL"
+  const copyText = "Copy URL"
 
   const userInput = e => {
     e.preventDefault()
@@ -30,20 +30,21 @@ export default function INatButton(props) {
         Have an <a className={styles.link} href="https://www.inaturalist.org">iNaturalist</a> account? <br />
         Enter your iNaturalist username below to generate
         a tree of your observations.
-        <div style={{width: "100%", justifyContent: "center"}}>
-        <input
-          className={styles.userinput}
-          onChange={userInput}
-          value={username}
-          type="text"
-          placeholder="username"
-          />, {" "} 
-        <input
-          className={styles.numInput}
-          onChange={numInput}
-          value={numObs}
-          type="number"
-          /> latest observations
+
+        <div className={styles.inputcontainer}>
+          <input
+            className={styles.userinput}
+            onChange={userInput}
+            value={username}
+            type="text"
+            placeholder="username"
+            />
+          <input
+            className={styles.numInput}
+            onChange={numInput}
+            value={numObs}
+            type="number"
+            />
         </div>
         { username.length > 0 && <CopyTreeUrlButton url={url} text={copyText}/> }
     </Modal>

@@ -58,18 +58,34 @@
 }
 
 .numInput {
-  width: 4em;
   background: none;
   border: none;
   outline: none;
   margin-left: 1em;
+  width: 30%;
+}
+
+.inputcontainer {
+  display: flex;
+  justify-content: space-between;
+  border-radius: 50px;
+  box-shadow: 0 1px 10px 0 rgba(120, 120, 120, 0.3);
+  padding: 1em;
+  margin: 1em;
 }
 
 .userinput {
   background: none;
   border: none;
-  border-bottom: solid 1px #c2c2c2;
   outline: none;
-  width: 8em;
-  margin-top: 2em;
+  border-right: 1px solid #ccc;
+}
+
+.link {
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.link:hover {
+  opacity: 0.3;
 }

@@ -160,6 +160,7 @@ svg text::selection {
 
 .about-support {
   opacity: 0.6;
+  cursor: pointer;
 }
 
 .about-support:hover {
