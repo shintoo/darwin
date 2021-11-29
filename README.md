@@ -17,4 +17,4 @@ that taxon is added automatically as well.
 A tree's URL can be generated for sharing the tree as well, which can also be useful for saving your work
 when creating large trees.
 
-![Tree editor example with tree of anhinga and cormorants](public/screenshot-latest.png)
+![Tree editor example with florida birds](public/scrot.png)
