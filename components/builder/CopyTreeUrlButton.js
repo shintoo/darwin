@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import copy from 'copy-to-clipboard'
 import styles from "./CopyTreeUrlButton.module.css"
 
 export default function CopyTreeUrlButton({url, text}) {
@@ -7,19 +8,20 @@ export default function CopyTreeUrlButton({url, text}) {
 
    useEffect(_ => setButtonText(text), [text])
 
-   const copy = _ => {
-     navigator.clipboard.writeText(url).then(function() {
+   const copyURL = _ => {
+     const success = copy(url)
+     setTimeout(() => { setButtonText(text || "Copy URL"); setClasses([styles.button]); }, 1000)
+     if (success) {
        setButtonText("Copied!")
-       setTimeout(() => { setButtonText(text || "Copy URL"); setClasses([styles.button]); }, 1000)
-      }, function() {
-        /* clipboard write failed */
-      });
-      setClasses([styles.button, styles.copied])
+       setClasses([styles.button, styles.copied])
+     } else {
+       setButtonText("Error copying :(")
+     }
    }
 
    return (
      <div>
-       <div onClick={copy} className={classes.join(" ")}>
+       <div onClick={copyURL} className={classes.join(" ")}>
          {buttonText}
        </div>
      </div>

@@ -110,6 +110,7 @@ svg text::selection {
   line-height: 1.5;
   color: #5E4A2F;
   margin-bottom: 2em;
+  font-size: 16pt;
 }
 
 .about-nav {
