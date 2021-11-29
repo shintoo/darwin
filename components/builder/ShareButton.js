@@ -21,8 +21,8 @@ export default function ShareButton({ids, title}) {
       </div>
     </div>
     { opened &&
-      <Modal style={{width: "15em"}} close={_ => setOpened(false)}>
-          <div className={styles.share}>Share</div>
+      <Modal style={{width: "auto"}} close={_ => setOpened(false)}>
+          <div className={styles.share}>Share <i>{title}</i></div>
           <div className={styles.sharebuttons}>
             <CopyTreeUrlButton text={"Copy " + title + " URL"} url={url} isIcon />
             <a href={"https://twitter.com/intent/tweet?text=" + tweetText + "&url=" + url}>
