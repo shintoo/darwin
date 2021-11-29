@@ -51,9 +51,9 @@ export default function About({isMobile}) {
           <span className="faq-q">What is iNaturalist?</span>
           <p className="faq-a">
             <Link href="https://inaturalist.org/"><span className="about-support">iNaturalist</span></Link> is a wonderful tool and online community centered around crowd-sourcing
-            observations of organisms in nature. Darwin relies on the taxonomy framework that iNaturalist provides to determine how trees should be built.
+            observation and identification of organisms in nature. Darwin relies on the taxonomy framework that iNaturalist provides to determine how trees should be built.
 
-            Using iNaturalist and Darwin, you can easily build phylogenetic trees of life you observe yourelf, by first recording your observations to iNaturalist, and then importing them
+            Using iNaturalist and Darwin, you can easily build phylogenetic trees of life you observe yourself, by first recording your observations to iNaturalist, and then importing them
             into Darwin.
           </p>
         </div>

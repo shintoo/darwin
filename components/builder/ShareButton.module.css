@@ -1,4 +1,10 @@
-.button {
+.share {
+  font-size: 20pt;
+  text-align: center;
+  margin-bottom: 1em;
+}
+
+.sharebutton {
   margin-left: 0.5em;
   color: #999;
   border-radius: 50px;
@@ -14,18 +20,18 @@
   cursor: pointer;
 }
 
-.button:hover {
+.sharebutton:hover {
   color: #8CAB73;
   border-color: #8CAB73;
 }
 
-.button > img {
+.sharebutton > img {
   transition: all 0.1s ease-in;
   filter: grayscale(100%);
   margin-left: 0.3em;
 }
 
-.button:hover > img {
+.sharebutton:hover > img {
   filter: saturate(100%);
 }
 
@@ -75,7 +81,7 @@
   cursor: pointer;
 }
 
-.tweet {
+.button {
   background: #1DA1F2;
   font-family: TwitterChirp, Roboto, Ubuntu, sans-serif;
   font-weight: 700;
@@ -85,23 +91,38 @@
   font-family: Roboto, sans-serif;
   font-size: 1em;
   padding: 0.5em;
-  margin: 1em;
-  transition: all 0.2s ease-out;
+  width: 50px;
+  height: 50px;
+  transition: all 0.1s ease-out;
   text-align: center;
   z-index: 999;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-left: 0.5em;
 }
 
 .tweet:hover {
   background: #1A8ACF;
 }
 
-.tweet > img {
-  width: 16px;
-  height: 16px;
-  margin-left: 0.5em;
-  margin-right: 0.5em;
+.button > img {
+  width: 20px;
+  height: 20px;
+}
+
+.mailto {
+  background: #f22f1d;
+}
+
+.mailto:hover {
+  background: #cf1a1a;
+}
+
+.sharebuttons {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
 }

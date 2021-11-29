@@ -28,7 +28,7 @@ export default function INatButton(props) {
     {showing &&
       <Modal style={{width: "25em"}} close={_ => setShowing(false)}>
         Have an <a className={styles.link} href="https://www.inaturalist.org">iNaturalist</a> account? <br />
-        Enter your iNaturalist username below to generate
+        Enter your iNaturalist username and number of observations to import below to generate
         a tree of your observations.
 
         <div className={styles.inputcontainer}>

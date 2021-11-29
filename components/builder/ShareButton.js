@@ -10,27 +10,32 @@ export default function ShareButton({ids, title}) {
   let encodedIds = []
   ids.forEach(id => encodedIds.push(base62.encode(id)))
 
-  console.log("TITLE: ", title)
   const url = "https://darwintree.app/builder/" + (title && title.replace(/ /g, "_")) + "-" + encodedIds.join("-")
   const tweetText = "Check out this phylogenetic tree I built with Darwin:"
+  const mailto = 'mailto:?subject=Check out my tree "' + title + '" on Darwin&body=I made a phylogenetic tree using Darwin:  ' + url
 
   return (<>
     <div>
-      <div className={styles.button} onClick={_ => setOpened(!opened)}>
+      <div className={styles.sharebutton} onClick={_ => setOpened(!opened)}>
         Share<img src="/share.png" width="16" height="16" />
       </div>
     </div>
     { opened &&
-      <Modal style={{width: "30em"}} close={_ => setOpened(false)}>
-          <p>Want to share <i>{title}</i> with a friend? Click the &quot;Copy URL&quot; button to copy a
-          unique link to your tree. Or, show the world your tree with the Tweet button. </p>
-          <CopyTreeUrlButton text={"Copy " + title + " URL"} url={url} />
-          <a href={"https://twitter.com/intent/tweet?text=" + tweetText + "&url=" + url}>
-            <div className={styles.tweet}>
-              <img src="twt.png" />
-              Tweet
-            </div>
-          </a>
+      <Modal style={{width: "15em"}} close={_ => setOpened(false)}>
+          <div className={styles.share}>Share</div>
+          <div className={styles.sharebuttons}>
+            <CopyTreeUrlButton text={"Copy " + title + " URL"} url={url} isIcon />
+            <a href={"https://twitter.com/intent/tweet?text=" + tweetText + "&url=" + url}>
+              <div className={`${styles.button} ${styles.tweet}`}>
+                <img src="/twt.png" alt=""/>
+              </div>
+            </a>
+            <a href={mailto}>
+              <div className={`${styles.button} ${styles.mailto}`}>
+                <img src="/email.png" alt=""/>
+              </div>
+            </a>
+          </div>
       </Modal>
     }
   </>)
