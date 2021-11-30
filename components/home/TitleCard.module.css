@@ -66,10 +66,11 @@
   transition: all 0.2s;
   padding: 0.5em;
   border-radius: 40px;
+  background: #fff;
+  color: #8CAB73;
 }
 
 .toplinks > a:hover {
-  opacity: 0.5;
   background: #dfd;
   color: #020;
 }

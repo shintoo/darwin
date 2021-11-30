@@ -12,7 +12,7 @@ export default function TitleCard(props) {
   return (
     <div className={styles.container} style={{ background: background, backgroundSize: "cover" }}>
       <div className={styles.toplinks}>
-        <Link href="/about">About</Link>
+        <Link href="/about">about</Link>
       </div>
       <div>
         <Image src="/logo-w.png" width="814" height="248"/>
