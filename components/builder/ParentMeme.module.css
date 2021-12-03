@@ -9,6 +9,12 @@
   box-shadow: 0 1px 10px 0 rgba(120, 120, 120, 0.3);
 }
 
+.rank {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 10pt;
+}
+
 .prev {
   cursor: pointer;
   border-radius: 50%;

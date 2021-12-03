@@ -22,7 +22,7 @@ export default function SearchResultCard({ taxa, setParent, addNode }) {
     <>
       { loaded || <div style={{margin: "auto", textAlign: "center"}}> </div>}
     
-      <div onClick={() => setParent({id: taxa.id, name: taxa.naming.taxon})} className={[styles.card, loaded ? styles.loaded : ""].join(" ")}>
+      <div onClick={() => setParent({rank: taxa.naming.rank, id: taxa.id, name: taxa.naming.taxon})} className={[styles.card, loaded ? styles.loaded : ""].join(" ")}>
 
       <div className={styles.imagecontainer}>
         {image}

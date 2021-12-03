@@ -6,6 +6,8 @@ export default function ParentMeme(props) {
     props.setStack(props.stack.slice(0, -1))
   }
 
+  const taxon = props.stack[props.stack.length - 1]
+
   return props.stack.length > 0 ? <>
     { props.stack.length > 1 &&
       <div className={[styles.container, styles.prev].join(" ")} onClick={back}>
@@ -13,7 +15,7 @@ export default function ParentMeme(props) {
       </div>
     }
     <span className={styles.container}>
-      <span>{props.stack[props.stack.length - 1].name} &nbsp;</span>
+      <span className={styles.rank}>{taxon.rank}</span> <span>{taxon.name}</span> &nbsp;
       <span style={{cursor: "pointer"}} onClick={() => { props.setStack([]) }}>x</span>
     </span>
   </> : null
