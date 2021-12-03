@@ -38,8 +38,8 @@ export default function SearchResultBox(props) {
     console.log(box.scrollWidth, box.scrollLeft, box.clientWidth)
 
     if (atBottom) {
-      console.log("scrollHandler: ", props.query, props.rank, props.parent, pagesLoaded + 1)
-      getTaxa(props.query, props.rank, props.parent, null, pagesLoaded + 1, 20)
+      console.log("scrollHandler: ", props.query, props.rank, props.parent?.id, pagesLoaded + 1)
+      getTaxa(props.query, props.rank, props.parent?.id, null, pagesLoaded + 1, 20)
         .then(taxa => {
           if (taxa.length === 0) {
             return 
