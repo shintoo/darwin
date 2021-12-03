@@ -3,15 +3,20 @@
   margin-left: auto;
   background: white;
   color: #c2c2c2;
-  border-radius: 50px;
+  border-radius: 50%;
   border-width: 1px;
   box-shadow: 0 1px 10px 0 rgba(120, 120, 120, 0.3);
   border-style: solid;
   border-color: #fff;
   font-family: Roboto, sans-serif;
   font-size: 1em;
-  padding: 0.5em;
+  width: 2em;
+  height: 2em;
   text-align: center;
-  transition: all 0.3s;
+  transition: all 0.5s ease-in-out;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: end;
 }
