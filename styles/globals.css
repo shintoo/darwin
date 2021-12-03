@@ -32,27 +32,22 @@ svg {
 }
 
 .node-buttons {
-  border-radius: 5px 5px 5px 0;
+  border-radius: 50%;
   box-shadow: 0 0 5px 0 #ddd;
-  background: #fff;
-  color: #333;
+  background: #f26464;
+  cursor: pointer;
+  font-weight: bolder;
+  color: #fff;
   padding-top: 0;
   opacity: 0;
   right: 0.5em;
   position: absolute;
   height: 1.5em;
+  width: 1.5em;
   transition: opacity 0.2s;
   display: flex;
   justify-content: center;
   align-items: center;
-
-}
-
-.node-button {
-  width: 1em;
-  height: 1em;
-  cursor: pointer;
-  margin: 0 0.1em 0 0.1em;
 }
 
 .node:hover .node-buttons {

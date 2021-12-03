@@ -67,6 +67,7 @@
 }
 
 .addbutton {
+  font-weight: bolder;
   right: -5px;
   top: -5px;
   width: 2em;
@@ -81,7 +82,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #8CAB73;
+  background: #32B0F9;
 }
 
 .card:hover .addbutton {
