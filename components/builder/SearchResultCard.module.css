@@ -67,8 +67,8 @@
 }
 
 .addbutton {
-  right: 0;
-  top: 0;
+  right: -5px;
+  top: -5px;
   width: 2em;
   height: 2em;
   padding: 0.5em;
@@ -76,11 +76,12 @@
   border-radius: 30px;
   margin: 0.3em;
   cursor: pointer;
-  opacity: 0.01;
+  opacity: 0;
   transition: opacity 0.2s;
   display: flex;
+  justify-content: center;
   align-items: center;
-  background: rgba(0, 0, 0, 0.8);
+  background: #8CAB73;
 }
 
 .card:hover .addbutton {
