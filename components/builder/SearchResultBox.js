@@ -11,7 +11,7 @@ export default function SearchResultBox(props) {
 
   useEffect(() => {
     setResults([])
-    getTaxa(props.query, props.rank, props.parent?.id)
+    getTaxa(props.query, props.rank, props.parent?.id, null, 0, 20)
       .then(taxa => {
         if (props.parent && taxa.length === 0) {
            return
@@ -33,13 +33,24 @@ export default function SearchResultBox(props) {
   const resultCards = results.map(taxa => <SearchResultCard key={taxa.id} taxa={taxa} setParent={props.setParent} addNode={props.addNode}/>)
 
   const scrollHandler = debounce(_ => {
-    if (document.getElementById("search-result-box").getBoundingClientRect().right <= window.innerWidth) {
+    const box = document.getElementById("search-result-box")
+    const atBottom = box.scrollWidth - box.scrollLeft == box.clientWidth
+    console.log(box.scrollWidth, box.scrollLeft, box.clientWidth)
+
+    if (atBottom) {
       console.log("scrollHandler: ", props.query, props.rank, props.parent, pagesLoaded + 1)
-      getTaxa(props.query, props.rank, props.parent, null, pagesLoaded + 1, 10)
+      getTaxa(props.query, props.rank, props.parent, null, pagesLoaded + 1, 20)
         .then(taxa => {
           if (taxa.length === 0) {
             return 
           }
+
+          taxa = taxa.filter(taxon => results.filter(t => t.id == taxon.id).length == 0)
+
+          for (let i = 0; i < taxa.length; i++) {
+            console.log(`id: ${taxa[i].id}, included: ${results.includes(taxa[i])}`)
+          }
+
           results.push(...taxa)
           setResults([...results])
           setPagesLoaded(p => p + 1)

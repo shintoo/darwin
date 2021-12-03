@@ -1,5 +1,5 @@
 .card {
-  margin: 0.5em;
+  margin: 0.3em;
   margin-right: 2.5em;
   height: 40px;
   width: 40px;
@@ -7,7 +7,7 @@
   border-style: solid;
   border-color: #c2c2c2;
   border-width: 1px;
-  border-radius: 20px; /*0 0 20px 20px;*/
+  border-radius: 50px; /*0 0 20px 20px;*/
   box-sizing: border-box;
   transition: all 0.2s ease-out;
   position: relative;
@@ -73,7 +73,7 @@
   height: 2em;
   padding: 0.5em;
   display: inline;
-  border-radius: 20px;
+  border-radius: 30px;
   margin: 0.3em;
   cursor: pointer;
   opacity: 0.01;
@@ -90,12 +90,12 @@
 .bottom {
   bottom: -40px;
   width: 80px;
-  border-radius: 0 0 20px 20px; 
+  border-radius: 0 0 30px 30px; 
   transition: all 0.2s;
 }
 
 .card:hover .bottom {
-  border-radius: 20px;
+  border-radius: 30px;
   height: 80px;
   display: visible;
 }
@@ -137,9 +137,9 @@
 
 @media only screen and (min-width: 680px) {
   .card {
-    height: 150px;
-    width: 150px;
-    margin: 0.5em;
+    height: 120px;
+    width: 120px;
+    margin: 0.4em;
   }
 
   .card:hover {
@@ -148,11 +148,11 @@
 
   .bottom {
     bottom: -2px;
-    width: 150px;
+    width: 120px;
   }
 
   .card:hover .bottom {
-    height: 150px;
+    height: 120px;
   }
 
   .label {
@@ -160,11 +160,11 @@
   }
 
   .imagecontainer {
-    width: 150px;
-    height: 150px;
+    width: 120px;
+    height: 120px;
   }
 
   .image {
-    border-radius: 20px;
+    border-radius: 30px;
   }
 }
