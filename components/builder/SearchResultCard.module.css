@@ -4,15 +4,13 @@
   height: 40px;
   width: 40px;
   background-color: #fff;
-  border-style: solid;
-  border-color: #c2c2c2;
-  border-width: 1px;
-  border-radius: 50px; /*0 0 20px 20px;*/
+  border-radius: 30px; /*0 0 20px 20px;*/
   box-sizing: border-box;
   transition: all 0.2s ease-out;
   position: relative;
   opacity: 0.01;
   cursor: pointer;
+  background: #2C354B;
 }
 
 .loaded {
@@ -35,7 +33,7 @@
    width: 100%;
    height: 100%;
    box-sizing: border-box;
-   transition: transform ease-out 0.2s;
+   transition: transform 0.2s ease-out;
 }
 
 .missingimage {
@@ -45,25 +43,31 @@
 }
 
 .label {
+  top: 0;
   padding: 0.3em 1em 0.3em 1em;
   text-decoration: none;
   text-align: center;
   width: 100%;
-  height: 40%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: top;
+  justify-content: space-around;
   overflow-y: auto;
   font-size: 0.8em;
+  font-weight: bold;
+  text-shadow: 0px 1px 5px black;
   color: #fff;
   font-family: Roboto, sans-serif;
   text-transform: lowercase;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.2);
+  opacity: 0.85;
   position: absolute;
   margin: 0;
   overflow-y: hidden;
   overflow-x: hidden;
+  border-radius: 30px;
+  transition: all 0.1s;
 }
 
 .addbutton {
@@ -83,42 +87,33 @@
   justify-content: center;
   align-items: center;
   background: #32B0F9;
+  text-shadow: none;
 }
 
 .card:hover .addbutton {
   opacity: 1;
 }
 
-.bottom {
-  bottom: -40px;
-  width: 80px;
-  border-radius: 0 0 30px 30px; 
-  transition: all 0.2s;
-}
-
-.card:hover .bottom {
-  border-radius: 30px;
-  height: 80px;
-  display: visible;
-}
-
 .card:hover .label {
-  justify-content: space-around;
-  padding: 1em;
+  opacity: 1;
+}
+
+.common {
+  font-weight: bold;
+  text-shadow: 0px 1px 5px black;
 }
 
 .rank {
+  font-weight: normal;
   font-style: italic;
-  font-size: 0.65em;
-  transition: font-size 0.2s;
-}
-
-.card:hover .rank {
-  font-size: 1em;
+  font-size: 0.8em;
+  text-shadow: 0px 1px 5px black;
 }
 
 .taxon {
   font-style: italic;
+  font-weight: normal;
+  text-shadow: 0px 1px 5px black;
 }
 
 .top {
@@ -146,15 +141,6 @@
 
   .card:hover {
     transform: scale(1.1);
-  }
-
-  .bottom {
-    bottom: -2px;
-    width: 120px;
-  }
-
-  .card:hover .bottom {
-    height: 120px;
   }
 
   .label {

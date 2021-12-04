@@ -42,12 +42,13 @@ svg {
   opacity: 0;
   right: 0.5em;
   position: absolute;
-  height: 1.5em;
-  width: 1.5em;
+  height: 1.75em;
+  width: 1.75em;
   transition: opacity 0.2s;
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 0.9em;
 }
 
 .node:hover .node-buttons {

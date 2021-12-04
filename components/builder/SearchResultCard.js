@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import Image from 'next/image'
+import { getIconicTaxonPhoto } from '../../lib/taxa'
 import styles from './SearchResultCard.module.css'
 
 export default function SearchResultCard({ taxa, setParent, addNode }) {
@@ -12,6 +13,10 @@ export default function SearchResultCard({ taxa, setParent, addNode }) {
     "icon": taxa.photo ? taxa.photo.url.replace("medium", "square") : "",
     "ancestors": taxa.ancestors,
     "wikipedia_url": taxa.wikipedia_url, 
+  }
+
+  if (!taxa.photo) {
+    taxa.photo = { url: getIconicTaxonPhoto(taxa) }
   }
 
   const image = taxa.photo ?
@@ -28,9 +33,9 @@ export default function SearchResultCard({ taxa, setParent, addNode }) {
         {image}
       </div>
 
-      <div style={{fontWeight: taxa.id === 48460 ? "bold" : ""}} className={[styles.label, styles.bottom].join(" ")}>
+      <div className={styles.label}>
         { taxa.id === 48460 ? "Browse kingdoms" : <>
-          <span style={{fontWeight: "bold", display: "visible"}}>{taxa.naming.common_name || ""}</span>
+          <span className={styles.common}>{taxa.naming.common_name?.replace(/[,]* and allies/i, ", ...") || ""}</span>
           <div>
             <span className={styles.rank}>{taxa.naming.rank}</span> <br />
             <span className={styles.taxon}>{taxa.naming.taxon}</span>
