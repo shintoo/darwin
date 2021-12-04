@@ -233,22 +233,25 @@ export default function Builder(props) {
       const taxa = await getTaxa(null, null, null, ids[i])
       const taxon = taxa[0]
       let icon = ""
+      let usingiNatPhoto = false
 
       // Using iNaturalist observation photos
-      if (photos) {
+      if (photos && photos[i]) {
         icon = photos[i]
+        usingiNatPhoto = true
       // Using default taxon photos
       } else if (taxon.photo) {
         icon = taxon.photo.url.replace("medium", "square")
       }
 
       const nodeData = {
-         "id": taxon.id,
-         "common_name": taxon.naming.common_name,
-         "sci_name": taxon.naming.rank + " " + taxon.naming.taxon,
-         "icon": icon,
-         "ancestors": taxon.ancestors,
-         "wikipedia_url": taxon.wikipedia_url,
+         id: taxon.id,
+         common_name: taxon.naming.common_name,
+         sci_name: taxon.naming.rank + " " + taxon.naming.taxon,
+         icon: icon,
+         photo: usingiNatPhoto,
+         ancestors: taxon.ancestors,
+         wikipedia_url: taxon.wikipedia_url,
       }
 
       await rAddNode(treeData[0], nodeData, true)

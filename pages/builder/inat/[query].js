@@ -28,7 +28,7 @@ export default function Builder(props) {
       // Have to set photos first; setting ids triggers starts the rerender that triggers
       // the tree build, so if the rerender caused by setting photos happens after that,
       // the photos are ignored (since the tree starts building if there are photos or not)
-      setPhotos(os.map(o => { console.log("inat photo: ", o.image); return o.image }))
+      setPhotos(os.map(o => o.image))
       setIds(os.map(o => o.id));
     })
 
@@ -60,11 +60,8 @@ async function getObservations(username, count) {
         if (!resp.results)
           return [-1];
         return resp.results.filter(r => r.taxon).map(r => {
-          console.log("getObservations: r.taxon: ", r.taxon)
-          const taxon_photo = r.taxon.default_photo?.medium_url
           const observation_photo = r.observation_photos.length !== 0 && r.observation_photos[0].photo.url
-          const photo = observation_photo || taxon_photo
-          return {id: r.taxon.id, image: photo.replace("medium", "square")}
+          return {id: r.taxon.id, image: observation_photo}
         })
     })
 }
