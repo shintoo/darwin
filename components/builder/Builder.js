@@ -30,7 +30,6 @@ export default function Builder(props) {
   const [ useCommonNames, setUseCommonNames ] = useState(true)
   const [ scale, setScale ] = useState(1.0)
   const [ addingNode, setAddingNode ] = useState(null)
-
   let usedIdsBuffer = usedIds
 
   // Disable scrolling when builder is in use, but reset it when leaving builder
@@ -55,7 +54,6 @@ export default function Builder(props) {
        setUsedIds(usedIds)
        addTreeColors(treeData[0], [0, 360])
        treeData[0].linkColor = "white"
-       console.log("setting new treeData: ", treeData)
        setTreeData([treeData[0]])
        setTrigger(trigger+1)
      } else {
@@ -64,10 +62,7 @@ export default function Builder(props) {
   }
 
   const rDeleteNode = (id, node) => {
-     console.log("rDeleteNode ", id, node)
-
      if (!node.children) {
-        console.log("no children: ", node.children)
         return false
      }
 
@@ -76,8 +71,6 @@ export default function Builder(props) {
           if (rDeleteNode(id, node.children[i])) 
             return true
 
-
-        console.log("foreach in rdn: '", node.children[i].id, "', '", id, "'")
         if (node.children[i].id == id) {
             let children = node.children[i].children
             node.children.splice(i, 1)
@@ -100,17 +93,14 @@ export default function Builder(props) {
     setAddingNode(data.id)
 
     if (addingNode) {
-      console.log("addingNode wasn't null, returning for ", data.id)
       return
     }
 
     await rAddNode(root, data, buildingTree) 
-    console.log("Setting addingNode to null")
     setAddingNode(null)
   }
 
   const rAddNode = async (root, data, buildingTree) => {
-    console.log("rAddNode(", root.name, ", ", data.name, ")")
     let added = false
 
     if (usedIdsBuffer.has(data.id))
@@ -121,7 +111,6 @@ export default function Builder(props) {
       return
 
     const findEarliestCommonAncestor = async (bro, sis) => {
-        console.log("finding eca between ", bro.name, "(", bro.ancestors, ") and ", sis.name, "(", sis.ancestors, ")")
         for (let i = 0; i < bro.ancestors.length; i++) {
             if (sis.ancestors.includes(bro.ancestors[i])) {
                if (usedIdsBuffer.has(bro.ancestors[i]))
@@ -136,18 +125,15 @@ export default function Builder(props) {
                   "ancestors": taxon.ancestors,
                   "wikipedia_url": taxon.wikipedia_url,
                }
-
                return nodeData
             }
         }
-
         return false
     }
 
     if (!root.children || root.children.length === 0) {
       root.children = [{...data, parent: root.name, children: []}]
       added = true
-      console.log("added ", data.name, "as only child under ", root.name)
     } else {
       for (let i = 0; i < root.children.length; i++) {
         if (added)
@@ -165,7 +151,6 @@ export default function Builder(props) {
           data.children[0].parent = data.name
           root.children[i] = data
           added = true
-          console.log("added ", data.name, "as parent of ", root.children[i].name)
           break
         }
         // If data should be a child of the child
@@ -174,39 +159,30 @@ export default function Builder(props) {
         if (data.ancestors.includes(root.children[i].id)) {
           // If the ancestor node has children, find where the new node should go
           // within that subtree
-          console.log("descending to ", root.children[i].name)
           added = await rAddNode(root.children[i], data)
           if (added) {
-            console.log("added")
             break 
           }
-          console.log("not added")
         }
         // If data is a sibling of the child, find their closest parent
         // (animals (finches)) =>
         // E.g. (animals (+birds (+owls) (finches)))
         parent = await findEarliestCommonAncestor(root.children[i], data)
-        console.log("parent from feca: ", parent)
         if (parent) {
-          console.log("got earliest common ancestor: ", parent.name)
           if (root.id === parent.id) {
              if (i !== root.children.length - 1) {
-                console.log("eca is parent, continuing to next child")
                 continue
              }
-             console.log("eca was parent, adding ", data.name, "as a child")
              root.children.push({...data, parent: root.name, children: []})
           } else {
              parent = {...parent, parent: root, children: [{...data, parent: parent.name, children: []}, root.children[i]]}
              root.children[i].parent = parent.name
              root.children[i] = parent
              usedIdsBuffer.add(parent.id)
-             console.log("added new eca parent ", parent.name, "with children ", data.name, " ", parent.children[1].name)
           }
           added = true
           break
         }
-        console.log("no common ancestor between ", root.children[i].name, data.name)
       }
     }
 
@@ -218,12 +194,11 @@ export default function Builder(props) {
       setTrigger(trigger+1)
       usedIdsBuffer.add(data.id)
       if (!buildingTree) {
-        console.log("setting usedIds to", usedIdsBuffer)
         setUsedIds(usedIdsBuffer)
       }
     }
 
-    console.log("Finished adding ", data.id, "usedIdsBuffer is now ", usedIdsBuffer)
+
     return added
   }
 
@@ -237,7 +212,6 @@ export default function Builder(props) {
     if (!numChildren)
       return
 
-    console.log("numChildren for ", node.id, numChildren)
     const childRangeSize = rangeSize / numChildren
 
     for (let i = 0; i < numChildren; i++) {
@@ -249,28 +223,37 @@ export default function Builder(props) {
     }
   }
 
-  const buildTreeFromIds = async ids => {
-   console.log(ids)
-   let nodes = []
+  const buildTreeFromIds = async (ids, photos) => {
+    let nodes = []
+
     for (let i = 0; i < ids.length; i++) {
       if (usedIdsBuffer.has(ids[i]))
         continue
 
-      console.log("id: ", ids[i])
       const taxa = await getTaxa(null, null, null, ids[i])
       const taxon = taxa[0]
+      let icon = ""
+
+      // Using iNaturalist observation photos
+      if (photos) {
+        icon = photos[i]
+      // Using default taxon photos
+      } else if (taxon.photo) {
+        icon = taxon.photo.url.replace("medium", "square")
+      }
+
       const nodeData = {
          "id": taxon.id,
          "common_name": taxon.naming.common_name,
          "sci_name": taxon.naming.rank + " " + taxon.naming.taxon,
-         "icon": taxon.photo ? taxon.photo.url.replace("medium", "square") : "",
+         "icon": icon,
          "ancestors": taxon.ancestors,
          "wikipedia_url": taxon.wikipedia_url,
       }
-      console.log("about to call rAddNode(", treeData[0].id, ", ", nodeData.id, ")")
+
       await rAddNode(treeData[0], nodeData, true)
     }
-    console.log("usedIdsBuffer after tree build complete: ", usedIdsBuffer)
+
     addTreeColors(treeData[0], [0, 360])
     treeData[0].linkColor = "white"
     setTreeData([...treeData])
@@ -282,6 +265,7 @@ export default function Builder(props) {
     if (!startedLoadingTree && (props.treeId || (props.ids && props.ids.length > 0))) {
       setStartedLoadingTree(true)
       let ids
+      let inatPhotos
       // Tree URL
       if (props.treeId) {
         const encodedIds = props.treeId.split("-")
@@ -291,10 +275,13 @@ export default function Builder(props) {
       } else if (props.ids && !startedLoadingTree) {
         setTitle(props.title)
         ids = props.ids
+        inatPhotos = props.photos
+
       }
-      buildTreeFromIds(ids).then(console.log("built tree :-)"))
+
+      buildTreeFromIds(ids, inatPhotos).then(console.log("built tree :-)"))
     }
-  }, [props.treeId, props.ids]) 
+  }, [props.treeId, props.ids, props.photos]) 
 
   return (
     <div>
