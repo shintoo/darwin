@@ -30,6 +30,7 @@ export default function Builder(props) {
   const [ useCommonNames, setUseCommonNames ] = useState(true)
   const [ scale, setScale ] = useState(1.0)
   const [ addingNode, setAddingNode ] = useState(null)
+  const [ expandingNode, setExpandingNode ] = useState(null)
   let usedIdsBuffer = usedIds
 
   // Disable scrolling when builder is in use, but reset it when leaving builder
@@ -202,6 +203,44 @@ export default function Builder(props) {
     return added
   }
 
+
+  const expandParentNode = async node => {
+    if (expandingNode) {
+      console.log("expand: expandingNode is true, returning immediately")
+      return;
+    }
+    console.log("expand: setting expandingNode to true")
+    setExpandingNode(true)
+    // For each child of this node, add the next least specific ancestor
+    // See issue https://github.com/shintoo/darwin/issues/9
+    for (let i = 0; i < node.children.length; i++) {
+      const child = node.children[i]
+      const parentIndex = child.ancestors.indexOf(node.id)
+      const id = child.ancestors[parentIndex - 1]
+      console.log(`expand: for ${node.common_name}: parent index: ${parentIndex}, ancestors: ${child.ancestors}, to add: ${parentIndex - 1} (${id})`)
+      // Skip if already in tree, or if there is nothing in between the parent and the child
+      if (node.children.includes(id) || usedIds.has(id) || [child.ancestors.length - 1, 0].includes(parentIndex)) {
+        console.log(`expand:    skipping add of ${id} for ${child.common_name}`)
+        continue
+      }
+
+      const taxa = await getTaxa(null, null, null, id)
+      const taxon = taxa[0]
+      const nodeData = {
+         "id": taxon.id,
+         "common_name": taxon.naming.common_name,
+         "sci_name": taxon.naming.rank + " " + taxon.naming.taxon,
+         "icon": taxon.photo ? taxon.photo.url.replace("medium", "square") : "",
+         "ancestors": taxon.ancestors,
+         "wikipedia_url": taxon.wikipedia_url,
+      }
+      console.log(`expand: adding node (${node.common_name}, ${nodeData.common_name})`)
+      addNode(node, nodeData)
+    }
+    console.log("expand: setting expandingNode to false")
+    setExpandingNode(false)
+  }
+
   const addTreeColors = (node, hueRange) => {
     const rangeSize = hueRange[1] - hueRange[0]
     const hue = hueRange[0] + rangeSize / 2
@@ -302,7 +341,7 @@ export default function Builder(props) {
         </div>
       </div>
       <div>
-        <Canvas deleteNode={deleteNode} data={treeData} setData={setTreeData} scale={scale} useCommonNames={useCommonNames}/>
+        <Canvas deleteNode={deleteNode} expandNode={expandParentNode} data={treeData} setData={setTreeData} scale={scale} useCommonNames={useCommonNames}/>
       </div>
       <div className={[styles.uibottom, bottomUiHidden ? styles.hidden : ""].join(" ")}>
         <div style={{width: "100%", display: "flex", alignItems: "center"}}>

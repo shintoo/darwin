@@ -11,14 +11,10 @@ export default function Canvas(props) {
   const [ dragging, setDragging ] = useState(false)
   const windowSize = useWindowSize()
   const [ coords, setCoords ] = useState([0, 0])
-
-
-  console.log("RER canvas rerender")
-
+  const [ i, setI ] = useState(0)
+  console.log("canvas rerender - ", Date.now())
   if (typeof window === "undefined")
     return "loading..."
-
-  console.log("rendering canvas with data ", props.data)
 
   const width  = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
   const height = window.innerHeight|| document.documentElement.clientHeight|| document.body.clientHeight;
@@ -36,14 +32,14 @@ export default function Canvas(props) {
     setStartCoords([e.clientX, e.clientY])
   }
 
-  console.log("createTree with scale ", props.scale)
   const node = createTree(
-    props.deleteNode,
+    id => { props.deleteNode(id); setI(i => i + 1); updateTree(props.data, props.useCommonNames); console.log("delete dong") },
     coords[0],
     coords[1],
     width,
     height,
-    props.scale
+    props.scale,
+    node => { props.expandNode(node); setI(i => i + 1); console.log("expand dong") }
   )
 
   if (props.data[0].children) {
@@ -56,15 +52,14 @@ export default function Canvas(props) {
 
   return (
     <div
-      onMouseDown={e => {setStartCoords([e.clientX, e.clientY]); setDragging(true)}}
+      onClick={e => {setStartCoords([e.clientX, e.clientY]); setDragging(true)}}
       onMouseUp={_ => setDragging(false)}
       onMouseMove={e => drag(e)}
       style={{cursor: dragging ? "grabbing" : "grab"}}
       onMouseLeave={_ => setDragging(false)}>
       { !props.data[0].children && <div className={styles.usagehint}><div>Browse or search taxa below and add them to the Canvas with the <span className={styles.plus}>+</span> button.</div></div> }
 
-
-        <RD3Component data={node} />
+        <div id="tree-canvas" />
     </div>
   )
 }
