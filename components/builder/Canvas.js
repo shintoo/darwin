@@ -33,13 +33,13 @@ export default function Canvas(props) {
   }
 
   const node = createTree(
-    id => { props.deleteNode(id); setI(i => i + 1); updateTree(props.data, props.useCommonNames); console.log("delete dong") },
+    id => { props.deleteNode(id); setI(i => i + 1); updateTree(props.data, props.useCommonNames);},
     coords[0],
     coords[1],
     width,
     height,
     props.scale,
-    node => { props.expandNode(node); setI(i => i + 1); console.log("expand dong") }
+    node => { props.expandNode(node); setI(i => i + 1);}
   )
 
   if (props.data[0].children) {
