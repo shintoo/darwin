@@ -14,7 +14,7 @@ export default function ShareButton({tree, title}) {
   }, [opened])
 
   const encodedIds = shareIds.map(base62.encode)
-  const url = "https://darwintree.app/builder/" + (title && title.replace(/ /g, "_")) + "-" + encodedIds.join("-")
+  const url = "https://darwintree.app/b/" + (title && title.replace(/ /g, "_")) + "-" + encodedIds.join("-")
   const tweetText = "Check out this phylogenetic tree I built with Darwin:"
   const mailto = 'mailto:?subject=Check out my tree "' + title + '" on Darwin&body=I made a phylogenetic tree using Darwin:  ' + url
 
