@@ -298,7 +298,7 @@ export default function Builder(props) {
           <LabelControl active={useCommonNames} setActive={setUseCommonNames} />
           <INatButton />
           <ZoomControl scale={scale} setScale={setScale}/>
-          <ShareButton ids={usedIds} title={title} />
+          <ShareButton tree={treeData} title={title} />
         </div>
       </div>
       <div>
