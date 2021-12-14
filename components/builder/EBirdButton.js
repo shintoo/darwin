@@ -22,7 +22,7 @@ export default function EBirdButton(props) {
       <Modal style={{width: "25em"}} close={_ => setShowing(false)}>
         Import your <a href="https://ebird.org/">eBird</a> Checklist by entering the checklist ID below.
         The ID of your checklist can be found on the checklist page, and at the end of the URL of your checklist page,
-        starting with a capital "S".
+        starting with a capital &quot;S&quot;.
         <div className={styles.inputcontainer}>
           <input
             className={styles.userinput}
