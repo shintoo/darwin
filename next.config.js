@@ -7,6 +7,10 @@ module.exports = {
         destination: '/builder/inat/:path*',
       },
       {
+        source: '/b/e/:path*',
+        destination: '/builder/ebird/:path*',
+      },
+      {
         source: '/b/:path*',
         destination: '/builder/:path*',
       },

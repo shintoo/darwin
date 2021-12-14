@@ -40,7 +40,7 @@ export default function Builder(props) {
       <Head>
         <title>Darwin - {title}</title>
       </Head>
-      <TreeBuilder setPageTitle={setTitle} ids={ids} photos={photos} title={username + "'s Observation Tree"}/>
+      <TreeBuilder setTitle={setTitle} ids={ids} photos={photos} title={username + "'s Observation Tree"}/>
     </>
   )
 }

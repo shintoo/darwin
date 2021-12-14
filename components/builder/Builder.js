@@ -11,10 +11,11 @@ import ShareButton from './ShareButton'
 import ZoomControl from './ZoomControl'
 import LabelControl from './LabelControl'
 import INatButton from './INatButton'
+import EBirdButton from './EBirdButton'
 import Tutorial from './Tutorial'
 import LogoButton from '../ui/LogoButton'
 import styles from './Builder.module.css'
-import getTaxa from '../../lib/taxa'
+import getTaxa, { taxonToNode } from '../../lib/taxa'
 import base62 from '../../lib/base62'
 
 export default function Builder(props) {
@@ -22,7 +23,6 @@ export default function Builder(props) {
   const [ searchRank, setSearchRank ] = useState("")
   const [ searchParentStack, setSearchParentStack ] = useState([])
   const [ bottomUiHidden, setBottomUiHidden ] = useState(false)
-  const [ title, setTitle ] = useState(props.title || "My Tree")
   const [ treeData, setTreeData ] = useState([{common_name: "Life", sci_name: "Life", id: 48460, children: [], parent: "null",}])
   const [ trigger, setTrigger ] = useState(0)
   const [ usedIds, setUsedIds ] = useState(new Set([48460]))
@@ -272,11 +272,11 @@ export default function Builder(props) {
       // Tree URL
       if (props.treeId) {
         const encodedIds = props.treeId.split("-")
-        setTitle(encodedIds.shift().replace(/_/g, " ")) 
+        props.setTitle(encodedIds.shift().replace(/_/g, " "))
         ids = encodedIds.map(id => base62.decode(id))
       // iNat url
       } else if (props.ids && !startedLoadingTree) {
-        setTitle(props.title)
+        props.setTitle(props.title)
         ids = props.ids
         inatPhotos = props.photos
 
@@ -286,6 +286,16 @@ export default function Builder(props) {
     }
   }, [props.treeId, props.ids, props.photos]) 
 
+  useEffect(async _ => {
+    if (!props.taxa || props.taxa.length == 0)
+      return
+    for (const taxon of props.taxa) {
+      console.log("ebird build: Adding: ", taxon.id)
+      await rAddNode(treeData[0], taxonToNode(taxon), true)
+      console.log("done adding: ", taxon.id)
+    }
+  }, [props.taxa])
+
   return (
     <div>
       <Tutorial />
@@ -293,12 +303,13 @@ export default function Builder(props) {
         <div className={styles.leftui}>
           <LogoButton height={32} />
         </div>
-        <Title title={title} setTitle={t => { props.setPageTitle(t); setTitle(t) }} />
+        <Title title={props.title} setTitle={props.setTitle} />
         <div className={styles.rightui}>
-          <LabelControl active={useCommonNames} setActive={setUseCommonNames} />
           <INatButton />
+          <EBirdButton />
+          <LabelControl active={useCommonNames} setActive={setUseCommonNames} />
           <ZoomControl scale={scale} setScale={setScale}/>
-          <ShareButton tree={treeData} title={title} />
+          <ShareButton tree={treeData} title={props.title} />
         </div>
       </div>
       <div>

@@ -10,7 +10,7 @@ export default function Builder(props) {
       <Head>
         <title>Darwin - {title}</title>
       </Head>
-      <TreeBuilder setPageTitle={setTitle}/>
+      <TreeBuilder setTitle={setTitle} title={title} />
     </>
   )
 }
