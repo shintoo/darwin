@@ -223,7 +223,7 @@ export default function Builder(props) {
     }
   }
 
-  const buildTreeFromIds = async (ids, photos) => {
+  const buildTreeFromIds = async ids => {
     let nodes = []
 
     for (let i = 0; i < ids.length; i++) {
@@ -233,23 +233,14 @@ export default function Builder(props) {
       const taxa = await getTaxa(null, null, null, ids[i])
       const taxon = taxa[0]
       let icon = ""
-      let usingiNatPhoto = false
 
-      // Using iNaturalist observation photos
-      if (photos && photos[i]) {
-        icon = photos[i]
-        usingiNatPhoto = true
-      // Using default taxon photos
-      } else if (taxon.photo) {
-        icon = taxon.photo.url.replace("medium", "square")
-      }
+      icon = taxon.photo.url.replace("medium", "square")
 
       const nodeData = {
          id: taxon.id,
          common_name: taxon.naming.common_name,
          sci_name: taxon.naming.rank + " " + taxon.naming.taxon,
          icon: icon,
-         photo: usingiNatPhoto,
          ancestors: taxon.ancestors,
          wikipedia_url: taxon.wikipedia_url,
       }
@@ -265,30 +256,20 @@ export default function Builder(props) {
   }
 
   useEffect(_ => {
-    if (!startedLoadingTree && (props.treeId || (props.ids && props.ids.length > 0))) {
+    if (!startedLoadingTree && (props.treeId)) {
       setStartedLoadingTree(true)
-      let ids
-      let inatPhotos
-      // Tree URL
-      if (props.treeId) {
-        const encodedIds = props.treeId.split("-")
-        props.setTitle(encodedIds.shift().replace(/_/g, " "))
-        ids = encodedIds.map(id => base62.decode(id))
-      // iNat url
-      } else if (props.ids && !startedLoadingTree) {
-        props.setTitle(props.title)
-        ids = props.ids
-        inatPhotos = props.photos
+      const encodedIds = props.treeId.split("-")
+      props.setTitle(encodedIds.shift().replace(/_/g, " "))
 
-      }
-
-      buildTreeFromIds(ids, inatPhotos).then(console.log("built tree :-)"))
+      const ids = encodedIds.map(id => base62.decode(id))
+      buildTreeFromIds(ids).then(console.log("built tree :-)"))
     }
-  }, [props.treeId, props.ids, props.photos]) 
+  }, [props.treeId]) 
 
   useEffect(async _ => {
     if (!props.taxa || props.taxa.length == 0)
       return
+
     for (const taxon of props.taxa) {
       console.log("ebird build: Adding: ", taxon.id)
       await rAddNode(treeData[0], taxonToNode(taxon), true)
