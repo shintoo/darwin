@@ -17,14 +17,13 @@ export default function Title({ title, setTitle }) {
   if (!editing) {
     return (
       <div className={styles.title} onClick={() => setEditing(true)}>
-        {title}
+        {title.length === 0 ? "Untitled" : title }
       </div>
     )
   }
 
   return (
-    <div className={styles.inputcontainer}>
-      <input
+    <input
         className={styles.input}
         type="text"
         autoFocus
@@ -32,8 +31,7 @@ export default function Title({ title, setTitle }) {
         value={title}
         onChange={handleChange}
         onKeyUp={handleKeyUp}
-        onBlur={_ => setEditing(false)}
-      />
-    </div>
+       onBlur={_ => setEditing(false)}
+    />
   )
 }

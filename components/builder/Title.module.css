@@ -3,19 +3,21 @@
   overflow-x: auto;
   font-size: 30px;
   font-family: Lora, serif;
-  border-radius: 30px;
-  padding: 0.5em;
-  background: #fff;
+  line-height: 1.0;
+  position: relative;
+  bottom: 2px;
 }
 
 .input {
   font-size: 30px;
-  color: #333;
-  font-family: Lora, serif;
-  text-align: center;
+  color: #555;
   text-decoration: underline;
+  font-family: Lora, serif;
+  text-align: left;
+  position: relative;
+  bottom: 2px;
   border: none;
   outline: none;
-  border-radius: 30px;
-  padding: 0.5em;
+  line-height: 1.0;
+  height: 30px; 
 }

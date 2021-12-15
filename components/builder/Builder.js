@@ -283,8 +283,8 @@ export default function Builder(props) {
       <div className={styles.uitop}> 
         <div className={styles.leftui}>
           <LogoButton height={32} />
+          <Title title={props.title} setTitle={props.setTitle} />
         </div>
-        <Title title={props.title} setTitle={props.setTitle} />
         <div className={styles.rightui}>
           <INatButton />
           <EBirdButton />

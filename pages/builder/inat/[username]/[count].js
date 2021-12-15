@@ -8,14 +8,14 @@ const endpoint = "https://api.inaturalist.org/v1/observations"
 
 export default function Builder(props) {
   const router = useRouter()
-  const [ title, setTitle ] = useState("Loading...")
+  const [ title, setTitle ] = useState(props.username + "'s Observation Tree")
 
   return (
     <>
       <Head>
         <title>Darwin - {title}</title>
       </Head>
-      <TreeBuilder setTitle={setTitle} taxa={props.observations} title={props.username + "'s Observation Tree"}/>
+      <TreeBuilder setTitle={setTitle} taxa={props.observations} title={title}/>
     </>
   )
 }

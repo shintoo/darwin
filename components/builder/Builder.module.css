@@ -39,12 +39,11 @@
 
 .leftui {
   display: flex;
-  margin-right: 2em;
-  align-items: flex-end;
+  align-items: baseline;
 }
 
 .leftui > * {
-  margin-right: 1em;
+  margin-left: 1em;
 }
 
 .rightui {
