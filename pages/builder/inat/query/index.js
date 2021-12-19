@@ -3,12 +3,13 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import TreeBuilder from '../../../../components/builder/Builder'
 import { simplifyTaxon } from '../../../../lib/taxa'
+import { createQueryString } from '../../../../lib/serialize'
 
 const endpoint = "https://api.inaturalist.org/v1/observations"
 
 export default function Builder(props) {
   const router = useRouter()
-  const [ title, setTitle ] = useState(props.username + "'s Observation Tree")
+  const [ title, setTitle ] = useState("My Tree")
 
   return (
     <>
@@ -21,26 +22,21 @@ export default function Builder(props) {
 }
 
 
-async function getObservations(username, count) {
-  let name = username
-  const resp = await fetch(endpoint + "?per_page=" + count + "&user_id=" + username)
+async function getObservations(query, count) {
+  const queryString = endpoint + "?" + query + "&per_page=" + count 
+  const resp = await fetch(queryString)
   const json = await resp.json()
   if (!json.results)
     return null;
 
   const results = json.results.filter(r => r.taxon)
 
-  // Handle if user ID is used instead of username
-  if (!isNaN(parseInt(username))) {
-    name = results[0].user.name
-  }
-
-  const observations = results.map(r => {
+  const taxa = results.map(r => {
     const inatPhoto = r.observation_photos.length !== 0 && r.observation_photos[0].photo.url
     let taxon = simplifyTaxon(r.taxon)
 
     if (inatPhoto) {
-      taxon.photo = { url: inatPhoto, attribution: username }
+      taxon.photo = { url: inatPhoto, attribution: r.observation_photos[0].photo.attribution }
       taxon.observation = r.id || true
     } else {
       taxon.obervation = false
@@ -48,19 +44,21 @@ async function getObservations(username, count) {
     return taxon
   })
 
-  return { name, observations }
+  return taxa
 }
 
 
 export async function getServerSideProps(context) {
-  const username = context.query.username
-  const count = context.query.count
-  const { name, observations} = await getObservations(username, count)
+  let { count, ...iNatQuery } = context.query
+  if (!count) {
+    count = 10
+  }
+  const query = createQueryString(iNatQuery)
+  const observations = await getObservations(query, count)
 
   return {
     props: {
       observations: observations,
-      username: name,
     }
   }
 }
