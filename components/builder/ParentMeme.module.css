@@ -1,7 +1,7 @@
 .container {
   border-radius: 100px;
   padding: 0.8em;
-  margin-right: 1em;
+  margin-right: .5em;
   font-family: Ubuntu, sans-serif;
   font-weight: 500;
   background-color: #8CAB73;
@@ -10,6 +10,7 @@
 }
 
 .rank {
+  display: none;
   font-style: italic;
   font-weight: normal;
   font-size: 10pt;
@@ -18,10 +19,22 @@
 .prev {
   cursor: pointer;
   border-radius: 50%;
-  width: 2em;
-  height: 2em;
+  width: 1em;
+  height: 1em;
   display: flex;
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
+}
+
+@media only screen and (min-width: 480px) {
+  .container {
+    padding: .8em;
+    border-radius: 100px;
+    margin-right: 1em;
+  }
+
+  .rank {
+    display: inline;
+  }
 }

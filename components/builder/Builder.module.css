@@ -7,14 +7,16 @@
 }
 
 .hidden {
-  transform: translateY(170px);
+  transform: translateY(100px);
 }
 
 .uitop {
+  position: absolute;
   background: #fff;
   box-sizing: border-box;
   width: 100%;
-  height: 64px;
+  height: 100%;
+  z-index: 1001;
   display: flex;
   /* For logo, title, save/share etc buttons */
   justify-content: center;
@@ -22,6 +24,14 @@
   align-items: center;
   box-shadow: 0 1px 10px 0 rgba(120, 120, 120, 0.3);
   border-radius: 0 0 20px 20px;
+  transition: all 0.3s ease-in;
+  transform: translateX(-120vw);
+  opacity: 0;
+}
+
+.lefthidden {
+  transform: translateX(0);
+  opacity: 1;
 }
 
 .uiside {
@@ -54,4 +64,45 @@
 
 .rightui > * {
   margin-right: 1em;
+}
+
+.search {
+  display: flex;
+/*  flex-direction: column;
+  align-items: left;
+  flex-direction: column-reverse;*/
+  align-items: center;
+  font-size: .8rem;
+}
+
+@media only screen and (min-width: 480px) {
+  .hidden {
+    transform: translateY(155px);
+  }
+
+  .search {
+    flex-direction: row;
+    display: flex;
+    align-items: center;
+    font-size: unset;
+  }
+
+.uitop {
+  background: #fff;
+  box-sizing: border-box;
+  width: 100%;
+  height: 64px;
+  display: flex;
+  /* For logo, title, save/share etc buttons */
+  justify-content: center;
+  padding: 0 1em 0 1em;
+  align-items: center;
+  box-shadow: 0 1px 10px 0 rgba(120, 120, 120, 0.3);
+  border-radius: 0 0 20px 20px;
+  position: relative;
+  transform: translateX(0);
+  opacity: 1;
+
+}
+
 }

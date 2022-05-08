@@ -1,6 +1,7 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import React from 'react'
 import SearchResultCard from './SearchResultCard'
+import ScrollButton from './SearchResultBoxScrollButton'
 import getTaxa from '../../lib/taxa'
 import debounce from '../../lib/input'
 import styles from './SearchResultBox.module.css'
@@ -8,6 +9,9 @@ import styles from './SearchResultBox.module.css'
 export default function SearchResultBox(props) {
   const [ results, setResults ] = useState([])
   const [ pagesLoaded, setPagesLoaded ] = useState(0)
+  const [ scrolled, setScrolled ] = useState(false)
+
+  const boxRef = useRef(null)
 
   useEffect(() => {
     setResults([])
@@ -25,6 +29,16 @@ export default function SearchResultBox(props) {
     props.clearParentStack()
   }, [props.query, props.rank])
 
+  const wheelHandler = e => {
+    e.preventDefault()
+    boxRef.current.scrollLeft += e.deltaY*4
+    if (boxRef.current.scrollLeft > 0) {
+      setScrolled(true)
+    } else {
+      setScrolled(false)
+    }
+    console.log("wheel scroll: ", e.deltaY)
+  }
 
   // make sure getTaxa can take a page,
   // keep a currentPagesLoaded state or something
@@ -59,8 +73,10 @@ export default function SearchResultBox(props) {
   }, 1000)
 
   return (
-    <div id="search-result-box" onScroll={scrollHandler} className={styles.container}>
+    <div ref={boxRef} id="search-result-box" onWheel={wheelHandler} onScroll={scrollHandler} className={styles.container}>
+      {scrolled && <ScrollButton boxRef={boxRef} direction="left" setScrolled={setScrolled} /> }
       { resultCards }
+      <ScrollButton boxRef={boxRef} direction="right" setScrolled={setScrolled} />
     </div>
   )
 }

@@ -43,7 +43,7 @@ export default function RankSelector(props) {
 
   return (
     <select className={[styles.rankselector + (rank === "" ? "" : " " + styles.selected)].join()} value={rank} onChange={handleSelect}>
-      <option value="">select a rank...</option>
+      <option value="">select a rank</option>
       {options}
     </select>
   )

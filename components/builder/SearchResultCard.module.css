@@ -1,10 +1,10 @@
 .card {
   margin: 0.3em;
-  margin-right: 2.5em;
-  height: 40px;
-  width: 40px;
+  margin-right: .5em;
+  height: 80px;
+  width: 80px;
   background-color: #fff;
-  border-radius: 30px; /*0 0 20px 20px;*/
+  border-radius: 10px; /*0 0 20px 20px;*/
   box-sizing: border-box;
   transition: all 0.2s ease-out;
   position: relative;
@@ -16,8 +16,6 @@
 .loaded {
   opacity: 1.0;
 }
-
-
 
 .imagecontainer {
   position: relative;
@@ -54,7 +52,7 @@
   align-items: center;
   justify-content: space-around;
   overflow-y: auto;
-  font-size: 0.8em;
+  font-size: 0.7em;
   font-weight: bold;
   text-shadow: 0px 1px 5px black;
   color: #fff;
@@ -66,7 +64,7 @@
   margin: 0;
   overflow-y: hidden;
   overflow-x: hidden;
-  border-radius: 30px;
+  border-radius: 10px;
   transition: all 0.1s;
 }
 
@@ -101,6 +99,7 @@
 .common {
   font-weight: bold;
   text-shadow: 0px 1px 5px black;
+  font-size: .8em;
 }
 
 .rank {
@@ -134,25 +133,74 @@
 
 @media only screen and (min-width: 680px) {
   .card {
-    height: 120px;
-    width: 120px;
+    height: 125px;
+    width: 125px;
     margin: 0.4em;
+    border-radius: 30px;
   }
 
   .card:hover {
     transform: scale(1.1);
   }
 
-  .label {
-    font-size: 0.8em;
-  }
-
   .imagecontainer {
-    width: 120px;
-    height: 120px;
+    width: 125px;
+    height: 125px;
   }
 
   .image {
     border-radius: 30px;
   }
+
+  .label {
+    text-decoration: none;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    overflow-y: auto;
+    font-size: 1.0em;
+    font-weight: bold;
+    text-shadow: 0px 1px 5px black;
+    color: #fff;
+    font-family: Roboto, sans-serif;
+    text-transform: lowercase;
+    background: rgba(0, 0, 0, 0.2);
+    opacity: 0.85;
+    position: absolute;
+    margin: 0;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    border-radius: 30px;
+    transition: all 0.1s;
+}
+
+  .common {
+    font-size: .9em;
+    font-weight: bold;
+    text-shadow: 0px 1px 5px black;
+  }
+  
+  .addbutton {
+    font-weight: bolder;
+    font-size: .8em;
+    right: -5px;
+    top: -5px;
+    width: 2em;
+    height: 2em; 
+    border-radius: 30px;
+    margin: 0.3em;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #32B0F9;
+    text-shadow: none;
+}
+
 }

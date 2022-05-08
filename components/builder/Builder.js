@@ -297,11 +297,11 @@ export default function Builder(props) {
         <Canvas deleteNode={deleteNode} data={treeData} setData={setTreeData} scale={scale} useCommonNames={useCommonNames}/>
       </div>
       <div className={[styles.uibottom, bottomUiHidden ? styles.hidden : ""].join(" ")}>
-        <div style={{width: "100%", display: "flex", alignItems: "center"}}>
+        <div className={styles.search}>
           <SearchBar setHide={setBottomUiHidden} setSearchText={setSearchText} setRank={setSearchRank}/>
           <ParentMeme stack={searchParentStack} setStack={setSearchParentStack} />
-          <SearchBarHideButton setter={setBottomUiHidden} state={bottomUiHidden} />
         </div>
+        <SearchBarHideButton setter={setBottomUiHidden} state={bottomUiHidden} />
         <SearchResultBox
           query={searchText}
           rank={searchRank}
