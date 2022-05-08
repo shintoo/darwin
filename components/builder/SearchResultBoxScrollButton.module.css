@@ -1,0 +1,45 @@
+.scrollbutton {
+  width: 2em;
+  height: 2em;
+  cursor: pointer;
+  color: white;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  position: absolute;
+  bottom: 35px;
+  font-size: 1em;
+  z-index: 999;
+  background: #8CAB73;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  border-radius: 50%;
+  box-shadow: 0 0 5px #0009;
+}
+
+.right {
+  right: 0;
+}
+
+.left {
+  left: 0;
+}
+
+@media only screen and (min-width: 480px) {
+  .scrollbutton {
+    bottom: 55px;
+    width: 2em;
+    height: 2m;
+    font-size: 1.5em;
+  }
+  .right {
+    right: 20px;
+  }
+  .left {
+    left: 20px;
+  }
+}
