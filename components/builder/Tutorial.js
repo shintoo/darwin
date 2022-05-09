@@ -54,7 +54,7 @@ export default function Tutorial(props) {
       <div className={styles.hint} onClick={_ => {setHint(false); setOpened(true)}}>
         First time? Click here to start the tutorial. 
         <div
-          style={{position: "absolute", top: "5px", right: "12px", cursor: "pointer", color: "#ccc"}}
+          style={{padding: ".2em", position: "absolute", top: "5px", right: "12px", cursor: "pointer", color: "#ccc"}}
           onClick={e => {e.stopPropagation();  setHint(false)}}>
           &ndash;
         </div>

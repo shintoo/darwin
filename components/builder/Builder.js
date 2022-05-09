@@ -279,6 +279,7 @@ export default function Builder(props) {
 
   return (
     <div>
+      <Tutorial />
       <div className={styles.uitop}> 
         <div className={styles.leftui}>
           <LogoButton height={32} />
@@ -290,7 +291,6 @@ export default function Builder(props) {
           <LabelControl active={useCommonNames} setActive={setUseCommonNames} />
           <ZoomControl scale={scale} setScale={setScale}/>
           <ShareButton tree={treeData} title={props.title} />
-          <Tutorial />
         </div>
       </div>
       <div>
