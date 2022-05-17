@@ -29,6 +29,9 @@ svg {
   z-index: -100;
   position: absolute;
   transition: all 0.05s;
+
+  background: linear-gradient(90deg, #f0f5e0 20px, transparent 1%) center, linear-gradient(#f0f5e0 20px, transparent 1%) center, #BCD1AB;
+  background-size: 22px 22px;
 }
 
 .node-buttons {
