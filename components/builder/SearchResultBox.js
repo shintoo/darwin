@@ -44,7 +44,7 @@ export default function SearchResultBox(props) {
   // keep a currentPagesLoaded state or something
   // do something to call it etc, interval, effect, something
 
-  const resultCards = results.map(taxa => <SearchResultCard key={taxa.id} taxa={taxa} setParent={props.setParent} addNode={props.addNode}/>)
+  const resultCards = results.map(taxa => <SearchResultCard key={taxa.id} taxa={taxa} setParent={props.setParent} addNode={props.addNode} mobileDrag={props.mobile}/>)
 
   const scrollHandler = debounce(_ => {
     const box = document.getElementById("search-result-box")
@@ -73,10 +73,16 @@ export default function SearchResultBox(props) {
   }, 1000)
 
   return (
-    <div ref={boxRef} id="search-result-box" onWheel={wheelHandler} onScroll={scrollHandler} className={styles.container}>
-      {scrolled && <ScrollButton boxRef={boxRef} direction="left" setScrolled={setScrolled} /> }
+    <div
+      ref={boxRef}
+      id="search-result-box"
+      data-mobile-dock={props.mobile ? "" : undefined}
+      onWheel={wheelHandler}
+      onScroll={scrollHandler}
+      className={[styles.container, props.mobile ? styles.mobile : ""].join(" ")}>
+      {!props.mobile && scrolled && <ScrollButton boxRef={boxRef} direction="left" setScrolled={setScrolled} /> }
       { resultCards }
-      <ScrollButton boxRef={boxRef} direction="right" setScrolled={setScrolled} />
+      {!props.mobile && <ScrollButton boxRef={boxRef} direction="right" setScrolled={setScrolled} /> }
     </div>
   )
 }

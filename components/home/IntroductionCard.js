@@ -48,7 +48,7 @@ export default function IntroductionCard(props) {
            src={"/anim.gif"}
          />
          <span className={styles.caption}>
-             The <i>Anhinga</i> is first added. Then, the <i>Double-crested Cormorant</i>. Finally, the <i>Great Cormorant</i>. { !isMobile && <Link href="/builder/Anhinga_and_Cormorants-cBC-1jF-ixu-16N-16L-16S"><span className={styles.link}>Open this tree in the Tree Builder.</span></Link> }
+             The <i>Anhinga</i> is first added. Then, the <i>Double-crested Cormorant</i>. Finally, the <i>Great Cormorant</i>. <Link href="/builder/Anhinga_and_Cormorants-cBC-1jF-ixu-16N-16L-16S"><span className={styles.link}>Open this tree in the Tree Builder.</span></Link>
          </span>
        </div>,
        <div className={styles.card} key="1">

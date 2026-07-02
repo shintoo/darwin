@@ -1,0 +1,31 @@
+.usagehint {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 2em;
+  text-align: center;
+  color: #5E4A2F;
+  z-index: -99;
+}
+
+.plus {
+  width: 2em;
+  height: 2em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  color: #fff;
+  font-family: Roboto, sans-serif;
+  font-weight: bolder;
+  background: #32B0F9;
+  text-align: center;
+  font-size: 0.8em;
+  box-sizing: border-box;
+}

@@ -7,7 +7,6 @@ export default function TitleCard(props) {
   const backgrounds = ["ladybeetle", "bee", "moss", "leafhopper", "moth", "plant1", "mushroom", "babyshroom", "leaf", "cypress1", "cypress2"]
   const selected = backgrounds[Math.floor(Math.random()*backgrounds.length)]
   const background = 'url(' + selected + '.jpeg) no-repeat center center fixed'
-  const isMobile = props.isMobile
 
   return (
     <div className={styles.container} style={{ background: background, backgroundSize: "cover" }}>
@@ -19,11 +18,11 @@ export default function TitleCard(props) {
         <h2 className={styles.subtitle}>
           A whole new way to explore the tree of life.
         </h2>
-        { !isMobile && <Button style={{
+        <Button style={{
           background: "#fff", color: "#000", marginLeft: "25px", padding: "15px"
         }} href="/builder">
           start building ➞
-        </Button> }
+        </Button>
       </div>
     </div>
   )

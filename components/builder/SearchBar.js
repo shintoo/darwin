@@ -23,6 +23,7 @@ export default function SearchBar(props) {
         type="text"
         className={styles.input}
         value={buffer}
+        autoFocus={props.autoFocus}
         placeholder={placeholder ? placeholder : "search..."}
         onClick={() => props.setHide(false)}
         onChange={handleChange} />

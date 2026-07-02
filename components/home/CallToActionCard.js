@@ -13,7 +13,7 @@ export default function CallToActionCard(props) {
         Learn about the life that surrounds you. Explore both everyday and
         exotic connections in nature. What will you find?
       </p>
-      {props.isMobile ? "Darwin is currently only available on desktop." : <Button style={{padding: "15px", margin: "1em", zIndex: "3", position: "relative"}} href="/builder">start exploring ➞</Button> }
+      <Button style={{padding: "15px", margin: "1em", zIndex: "3", position: "relative"}} href="/builder">start exploring ➞</Button>
     </div>
     </div>
     </Slide>

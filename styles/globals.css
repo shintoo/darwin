@@ -56,6 +56,20 @@ svg {
   opacity: 1.0;
 }
 
+/* Mobile has no hover, so keep the leaf delete button always visible and make
+   it a comfortable tap target. Also stop the browser from turning pans and
+   pinches over the tree into its own scroll/zoom. */
+.mobile-canvas svg {
+  touch-action: none;
+}
+
+.mobile-canvas .node-buttons {
+  opacity: 1;
+  height: 2em;
+  width: 2em;
+  font-size: 1em;
+}
+
 g {
   transition: transform 0.1s;
 }

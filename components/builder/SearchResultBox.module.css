@@ -20,6 +20,24 @@
   display: none;
 }
 
+/* On mobile, let the browser own only horizontal panning (dock scroll); vertical
+   drags are delivered to JS so a taxon can be dragged up onto the canvas. */
+.mobile {
+  touch-action: pan-x;
+  height: auto;
+  padding: 0.25em 0.4em 0.5em;
+  background: transparent;
+  box-shadow: none;
+  border-radius: 0;
+  overflow-y: visible; /* let the drag ghost / caption breathe */
+}
+
+@media only screen and (min-width: 680px) {
+  .mobile {
+    height: auto;
+  }
+}
+
 @media only screen and (min-width: 680px) {
   .container {
     height: 150px;
