@@ -1,4 +1,5 @@
 import styles from "./SearchResultBoxScrollButton.module.css"
+import { ChevronLeftIcon, ChevronRightIcon } from "./Icons"
 
 export default function SearchResultBoxScrollButton({direction, boxRef, setScrolled}) {
   const isLeft = direction == "left"
@@ -12,7 +13,7 @@ export default function SearchResultBoxScrollButton({direction, boxRef, setScrol
       delta = -600
     }
     boxRef.current.scrollBy({
-      left: delta, 
+      left: delta,
       top: 0,
       behavior: "smooth",
     })
@@ -27,7 +28,7 @@ export default function SearchResultBoxScrollButton({direction, boxRef, setScrol
       onClick={scroll}
       className={styles.scrollbutton + " " + (isLeft ? styles.left : styles.right)}
     >
-      {isLeft ? "<" : ">"}
+      {isLeft ? <ChevronLeftIcon /> : <ChevronRightIcon />}
     </div>
   )
 }

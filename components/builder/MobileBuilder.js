@@ -14,16 +14,7 @@ import LogoButton from '../ui/LogoButton'
 import styles from './MobileBuilder.module.css'
 import useTreeBuilder from '../../lib/useTreeBuilder'
 import { LIFE_PARENT } from '../../lib/taxa'
-
-function SearchIcon() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
-      stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="11" cy="11" r="7" />
-      <line x1="16.5" y1="16.5" x2="21" y2="21" />
-    </svg>
-  )
-}
+import { SearchIcon, MenuIcon, CloseIcon } from './Icons'
 
 export default function MobileBuilder(props) {
   const [ searchText, setSearchText ] = useState("")
@@ -84,7 +75,7 @@ export default function MobileBuilder(props) {
             onClick={_ => setMenuOpen(o => !o)}
             aria-label="menu"
           >
-            {menuOpen ? "✕" : "☰"}
+            {menuOpen ? <CloseIcon /> : <MenuIcon />}
           </div>
         </div>
 
@@ -116,7 +107,7 @@ export default function MobileBuilder(props) {
         <div className={styles.searchPanel}>
           <div className={styles.searchPanelHead}>
             <span className={styles.searchPanelTitle}>Search taxa</span>
-            <div className={styles.searchClose} onClick={closeSearch} aria-label="close search">✕</div>
+            <div className={styles.searchClose} onClick={closeSearch} aria-label="close search"><CloseIcon /></div>
           </div>
           <SearchBar autoFocus setHide={() => {}} setSearchText={setSearchText} setRank={setSearchRank} />
         </div>

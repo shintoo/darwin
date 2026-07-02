@@ -1,4 +1,5 @@
 import styles from './ParentMeme.module.css'
+import { ChevronLeftIcon, CloseIcon } from './Icons'
 
 export default function ParentMeme(props) {
 
@@ -11,12 +12,12 @@ export default function ParentMeme(props) {
   return props.stack.length > 0 ? <>
     { props.stack.length > 1 &&
       <div className={[styles.container, styles.prev].join(" ")} onClick={back}>
-       &lt;
+       <ChevronLeftIcon />
       </div>
     }
     <span className={styles.container}>
       <span className={styles.rank}>{taxon.rank}</span> <span>{taxon.name}</span> &nbsp;
-      <span style={{cursor: "pointer"}} onClick={() => { props.setStack([]) }}>x</span>
+      <span style={{cursor: "pointer"}} onClick={() => { props.setStack([]) }}><CloseIcon /></span>
     </span>
   </> : null
 }

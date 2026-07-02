@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
 import Image from 'next/image'
 import { getIconicTaxonPhoto } from '../../lib/taxa'
+import { PlusIcon } from './Icons'
 import styles from './SearchResultCard.module.css'
 
 export default function SearchResultCard({ taxa, setParent, addNode, mobileDrag }) {
@@ -158,7 +159,7 @@ export default function SearchResultCard({ taxa, setParent, addNode, mobileDrag 
 
        {taxa.id !== 48460 && !mobileDrag &&
         <div onClick={e => {e.stopPropagation(); addNode(nodeData)}}  className={[styles.label, styles.addbutton].join(" ")}>
-         +
+         <PlusIcon />
         </div>}
       </div>
     </>
